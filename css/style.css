@@ -22,7 +22,7 @@ body {
 	width: 1200px;
 	height: 90px;
 	margin: 0 auto;
-	overflow: hidden;
+
 }
 .top .topContent .topLogo{
 	width: 270px;
@@ -41,32 +41,40 @@ body {
 }
 .top .topContent .topNav ul li{
 	float: left;
-	line-height: 90px;
-	background: #ddd;	
+	line-height: 46px;
+	background: #fff;
+	margin-top: 41px;
+	border-bottom: 3px solid #fff;
 }
-.top .topContent .topNav ul li a,.nvaBg a{
+.top .topContent .topNav ul li:hover{
+	border-bottom: 3px solid #f00;
+}
+
+.top .topContent .topNav ul .navIng{
+	border-bottom: 3px solid #f00;
+}
+.top .topContent .topNav ul li a{
 	display: block;
 	font-size: 16px;
-	padding: 0 25px;
+	padding: 0 16px;
 }
-.top .topContent .topNav ul li .nvaBg a{
-	color: #f00;
+.top .topContent .topNav ul li .sNav{
+	text-align: center;
+	position: absolute;
+    display: none;
+	float: none;
+	line-height: 36px;
+	margin-top: 3px;
+	height: auto;
+	background: #fff;
+	padding: 5px 10px 10px 10px;
 }
-.top .topContent .topNav ul li .nvaBg{
-	width: 100%;
-	height: 0px;
-	position:sticky;
-	bottom: 0;
-	background: #f00;
-	overflow: hidden;
+.top .topContent .topNav ul li .sNav p{
+	border-bottom: 2px solid #f0f0f0;
 }
-.top .topContent .topNav ul li:hover .nvaBg{
-	height: 90px;
+.top .topContent .topNav ul li .sNav a{
+		padding: 0 6px;
 }
-.top .topContent .topNav ul li:hover .nvaBg a{
-	color: #fff;
-	margin-top: 0px;
-}
-.top .topContent .topNav ul li:hover a{
-	margin-top: -90px;
+.top .topContent .topNav ul li:hover .sNav{
+	display: block;
 }
