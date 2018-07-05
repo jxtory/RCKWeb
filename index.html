@@ -11,24 +11,9 @@
 	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="js/js.js"></script>
 	<script>
-		//#S在网页滚动的时候，实现顶部菜单半透明的效果。S#
-		$(window).scroll(function(event) {
-			//透明度transparency;
-			var transparency = 0.4;
-			//滚动到多少像素时发生
-			var trans_position = 20;
+//#S顶部菜单缩放S#
 
-			/* 事件 */
-			var scrollTop = $(window).scrollTop();
-			if(scrollTop > trans_position){
-				$('.top').css('opacity', transparency);
-			} else {
-				//最顶部时候
-				$('.top').css('opacity', 1);
-			}
-		});
-		//#E在网页滚动的时候，实现顶部菜单半透明的效果。E#
-
+//#E顶部菜单缩放E#
 	</script>
 
 <!--通用css&js结束-->
@@ -39,9 +24,9 @@
 <body>
 	<div class="top">
 		<div class="topContent">
-			<div class="topLogo"></div>
+			<img class="topLogo" src="css/img/topLogo.png" alt="">
 			<div class="topNav">
-				<ul>
+				<ul class="navMarginTop">
 					<li class="navIng"><a href="#">首页</a></li>
 					<li><a href="#">机构介绍</a>
 						<div class="sNav">
