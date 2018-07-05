@@ -9,12 +9,12 @@ $(window).scroll(function(event) {
 			/* 事件 */
 			var scrollTop = $(window).scrollTop();
 			if(scrollTop > trans_position){
-				$('.top,.topContent,.topLogo').css('height', topHeight);
+				$('.top,.topContent,.topLogo,.topBg').css('height', topHeight);
 				$('.topLogo').css('width', topWidth);
 				$('.navMarginTop').css('margin-top', topNavMarginTop);
 			} else {
 				//最顶部时候
-				$('.top,.topContent,.topLogo').css('height', 90);
+				$('.top,.topContent,.topLogo,.topBg').css('height', 90);
 				$('.topLogo').css('width', 270);
 				$('.navMarginTop').css('margin-top', 41);
 			}

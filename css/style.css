@@ -12,11 +12,17 @@ body {
 	font-size: 12px;
 	background: #f0f0f0;
 }
+.topBg{
+	width: 100%;
+	height: 90px;
+}
 .top{
+	z-index: 999;
 	width: 100%;
 	height: 90px;
 	background: #fff;
-	position: fixed;
+	position:fixed;
+	top:0;
 }
 .top .topContent{
 	width: 1200px;
