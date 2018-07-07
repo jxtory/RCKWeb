@@ -5,8 +5,12 @@ a:link{color: #666;}
 a:visited{color:#666;}
 a:hover{color:#f00;}
 a:active{color:#666;}
+textarea { overflow: auto; outline: none; }
+input, select, a { outline: none; }
+table { border-collapse: collapse; border-spacing: 0; border: none; width: 100%; }
 
 body {
+	width: 100%; min-height: 100%; 
 	font-family: "microsoft yahei", Helvetica Neue, Helvetica, Arial, sans-serif;
 	color: #333;
 	font-size: 12px;
@@ -44,6 +48,7 @@ body {
 	width: auto;
 	height: auto;
 	margin-top: 41px;
+	font-size: 16px;
 }
 .top .topContent .topNav ul li{
 	float: left;
@@ -60,7 +65,6 @@ body {
 }
 .top .topContent .topNav ul li a{
 	display: block;
-	font-size: 16px;
 	padding: 0 16px;
 }
 .top .topContent .topNav ul li .sNav{
