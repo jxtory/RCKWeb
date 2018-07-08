@@ -1,0 +1,43 @@
+主程序结构一览表
+
+OurAPP	主目录
+├─Engine					引擎
+│ ├─...							略
+│ └─...							更多引擎组件
+├─framework					框架目录
+│ ├─assets						资源目录
+│ │ ├─frontend						前台资源目录
+│ │ │ ├─css								CSS样式目录
+│ │ │ ├─js								JS程序目录
+│ │ │ └─...								其他调用目录或文件
+│ │ ├─backend					后台资源目录
+│ │ │ ├─css								CSS样式目录
+│ │ │ ├─js								JS程序目录
+│ │ * └─...								其他调用目录或文件
+│ ├─...							略
+│ └─...							更多引擎组件
+├─Jahs_Vexy					程序目录 
+│ ├─application						模块目录
+│ │ ├─index								前台模块
+│ │ │ ├─controller							控制器目录
+│ │ │ ├─model								模型目录
+│ │ │ ├─view								视图目录
+│ │ │ ├─...									其他目录
+│ │ │ ├─config.php							模块配置
+│ │ │ ├─route.php							路由配置		
+│ │ │ └─...									更多前台模块组件
+│ │ ├─manager							后台模块
+│ │ │ ├─controller							控制器目录
+│ │ │ ├─model								模型目录
+│ │ │ ├─view								视图目录
+│ │ │ ├─...									其他目录
+│ │ │ ├─config.php							模块配置
+│ │ │ ├─route.php							路由配置		
+├─index.php					程序入口
+├─README.md					Github说明
+
+
+
+
+Update：
+2018/7/8		Room 目录改名为 Engine, Engine是thinkphp引擎目录
