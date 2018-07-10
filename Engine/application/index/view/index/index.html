@@ -1,22 +1,201 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
-<link rel="icon" href="css/img/favicon.png" type="image/png">
-<link rel="shortcut icon" href="css/img/favicon.png" type="image/png">
-<!--通用css&js开始-->
-	<link href="css/style.css" rel="stylesheet">
-	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script src="js/js.js"></script>
-<!--通用css&js结束-->
-<meta name="keywords" content="">
-<meta name="description" content="">
-<title></title>
+{include file="common/meta" /}	
+<title>{$indexTitle}</title>
 </head>
 <body>
-	{include file="common/top" /}
+{include file="common/top" /}
+	<!--焦点图开始-->
+	<div class="index-banner">
+		<div class="head-login">
+			<div class="login-right">
+				<div class="fan0508-hdnav">
+					<ul>
+						<li class="on">帐号登陆</li>
+						<li class="last-li">证书查询</li>
+					</ul>
+				</div>
+				<div class="fan0508-bdnav">
+					<div class="regist-ul" id="reg">
+						<form action="#" method="post" name="" target="_self">
+							<ul>
+								<li>
+									<input class="telinput" type="" placeholder="">
+								</li>
+								<li>
+									<input class="codenput" type="password" placeholder=""></li>
+							</ul>
+							<p class="clear"></p>
+							<input type="submit" class="openAccount-down" value="登陆">
+						</form>
+					</div>
+					<div class="regist-ul" id="SYreg" style="display:none">
+						<form action="#" method="post" name="" target="_self">
+							<ul>
+								<li>
+									<input class="search" type="" placeholder="">
+								</li>
+							</ul>
+							<p class="clear"></p>
+							<input type="submit" class="openAccount-down" value="查询">
+							<p class="searchMore"> <a href="#">更多查询</a></p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="hd">
+			<ul class="num">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div class="bd">
+			<ul class="pic" >
+				<li> <a href="#"><img src="__images__/banner01.jpg" width="1200" height="280" alt="" /></a></li>
+				<li> <a href="#"><img src="__images__/banner02.jpg"  width="1200" height="280" alt="" /></a></li>
+				<li> <a href="#"><img src="__images__/banner03.jpg"  width="1200" height="280" alt="" /></a></li>
+				<li> <a href="#"><img src="__images__/banner04.jpg"  width="1200" height="280" alt="" /></a></li>
+			</ul>
+		</div>
+		<div class="pnBtn prev"> <span class="blackBg"></span> <a class="arrow" href="javascript:void(0)"></a> </div>
+		<div class="pnBtn next"> <span class="blackBg"></span> <a class="arrow" href="javascript:void(0)"></a> </div>
+	</div>
+	<!--焦点图结束-->
+	
+	<!--中部内容开始-->
+	<div class="middleDiv">
+		<div class="aboutUs">
+			<p class="h1 conter">关于人才库</p>
+			<p class="h2 indent b0b0b0" >“专业人才库管理中心”下设24种大类，840种类别专业的人才培养。 目前已成立了易学国学、医疗美容、健康教育、少儿艺术、婴幼儿早期教育、机器人技术、建筑设计国际认证、管理创新教育、在线教育、防水工程、艺术类培训等项目，主要以传承中国优秀传统文化、倡导健康和美化人民生活、提高中国下一代和全民素质、建立和谐社会、鼓励创新创业为主要发展方向，并且设立全国专业人才考评专家委员会和项目专家委员会，以专业化为主导，由行业内最具权威的国内、国外专家进行专业化的指导，树立行业标准，为中国和世界进行人才的交流搭建平台。</p>
+			<div class="buttonDiv">
+				<ul>
+					<li class="buttonL"><a class="h3" href="#">了解更多</a></li>
+					<li class="buttonR"><a class="h3" href="#">加入我们</a></li>
+				</ul>
+			</div>
+			<hr>
+		</div>
+		<div class="aboutUsNum">
+			<div class="num">
+				<img src="__css__/img/Num1.jpg" alt="">
+				<span class="number">24</span>
+				<p class="h2">大类</p>
+			</div>
+			<div class="num">
+				<img src="__css__/img/Num2.jpg" alt="">
+				<span class="number">840</span>
+				<p class="h2">类别</p>
+			</div>
+			<div class="num">
+				<img src="__css__/img/Num3.jpg" alt="">
+				<span class="number">4000</span>
+				<p class="h2">在库人员</p>
+			</div>
+			<div class="num">
+				<img src="__css__/img/Num4.jpg" alt="">
+				<span class="number">3900</span>
+				<p class="h2">上岗人员</p>
+			</div>			
+		</div>
+	</div>
+	<!--中部内容结束-->
+	
+	<!--新闻内容开始-->
+	<div class="news">
+		<div class="news1">
+			<div class="newsT">
+				<a class="pTitle" href="#">青年网友热议习大大“新闻舆论观”</a>
+				<p>asdasdasdasd</p>
+				<p>asdasdasdasd</p>
+				<p>asdasdasdasd</p>
+				<p>asdasdasdasd</p>
+			</div>
+			<img src="__images__/new1.jpg" alt="">
+		</div>
+		<div class="news2">
+			<div class="newsT">
+				<a class="pTitle" href="#">青年网友热议习大大</a>
+				<p>asdasdasdasd</p>
+				<p>asdasdasdasd</p>
+				<p>asdasdasdasd</p>
+			</div>
+			<img src="__images__/new2.jpg" alt="">
+		</div>
+		<div class="news2">
+			<div class="newsT">
+				<a class="pTitle" href="#">青年网友热议习大大</a>
+				<p>asdasdasdasd</p>
+				<p>asdasdasdasd</p>
+				<p>asdasdasdasd</p>
+			</div>
+			<img src="__images__/new2.jpg" alt="">
+		</div>
+		<div class="news2">
+			<div class="newsT">
+				<a class="pTitle" href="#">青年网友热议习大大</a>
+				<p>asdasdasdasd</p>
+				<p>asdasdasdasd</p>
+				<p>asdasdasdasd</p>
+			</div>
+			<img src="__images__/new2.jpg" alt="">
+		</div>
+		<div class="news2">
+			<div class="newsT">
+				<a class="pTitle" href="#">青年网友热议习大大</a>
+				<p>asdasdasdasd</p>
+				<p>asdasdasdasd</p>
+				<p>asdasdasdasd</p>
+			</div>
+			<img src="__images__/new2.jpg" alt="">
+		</div>
+		<div class="news2 mTop">
+			<div class="newsT">
+				<a class="pTitle" href="#">青年网友热议习大大</a>
+				<p>asdasdasdasd</p>
+				<p>asdasdasdasd</p>
+				<p>asdasdasdasd</p>
+			</div>
+			<img src="__images__/new2.jpg" alt="">
+		</div>
+		<div class="news2 mTop">
+			<div class="newsT">
+				<a class="pTitle" href="#">青年网友热议习大大“新闻舆论观”</a>
+				<p>asdasdasdasd</p>
+				<p>asdasdasdasd</p>
+				<p>asdasdasdasd</p>
+			</div>
+			<img src="__images__/new2.jpg" alt="">
+		</div>
+		<div class="news2 mTop">
+			<div class="newsT">
+				<a class="pTitle" href="#">青年网友热议习大大“新闻舆论观”</a>
+				<p>asdasdasdasd</p>
+				<p>asdasdasdasd</p>
+				<p>asdasdasdasd</p>
+			</div>
+			<img src="__images__/new2.jpg" alt="">
+		</div>
+		<div class="news2 mTop">
+			<div class="newsT">
+				<a class="pTitle" href="#">青年网友热议习大大“新闻舆论观”</a>
+				<p>asdasdasdasd</p>
+				<p>asdasdasdasd</p>
+				<p>asdasdasdasd</p>
+			</div>
+			<img src="__images__/new2.jpg" alt="">
+		</div>
+	</div>	
+	<!--新闻内容结束-->
 
+
+	<!--焦点图Js开始-->
+	<script type="text/javascript" src="__js__/jquery.SuperSlide.2.1.1.js"></script>
+	<script type="text/javascript" src="__js__/HQFn.js"></script>
+	<script type="text/javascript" src="__js__/fan.js"></script>
+	<!--焦点图Js开始-->
 </body>
 </html>
