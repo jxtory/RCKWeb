@@ -12,8 +12,8 @@
 return [
     // 视图输出字符串内容替换
     'view_replace_str'       => [
-            '__css__'		=>  '.\framework\assets\frontend\css',
-            '__js__'		=>	'.\framework\assets\frontend\js',
-            '__images__'	=>	'.\framework\assets\frontend\images'
+            '__css__'		=>  '\framework\assets\frontend\css',
+            '__js__'		=>	'\framework\assets\frontend\js',
+            '__images__'	=>	'\framework\assets\frontend\images'
     ],
 ];
