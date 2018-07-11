@@ -17,7 +17,7 @@ return [
     // 应用命名空间
     'app_namespace'          => 'app',
     // 应用调试模式
-    'app_debug'              => true,
+    'app_debug'              => false,
     // 应用Trace
     'app_trace'              => false,
     // 应用模式状态
@@ -206,7 +206,7 @@ return [
         // SESSION_ID的提交变量,解决flash上传跨域
         'var_session_id' => '',
         // SESSION 前缀
-        'prefix'         => 'dm',
+        'prefix'         => 'rck',
         // 驱动方式 支持redis memcache memcached
         'type'           => '',
         // 是否自动开启 SESSION
@@ -241,7 +241,7 @@ return [
     ],
 
     'http_exception_template'   =>  [
-        404 =>  APP_PATH . 'dm' . DS . 'view' . DS . 'common' . DS . 'func' . DS . '404.html'
+        404 =>  APP_PATH . 'index' . DS . 'view' . DS . 'common' . DS . 'func' . DS . '404.html'
     ],
     'captcha'  => [
            // 验证码字符集合
