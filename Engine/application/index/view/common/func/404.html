@@ -1,38 +1,67 @@
 <!DOCTYPE html>
-<html >
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>抱歉 页面找不到了</title>
-    <link rel="stylesheet" href="framework/assets/frontend/404/css/404.css">
+	<meta charset="UTF-8">
+	<style>
+		body {
+			background-color: #272727;
+		}
+		h1 {
+			font-family: "Arial", sans-serif;
+			font-size: 200px;
+			text-align: center;
+			font-weight: bold;
+			color: #3d3d3d;
+			margin-top: 150px;
+		}
+		h2 {
+			font-family: "Arial", sans-serif;
+			font-size: 80px;
+			text-align: center;
+			font-weight: bold;
+			color: #3d3d3d;
+		}
+		.text {
+			position:relative;
+		}
+		.text:after {
+			content: '';
+			position:absolute;
+			display:block;
+			top:0;
+			left:0;
+			height:100%;
+			width:100%;
+			background: -moz-linear-gradient(top,  rgba(39,39,39,1) 0%, rgba(39,39,39,0) 100%);
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(39,39,39,1)), color-stop(100%,rgba(39,39,39,0)));
+			background: -webkit-linear-gradient(top,  rgba(39,39,39,1) 0%,rgba(39,39,39,0) 100%);
+			background: -o-linear-gradient(top,  rgba(39,39,39,1) 0%,rgba(39,39,39,0) 100%);
+			background: -ms-linear-gradient(top,  rgba(39,39,39,1) 0%,rgba(39,39,39,0) 100%);
+			background: linear-gradient(to bottom,  rgba(39,39,39,1) 0%,rgba(39,39,39,0) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#272727', endColorstr='#00272727',GradientType=0 );			
+		}
+		span {
+			text-shadow: 
+				0 -1px 0 #858585,				
+				0 1px 10px rgba(0,0,0,.6),
+				0 6px 1px rgba(0,0,0,.1),
+				0 0 5px rgba(0,0,0,.2),
+				0 1px 3px rgba(0,0,0,.3),
+				0 3px 5px rgba(0,0,0,.2),
+				0 7px 10px rgba(0,0,0,.25),
+				0 15px 10px rgba(0,0,0,.2),
+				0 25px 15px rgba(0,0,0,.15);
+		}
+		
+	</style>
+	<title>抱歉 页面找不到了</title>
 </head>
+
 <body>
-  <div class="wrapper">
-	<div class="card">
-		<div class="card__year">
-			404<br />
-		</div>
-		<div class="card__cometOuter">
-			<div class="card__comet"></div>
-			<div class="card__comet card__comet--second">
-			</div>
-		</div>
-		<div class="card__circle"></div>
-		<div class="card__smallCircle"></div>
-		<div class="card__orangeShine"></div>
-		<div class="card__greenShine"></div>
-		<div class="card__thankyou">
-			抱歉<br />页面找不到了!<br />
-            <p class="text-info">
-                    即将 <a id="href" href="javascript:history.back(-1);">返回首页</a> 等待时间： <b id="wait" style="color:#f00; font-size:20px;">10</b>
-                </p>
-		</div>
-		<div class="card__outer-year">
-		</div>
-	</div>
-</div>
-  
-    <script src="framework/assets/frontend/404/js/404.js"></script>
-    <script type="text/javascript">
+	<h1 class="text"><span>404 !</span></h1>
+	<h2 class="text"><span>抱歉,页面找不到了</span></h2>
+	<h2 class="text"><a id="href" href="javascript:history.back(-1);"></a><span id="wait">5</span> <span>秒后返回上一页</span></h2>
+<script type="text/javascript">
         (function(){
             var wait = document.getElementById('wait'),
                 href = document.getElementById('href').href;
