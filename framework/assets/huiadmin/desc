@@ -1,0 +1,11 @@
+项目：
+	名称：		H-UI admin 3.13
+	下载地址：	http://www.h-ui.net/H-ui.admin.shtml
+
+ReadME:
+
+		后台框架调用的CSS和JS
+
+		不作为内容上传
+
+		下载后靠背 lib目录 、 static目录 到 framework/assets/huiadmin/ 下

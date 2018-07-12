@@ -1,2 +1,9 @@
+# 引擎文件
 /Engine/*
+
+# 前端和后台框架
+/framework/assets/huiadmin/*
+
+#忽略的内容
 !/Engine/application
+!/framework/assets/huiadmin/desc
