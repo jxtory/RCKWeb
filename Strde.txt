@@ -42,3 +42,4 @@ OurAPP	主目录
 
 Update：
 2018/7/8		Room 目录改名为 Engine, Engine是thinkphp引擎目录
+2018/7/14		framework/huiadmin	目录为后台主框架库的支持目录	说明和部署方式详见 framework/huiadmin/desc

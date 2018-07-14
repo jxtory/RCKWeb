@@ -8,4 +8,8 @@ ReadME:
 
 		不作为内容上传
 
-		下载后靠背 lib目录 、 static目录 到 framework/assets/huiadmin/ 下
+		下载后拷贝(Copy) lib目录和static目录 到 framework/assets/huiadmin/ 下
+
+		即可生效
+
+		Thanks!
