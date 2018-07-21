@@ -1,4 +1,5 @@
 @CHARSET "UTF-8";
+/*自用库类*/
 *{border: 0; padding: 0; margin: 0;transition:1s;-moz-transition:1s;-webkit-transition:1s;-o-transition:1s;}
 ul,li,a{list-style-type:none; text-decoration:none;}
 a:link{color: #666;}
@@ -8,13 +9,17 @@ a:active{color:#666;}
 textarea { overflow: auto; outline: none; }
 input, select, a { outline: none; }
 table { border-collapse: collapse; border-spacing: 0; border: none; width: 100%; }
-.h1,.h2,.h3{color:#a00;}
-.h1{font-size: 24px; font-weight:600;}
-.h2{font-size: 16px; font-weight:400;}
-.h3{font-size: 14px; font-weight:500;}
 .conter{text-align: center;}
 .indent{text-indent: 2em}
-.b0b0b0{color: #b0b0b0;}
+.fs24{font-size: 24px; font-weight: 400;}
+.fs20{font-size: 20px; font-weight: 400;}
+.fs18{font-size: 18px; font-weight: 400;}
+.fs16{font-size: 16px; font-weight: 400;}
+.fs14{font-size: 14px;}
+.rgb900{color: #900;}
+.rgbaaa{color: #aaa;}
+.rgb888{color: #888;}
+/*自用库类*/
 
 body {
 	width: 100%; min-height: 100%; 
@@ -168,7 +173,7 @@ body {
 }
 .aboutUsNum {
 	width: 1140px;
-	height: 180px;
+	height: 210px;
 	margin: 0 auto;
 	clear: both;
 }
@@ -182,15 +187,15 @@ body {
 .aboutUsNum .num:hover .number{
 	color: #a00;
 }
+.aboutUsNum .num:hover img{
+	-webkit-filter:grayscale(0%);/* Chrome 19+, Safari 6+, Safari 6+ iOS */
+	opacity: 1;
+}
 .aboutUsNum .num img{
 	filter:url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");/* Firefox 10+, Firefox on Android */
 	filter: gray;/* IE6-9 */
 	-webkit-filter:grayscale(100%);/* Chrome 19+, Safari 6+, Safari 6+ iOS */
 	opacity: 0.5;
-}
-.aboutUsNum .num img:hover {
-	-webkit-filter:grayscale(0%);/* Chrome 19+, Safari 6+, Safari 6+ iOS */
-	opacity: 1;
 }
 .aboutUsNum .num .number{
 	font-size: 28px;
@@ -199,61 +204,227 @@ body {
 	font-weight: bold;
 }
 
-.news{
+.infoMain{
+	width: 100%;
+	height: 100%;
+}
+.infoBg {
+	min-height: 100%;
+ 	background-size: cover;
+ 	background-attachment: fixed;
+ 	background-repeat: no-repeat;
+ 	background-position: center center;
+	background-image: url("img/cd-background-1.jpg");
+}
+.info{
 	width: 1200px;
-	height: 400px;
+	height: 430px;
 	margin: 0 auto;
-	padding: 30px 0;
-	clear: both;
-}
-.news img{
-	border-radius: 5px;
-}
-.news .news1{
-	width: 300px;
-	height: 400px;
-	float: left;
-	position:relative; 
-}
-.news .news2{
-	width: 200px;
-	height: 188px;
-	float: left;
-	margin-left: 24px;
+	padding: 40px 0;
 	position: relative;
+	
 }
-.news .newsT{
-	position: absolute; 
-	padding: 10px;
-	z-index: 1; 
-	left: 0; 
-	bottom:0; 
-	width: calc(100% - (20px));
-	color: #fff; 
-	background: rgba(0,0,0,.3); 
-	height: 30px; 
-	line-height: 30px; 
-	overflow: hidden;
-	border-radius:0 0 5px 5px;
+
+.infoWrapper .infoCard{
+	margin-top: 30px;
+    float: left;
+    padding: 20px;
+    cursor: pointer;
+    min-height: 310px;
+    background: transparent;
+    width: 360px;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    text-decoration: none;
 }
-.news .news1:hover .newsT{
-	background: rgba(0,0,0,.5); 
-	height: 340px;; 
+
+.infoImage {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+	filter:url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");/* Firefox 10+, Firefox on Android */
+	filter: gray;/* IE6-9 */
+	-webkit-filter:grayscale(100%);/* Chrome 19+, Safari 6+, Safari 6+ iOS */
+	opacity:1;
 }
-.news .news2:hover .newsT{
-	background: rgba(0,0,0,.5); 
-	height: 140px; 
+
+.infoText {
+    margin-top: 10px;
+    color: #666;
+    font-size: 14px;
+    line-height: 24px;
 }
-.news .pTitle{
-	font-size: 16px;
-	color: #aaa;
+.infoImg1 {
+    width: 100%;
+    height: 200px;
+    background: url(../images/info1.jpg) no-repeat center;
+    background-size: cover;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: -webkit-transform .5s ease;
+    transition: -webkit-transform .5s ease;
+    transition: transform .5s ease;
+    transition: transform .5s ease,-webkit-transform .5s ease;	
 }
-.news .news1:hover .pTitle{
-	color: #fff;
+
+.infoImage .infoImg1 {
+    z-index: 0;
+    position: absolute;
 }
-.news .news2:hover .pTitle{
-	color: #fff;
+
+.infoImgTitle {
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    font-size: 24px;
+    line-height: 200px;
+    position: absolute;
+    z-index: 1;
 }
-.news .mTop{
-	margin-top: 24px;
+
+.infoWrapper .infoCard:hover .infoScale {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2)
 }
+.infoWrapper .infoCard:hover .infoImage{
+	-webkit-filter:grayscale(0%);/* Chrome 19+, Safari 6+, Safari 6+ iOS */
+	opacity: 1;
+	color: #900;
+}
+.infoWrapper .infoCard:hover {
+    background: #fff;
+    -webkit-box-shadow: 0 0 25px rgba(186, 204, 207, 0.7);
+    -moz-box-shadow: 0 0 25px rgba(186, 204, 207, 0.7);
+    box-shadow: 0 0 25px rgba(186, 204, 207, 0.7);
+}
+
+.infoImg2 {
+    width: 100%;
+    height: 200px;
+    background: url(../images/info2.jpg) no-repeat center;
+    background-size: cover;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: -webkit-transform .5s ease;
+    transition: -webkit-transform .5s ease;
+    transition: transform .5s ease;
+    transition: transform .5s ease,-webkit-transform .5s ease;
+    z-index: 0;
+    position: absolute;
+}
+
+.infoImg3 {
+    width: 100%;
+    height: 200px;
+    background: url(../images/info3.jpg) no-repeat center;
+    background-size: cover;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: -webkit-transform .5s ease;
+    transition: -webkit-transform .5s ease;
+    transition: transform .5s ease;
+    transition: transform .5s ease,-webkit-transform .5s ease;
+    z-index: 0;
+    position: absolute;
+}
+
+
+.news{
+	width: 100%;
+	height: 500px;
+	background: #fff;
+	padding-top: 20px;
+}
+.newsInfo{
+	width: 1200px;
+	margin: 0 auto;
+}
+.news .newsTitle{
+	line-height: 50px;
+	height: 50px;
+}
+.news .newsList{
+	height: 380px;
+    padding: 30px 0;
+	border-radius: 8px;
+}
+.news .newsList .item{
+	width: 340px;
+    margin: 0 26px 0 32px;
+    float: left;
+	
+}
+.news .newsList .itemTitle{
+	line-height: 34px;
+
+}
+.news .newsList .itemList{
+	margin-bottom: 20px;
+}
+.news .newsList .itemList dt {
+    height: 180px;
+    position: relative;
+    margin: 15px 0;
+    overflow: hidden;
+	border-radius: 10px;
+}
+.news .newsList .itemList a img {
+    width: 340px;
+    height: 180px;
+    transition: all .4s;
+}
+.news .newsList .itemList dt a span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    color: #fff;
+    bottom: 10px;
+    font-size: 15px;
+    padding: 0 24px;
+    line-height: 1.5;
+    height: 24px;
+    overflow: hidden;
+    transition: all .2s;
+}
+.news .newsList .itemList dd {
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.news .newsList .itemList dd a {
+    font-size: 14px;
+    color: #909499;
+}
+.news .newsList .itemList dd a {
+    font-size: 14px;
+    color: #909499;
+}
+.news .newsList .itemList dd a:hover {
+    color: #ec6061;
+}
+.news .newsList .itemList dt a:hover img {
+    transform: scale(1.05);
+}
+.news .newsList .more {
+    width: 100px;
+    height: 36px;
+    display: block;
+    line-height: 36px;
+    border: 1px solid #ddd;
+	border-radius: 5px;
+    text-align: center;
+    transition: all .1s;
+}
+.news .newsList .more:hover {
+    background: #F96A69;
+    border-color: #F96A69;
+    color: #fff;
+}
+
