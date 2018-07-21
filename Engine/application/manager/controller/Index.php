@@ -3,7 +3,7 @@ namespace app\manager\controller;
 
 use \think\Controller;
 
-class Index extends Controller
+class Index extends ManagerBase
 {
     public function index()
     {

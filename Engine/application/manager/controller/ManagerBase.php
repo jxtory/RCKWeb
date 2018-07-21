@@ -1,14 +1,14 @@
 <?php
-namespace app\index\controller;
+namespace app\manager\controller;
 use think\Controller;
 use think\Db;
 use think\Validate;
 use think\Loader;
 
-class RCKBase extends Controller
+class ManagerBase extends Controller
 {
 	// 跳转回首页的设置
-    protected $rehome = "<script>window.location.replace('/');</script>";
+    protected $rehome = "<script>window.location.replace('/manager');</script>";
 
     public function _initialize()
     {
@@ -20,8 +20,8 @@ class RCKBase extends Controller
 	public function _empty()
 	{
         // 404页面
-		abort(404, "丢了丢了！");
-        return;
+		// abort(404, "丢了丢了！");
+		return "页面错误……";
 	}
 
 }

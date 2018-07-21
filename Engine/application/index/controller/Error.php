@@ -7,7 +7,9 @@ class Error
 {
     public function index()
     {
+    	// 404页面
     	abort(404, "丢了丢了！");
+    	return;
     }
 
 }
