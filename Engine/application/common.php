@@ -10,3 +10,11 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
+
+function mkdirs($dir, $mode = 0777)
+{
+    if (is_dir($dir) || mkdir($dir, $mode)) return true;
+    if (!mkdirs(dirname($dir), $mode)) return false;
+ 
+    return @mkdir($dir, $mode);
+}

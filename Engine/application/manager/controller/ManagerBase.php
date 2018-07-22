@@ -14,6 +14,10 @@ class ManagerBase extends Controller
     {
         // 基础初始化
     	// 基础初始化的东西开始
+
+        // 创建上传中心目录
+        mkdirs("uploadcenter");
+
     	return;
     }
 

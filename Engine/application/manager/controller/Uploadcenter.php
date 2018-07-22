@@ -18,6 +18,10 @@ class Uploadcenter extends ManagerBase
 
     public function banner_add()
     {
+        // 轮播图上传
+        if(){
+
+        }
     	return $this->fetch('banner_add');
     }
 
