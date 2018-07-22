@@ -4,6 +4,9 @@
 # 前端和后台框架
 /framework/assets/huiadmin/*
 
+# 上传中心
+/uploadcenter
+
 #忽略的内容
 !/Engine/application
 !/framework/assets/huiadmin/desc

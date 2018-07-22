@@ -16,7 +16,7 @@
 					<div class="queueList">
 						<div id="dndArea" class="placeholder">
 							<div id="filePicker-2"></div>
-							<p>或将照片拖到这里，单次最多可选300张</p>
+							<p>或将照片拖到这里，单次最多可选20张</p>
 						</div>
 					</div>
 					<div class="statusBar" style="display:none;">
@@ -30,12 +30,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="row cl">
-			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<button onClick="article_save_submit();" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 上传提交</button>
-				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
-			</div>
-		</div>
 	</form>
 </div>
 	
@@ -43,7 +37,7 @@
 <script type="text/javascript" src="_framework_/lib/webuploader/0.1.5/webuploader.min.js"></script> 
 <script type="text/javascript">
 function article_save(){
-	alert("刷新父级的时候会自动关闭弹层。")
+    layer.msg("刷新父级的时候会自动关闭弹层。");
 	window.parent.location.reload();
 }
 
@@ -61,10 +55,10 @@ $(function(){
 
 	var uploader = WebUploader.create({
 		auto: true,
-		swf: 'lib/webuploader/0.1.5/Uploader.swf',
+		swf: '_framework_lib/webuploader/0.1.5/Uploader.swf',
 	
 		// 文件接收服务端。
-		server: 'lib/webuploader/0.1.5/server/fileupload.php',
+		server: '{:url("manager/uploadcenter/banner_add")}',
 	
 		// 选择文件的按钮。可选。
 		// 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -250,15 +244,15 @@ $(function(){
                     window['expressinstallcallback'] = function( state ) {
                         switch(state) {
                             case 'Download.Cancelled':
-                                alert('您取消了更新！')
+                                layer.msg('您取消了更新');
                                 break;
 
                             case 'Download.Failed':
-                                alert('安装失败')
+                                layer.msg('安装失败');
                                 break;
 
                             default:
-                                alert('安装已成功，请刷新！');
+                                layer.msg('安装已成功, 请刷新!')
                                 break;
                         }
                         delete window['expressinstallcallback'];
@@ -290,7 +284,7 @@ $(function(){
 
             return;
         } else if (!WebUploader.Uploader.support()) {
-            alert( 'Web Uploader 不支持您的浏览器！');
+            alert( 'Web Uploader 上传系统 不支持您的浏览器！');
             return;
         }
 
@@ -305,10 +299,10 @@ $(function(){
             },
             dnd: '#dndArea',
             paste: '#uploader',
-            swf: 'lib/webuploader/0.1.5/Uploader.swf',
+            swf: '_framework_lib/webuploader/0.1.5/Uploader.swf',
             chunked: false,
             chunkSize: 512 * 1024,
-            server: 'lib/webuploader/0.1.5/server/fileupload.php',
+            server: '{:url("manager/uploadcenter/banner_add")}',
             // runtimeOrder: 'flash',
 
             // accept: {
@@ -319,7 +313,7 @@ $(function(){
 
             // 禁掉全局的拖拽功能。这样不会出现图片拖进页面的时候，把图片打开。
             disableGlobalDnd: true,
-            fileNumLimit: 300,
+            fileNumLimit: 20,
             fileSizeLimit: 200 * 1024 * 1024,    // 200 M
             fileSingleSizeLimit: 50 * 1024 * 1024    // 50 M
         });
@@ -546,8 +540,8 @@ $(function(){
             } else if ( state === 'confirm' ) {
                 stats = uploader.getStats();
                 if ( stats.uploadFailNum ) {
-                    text = '已成功上传' + stats.successNum+ '张照片至XX相册，'+
-                        stats.uploadFailNum + '张照片上传失败，<a class="retry" href="#">重新上传</a>失败图片或<a class="ignore" href="#">忽略</a>'
+                    text = '已成功上传' + stats.successNum+ '个图片，'+
+                        stats.uploadFailNum + '个图片上传失败，<a class="retry" href="#">重新上传</a>失败图片或<a class="ignore" href="#">忽略</a>'
                 }
 
             } else {
@@ -616,7 +610,7 @@ $(function(){
                 case 'finish':
                     stats = uploader.getStats();
                     if ( stats.successNum ) {
-                        alert( '上传成功' );
+                        layer.msg('上传成功');
                     } else {
                         // 没有成功的图片，重设
                         state = 'done';
@@ -683,7 +677,11 @@ $(function(){
         });
 
         uploader.onError = function( code ) {
-            alert( 'Eroor: ' + code );
+            if(code == "Q_EXCEED_NUM_LIMIT"){
+                layer.msg('你选择图片数量超过20张！已截断！');         
+                return;
+            }
+                layer.msg('错误:' + code)
         };
 
         $upload.on('click', function() {
@@ -705,7 +703,7 @@ $(function(){
         } );
 
         $info.on( 'click', '.ignore', function() {
-            alert( 'todo' );
+            layer.msg('等待上传');
         } );
 
         $upload.addClass( 'state-' + state );

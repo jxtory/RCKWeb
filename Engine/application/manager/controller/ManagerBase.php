@@ -17,6 +17,7 @@ class ManagerBase extends Controller
 
         // 创建上传中心目录
         mkdirs("uploadcenter");
+        mkdirs("uploadcenter/banner");
 
     	return;
     }
@@ -24,8 +25,7 @@ class ManagerBase extends Controller
 	public function _empty()
 	{
         // 404页面
-		// abort(404, "丢了丢了！");
-		return "页面错误……";
+		return "系统出了问题，请联系管理员";
 	}
 
 }
