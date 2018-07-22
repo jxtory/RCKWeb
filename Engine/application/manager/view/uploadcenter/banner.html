@@ -27,7 +27,7 @@
 				<li class="item">
 					<div class="portfoliobox">
 						<input class="checkbox" name="" type="checkbox" value="">
-						<div class="picbox"><a href="/uploadcenter/banner/{$bannerFiles}" data-lightbox="gallery" data-title="轮播图"><img src="/uploadcenter/banner/{$bannerFiles}"></a></div>
+						<div class="picbox"><a href="javascript: void(0);"><img src="/uploadcenter/banner/{$bannerFiles}"></a></div>
 						<div class="textbox">轮播图{$bannerFiles}</div>
 					</div>
 				</li>
@@ -41,11 +41,11 @@
 {include file="common/js" /}
 {include file="common/showLayer" /}
 <!--请在下方写此页面业务相关的脚本-->
-<script type="text/javascript" src="_framework_/lib/lightbox2/2.8.1/js/lightbox.min.js"></script> 
 <script type="text/javascript">
 $(function(){
 	$(".portfolio-area li").Huihover();
 });
+
 </script>
 
 </body>
