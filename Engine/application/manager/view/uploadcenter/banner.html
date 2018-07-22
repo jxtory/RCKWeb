@@ -19,18 +19,21 @@
 			<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius">
 				<i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
 		</span>
-		<span class="r">共有数据：<strong>1</strong> 条</span>
+		<span class="r">共有图片：<strong>{:count($bannerFiles)}</strong> 张</span>
 	</div>
 	<div class="portfolio-content">
-		<ul class="cl portfolio-area">
-			<li class="item">
-				<div class="portfoliobox">
-					<input class="checkbox" name="" type="checkbox" value="">
-					<div class="picbox"><a href="temp/big/weishengjian2.jpg" data-lightbox="gallery" data-title="卫生间2"><img src="temp/Thumb/weishengjian2.jpg"></a></div>
-					<div class="textbox">图片1 </div>
-				</div>
-			</li>
-		</ul>
+			<ul class="cl portfolio-area">
+				{volist name='bannerFiles' id="bannerFiles"}
+				<li class="item">
+					<div class="portfoliobox">
+						<input class="checkbox" name="" type="checkbox" value="">
+						<div class="picbox"><a href="/uploadcenter/banner/{$bannerFiles}" data-lightbox="gallery" data-title="轮播图"><img src="/uploadcenter/banner/{$bannerFiles}"></a></div>
+						<div class="textbox">轮播图{$bannerFiles}</div>
+					</div>
+				</li>
+			{/volist}
+			</ul>
+
 	</div>
 </div>
 

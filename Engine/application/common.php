@@ -21,7 +21,27 @@ function mkdirs($dir, $mode = 0777)
     return @mkdir($dir, $mode);
 }
 
+// 上传文件命名规则
 function myUploadRule()
 {
 	return date('Ymd') . md5(microtime(true));
+}
+
+// 查找Banner文件夹下所有文件
+function scanBannerFile($path = 'uploadcenter/banner')
+{
+	$files = scandir($path);
+	$getFiles = [];
+	foreach ($files as $file) {
+		if($file != '.' && $file != '..'){
+			if(is_dir($path . '/' . $file)){
+				scandir($path . '/' . $file);
+			} else {
+				$getFiles[] = basename($file);
+			}
+
+		}
+
+	}
+	return $getFiles;
 }
