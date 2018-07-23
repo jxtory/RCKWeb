@@ -26,7 +26,7 @@
 				{volist name='bannerFiles' id="bannerFiles"}
 				<li class="item">
 					<div class="portfoliobox">
-						<input class="checkbox" name="" type="checkbox" value="">
+						<input class="checkbox" name="file" type="checkbox" value="" data-filename="{$bannerFiles}">
 						<div class="picbox"><a href="javascript: void(0);"><img src="/uploadcenter/banner/{$bannerFiles}"></a></div>
 						<div class="textbox">轮播图{$bannerFiles}</div>
 					</div>
@@ -45,6 +45,40 @@
 $(function(){
 	$(".portfolio-area li").Huihover();
 });
+
+
+//批量删除
+function datadel()
+{
+	var datas = {};
+	datas.types = "delBanner";
+	datas.files = function(){
+		var str = "";
+		$("input[name='file']:checked").each(function(){
+			str += $(this).data('filename') + ",";
+		});
+
+		return str;
+	};
+
+	$.post(
+	    'uploadcenter_handle.html',
+	    datas,
+	    function(data){
+	        if(data == "1"){
+	        	layer.msg("提交成功");
+	            setTimeout(function(){
+	                window.location.reload();
+	            },1000); 
+	        } else if (data == "2"){
+	        	layer.msg("未知的错误");
+	        } else {
+	        	layer.msg("提交失败");
+	        }
+
+	});
+
+}
 
 </script>
 
