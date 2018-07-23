@@ -8,16 +8,46 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理中心 <span class="c-gray en">&gt;</span> 轮播图 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 
 <div class="page-container">
-	<h3>使用轮播图</h3>
-	<p>留空</p>
-</div>
+	<h3>放映中</h3>
+	<div class="portfolio-content">
+			<ul class="cl portfolio-area">
+				<li class="item">
+					<div class="portfoliobox">
+						<div class="picbox"><a href="javascript: void(0);"><img src=""></a></div>
+						<div class="textbox">第一张</div>
+					</div>
+				</li>
+				<li class="item">
+					<div class="portfoliobox">
+						<div class="picbox"><a href="javascript: void(0);"><img src=""></a></div>
+						<div class="textbox">第二张</div>
+					</div>
+				</li>
+				<li class="item">
+					<div class="portfoliobox">
+						<div class="picbox"><a href="javascript: void(0);"><img src=""></a></div>
+						<div class="textbox">第三张</div>
+					</div>
+				</li>
+				<li class="item">
+					<div class="portfoliobox">
+						<div class="picbox"><a href="javascript: void(0);"><img src=""></a></div>
+						<div class="textbox">第四张</div>
+					</div>
+				</li>
+			</ul>
+	</div>
 
+</div>
 <div class="page-container">
+	<h3>轮播图库</h3>
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
 			<a class="btn btn-primary radius" onclick="showLayer('上传图片','banner_add.html')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 上传图片</a>
 			<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius">
 				<i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+			<a href="javascript:;" onclick="checkall()" class="btn btn-warning radius">
+				<i class="Hui-iconfont">&#xe60c;</i> 全部选择</a>
 		</span>
 		<span class="r">共有图片：<strong>{:count($bannerFiles)}</strong> 张</span>
 	</div>
@@ -47,7 +77,13 @@ $(function(){
 });
 
 
-//批量删除
+// 全部选择
+function checkall()
+{
+	$("input[name='file']").attr("checked", "true");
+	return;
+}
+// 批量删除
 function datadel()
 {
 	var datas = {};

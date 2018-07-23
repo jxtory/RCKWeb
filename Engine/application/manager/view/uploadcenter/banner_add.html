@@ -36,9 +36,11 @@
 {include file="common/js" /}
 <script type="text/javascript" src="_framework_/lib/webuploader/0.1.5/webuploader.min.js"></script> 
 <script type="text/javascript">
-function article_save(){
-    layer.msg("刷新父级的时候会自动关闭弹层。");
-	window.parent.location.reload();
+function uploadOk(){
+    layer.msg("上传成功, 3秒后自动返回！");
+    setTimeout(function(){
+    	window.parent.location.reload();
+    }, 3000);
 }
 
 $(function(){
@@ -610,7 +612,8 @@ $(function(){
                 case 'finish':
                     stats = uploader.getStats();
                     if ( stats.successNum ) {
-                        layer.msg('上传成功');
+                        // layer.msg('上传成功');
+                        uploadOk();
                     } else {
                         // 没有成功的图片，重设
                         state = 'done';
