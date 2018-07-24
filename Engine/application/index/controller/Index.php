@@ -3,6 +3,10 @@ namespace app\index\controller;
 
 class Index extends RCKBase
 {
+    // 轮播图配置路径和文件
+    private $bannerConfigPath = "uploadcenter/bannerConfig.json";
+    private $bannerConfig = ['__feimages__/banner01.jpg', '__feimages__/banner02.jpg', '__feimages__/banner03.jpg', '__feimages__/banner04.jpg'];
+
     public function index()
     {
     	// 渲染首页
@@ -21,6 +25,11 @@ class Index extends RCKBase
         	$this->assign('port_Manager', '');
         }
         // E开发中首页开放入口
+
+
+        // 轮播图推送
+        if(file_exists($this->bannerConfigPath)){$this->bannerConfig = json_decode(file_get_contents($this->bannerConfigPath));}
+        $this->assign('banners', $this->bannerConfig);
 
     	return $this->fetch("index");
     }
