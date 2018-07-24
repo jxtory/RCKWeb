@@ -5,7 +5,7 @@ class Index extends RCKBase
 {
     // 轮播图配置路径和文件
     private $bannerConfigPath = "uploadcenter/bannerConfig.json";
-    private $bannerConfig = ['__feimages__/banner01.jpg', '__feimages__/banner02.jpg', '__feimages__/banner03.jpg', '__feimages__/banner04.jpg'];
+    private $bannerConfig = ['__images__/banner01.jpg', '__images__/banner02.jpg', '__images__/banner03.jpg', '__images__/banner04.jpg'];
 
     public function index()
     {
