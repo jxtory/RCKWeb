@@ -25,4 +25,10 @@ class Index extends RCKBase
     	return $this->fetch("index");
     }
 
+    public function contentlist()
+    {
+        // 渲染
+        return $this->fetch("contentlist");
+    }
 }
+
