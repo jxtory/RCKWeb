@@ -5,7 +5,13 @@ use \think\Controller;
 
 class Uploadcenter extends ManagerBase
 {
+    // 上传中心目录
+    private $uploadCenter = "uploadcenter";
+
+    // 轮播图目录和配置文件
     private $bannerPath = "uploadcenter/banner";
+    private $bannerConfigPath = "uploadcenter/bannerConfig.json";
+    private $bannerConfig = ['__images__/banner01.jpg', '__images__/banner02.jpg', '__images__/banner03.jpg', '__images__/banner04.jpg'];
 
     public function index()
     {
@@ -15,8 +21,13 @@ class Uploadcenter extends ManagerBase
     public function banner()
     {
     	// 轮播图管理页面
+        // 查看轮播图库
         $bannerFiles = scanBannerFile();
         $this->assign('bannerFiles', $bannerFiles);
+
+        // 查看放映中的轮播图
+        if(file_exists($this->bannerConfigPath)){$this->bannerConfig = json_decode(file_get_contents($this->bannerConfigPath));}
+        $this->assign('banners', $this->bannerConfig);
     	return $this->fetch('banner');
     }
 
@@ -41,6 +52,7 @@ class Uploadcenter extends ManagerBase
     public function uploadcenter_handle()
     {
         // 各种提交请求处理
+        // 删除Banner
         if(input("post.types") == "delBanner"){
             $datas = input();
             unset($datas['types']);
@@ -56,6 +68,35 @@ class Uploadcenter extends ManagerBase
             }
 
             return true;
+        }
+
+        // 设置轮播图
+        if(input("post.types") == "addBanner"){
+            $datas = input();
+            unset($datas['types']);
+
+            if(!file_exists($this->bannerConfigPath)){
+                // 配置文件不存在
+                $this->bannerConfig[$datas['offset']] = $this->bannerPath . DS . $datas['filename'];
+                if(file_put_contents($this->bannerConfigPath, json_encode($this->bannerConfig))){
+                    return true;
+                } else {
+                    return false;
+                }
+
+            } else {
+                // 配置文件存在
+                $this->bannerConfig = json_decode(file_get_contents($this->bannerConfigPath));
+                $this->bannerConfig[$datas['offset']] = $this->bannerPath . DS . $datas['filename'];
+
+                if(file_put_contents($this->bannerConfigPath, json_encode($this->bannerConfig))){
+                    return true;
+                } else {
+                    return false;
+                }
+
+            }
+
         }
     }
 
