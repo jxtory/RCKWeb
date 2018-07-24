@@ -29,6 +29,10 @@ class Index extends RCKBase
 
         // 轮播图推送
         if(file_exists($this->bannerConfigPath)){$this->bannerConfig = json_decode(file_get_contents($this->bannerConfigPath));}
+        foreach ($this->bannerConfig as $key => $value) {
+            $i = $key + 1;
+            if(!file_exists($value)){$this->bannerConfig[$key] = "__images__/banner0{$i}.jpg";}
+        }
         $this->assign('banners', $this->bannerConfig);
 
     	return $this->fetch("index");
