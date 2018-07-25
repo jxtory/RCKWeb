@@ -37,6 +37,7 @@ OurAPP	主目录
 ├─uploadcenter				上传目录									*该目录为系统自动创建
 │ ├─banner						轮播图上传目录
 │ └─...							更多上传目录
+├─config					配置目录									*该目录为系统自动创建，建立站点各种配置文件
 ├─index.php					程序入口
 ├─README.md					Github说明
 
@@ -46,3 +47,5 @@ OurAPP	主目录
 Update：
 2018/7/8		Room 目录改名为 Engine, Engine是thinkphp引擎目录
 2018/7/14		framework/huiadmin	目录为后台主框架库的支持目录	说明和部署方式详见 framework/huiadmin/desc
+2018/7/22		uploadcenter		目录为后台系统自动创建的目录， 该目录用于保存一些上传内容
+2018/7/25		config				目录为后台系统自动创建的目录， 该目录用于保存站点建立的各种配置文件

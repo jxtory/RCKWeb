@@ -7,6 +7,9 @@
 # 上传中心
 /uploadcenter
 
+# 配置目录
+/config
+
 #忽略的内容
 !/Engine/application
 !/framework/assets/huiadmin/desc

@@ -4,8 +4,12 @@ namespace app\index\controller;
 class Index extends RCKBase
 {
     // 轮播图配置路径和文件
-    private $bannerConfigPath = "uploadcenter/bannerConfig.json";
+    private $bannerConfigPath = "config/banner/bannerConfig.json";
     private $bannerConfig = ['__images__/banner01.jpg', '__images__/banner02.jpg', '__images__/banner03.jpg', '__images__/banner04.jpg'];
+
+    // 通知栏配置文件
+    private $noticeConfigPath = 'config/notice/noticeConfig.json';
+    private $noticeConfig = [];
 
     public function index()
     {
@@ -34,6 +38,14 @@ class Index extends RCKBase
             if(!file_exists($value)){$this->bannerConfig[$key] = "__images__/banner0{$i}.jpg";}
         }
         $this->assign('banners', $this->bannerConfig);
+
+        // 通知栏推送
+        if(file_exists($this->noticeConfigPath)){
+            $this->noticeConfig = json_decode(file_get_contents($this->noticeConfigPath));
+        } else {
+            $this->noticeConfig = json_decode(json_encode(['title'=>'通知栏', 'content' => '未设置']));
+        }
+        $this->assign('notice', $this->noticeConfig);
 
     	return $this->fetch("index");
     }

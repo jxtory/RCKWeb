@@ -19,6 +19,11 @@ class ManagerBase extends Controller
         mkdirs("uploadcenter");
         mkdirs("uploadcenter/banner");
 
+        // 创建配置目录
+        mkdirs("config");
+        mkdirs("config/banner");
+        mkdirs("config/notice");
+
     	return;
     }
 

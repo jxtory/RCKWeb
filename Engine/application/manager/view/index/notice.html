@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+{include file="common/meta" /}
+<title>专业人才库 通知栏设置</title>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+	<span class="c-gray en">&gt;</span>
+	管理中心
+	<span class="c-gray en">&gt;</span>
+	通知栏
+	<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
+</nav>
+
+<div class="page-container">
+	<form class="form form-horizontal" id="form-article-add">
+		<div id="tab-system" class="HuiTab">
+			<div class="tabBar cl">
+				<span>通知栏设置</span>
+			</div>
+			<div class="tabCon">
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">
+						<span class="c-red">*</span>
+						通知栏标题：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" id="website-title" placeholder="通知栏" name="notice_title" value="" class="input-text">
+					</div>
+				</div>
+
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">通知内容：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<textarea class="textarea" name="notice_content"></textarea>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<a onClick="notice_save();" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe632;</i> 保存</a>
+			</div>
+		</div>
+	</form>
+</div>
+
+	
+{include file="common/js" /}
+{include file="common/showLayer" /}
+
+<script type="text/javascript">
+var notice_title = "{$notice->title}";
+var notice_content = "{$notice->content}";
+
+$("[name='notice_title']").val(notice_title);
+$("[name='notice_content']").val(notice_content);
+
+$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	$("#tab-system").Huitab({
+		index:0
+	});
+});
+
+function notice_save()
+{
+	// 保存通知栏
+	$.post(
+		"notice.html",
+		{
+			types: "setNotice",
+			notice_title: $("[name='notice_title']").val(),
+			notice_content: $("[name='notice_content']").val()
+
+		},
+
+		function(data){
+			if(data == "1"){
+				layer.msg("提交成功");
+			    setTimeout(function(){
+			        window.location.reload();
+			    },1000); 
+			} else if (data == "2"){
+				layer.msg("未知的错误");
+			} else {
+				layer.msg("提交失败");
+			}
+
+	});
+}
+
+</script>
+</body>
+</html>
