@@ -1,11 +1,7 @@
 <?php
 namespace app\index\controller;
-use think\Controller;
-use think\Db;
-use think\Validate;
-use think\Loader;
 
-class RCKBase extends Controller
+class RCKBase extends Allbase
 {
 	// 跳转回首页的设置
     protected $rehome = "<script>window.location.replace('/');</script>";
@@ -14,7 +10,8 @@ class RCKBase extends Controller
     {
         // 基础初始化
     	// 基础初始化的东西开始
-    	return;
+
+        parent::_initialize();
     }
 
 	public function _empty()

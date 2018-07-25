@@ -1,11 +1,8 @@
 <?php
 namespace app\manager\controller;
-use think\Controller;
-use think\Db;
-use think\Validate;
-use think\Loader;
+use app\index\controller\Allbase as Allbase;
 
-class ManagerBase extends Controller
+class ManagerBase extends Allbase
 {
 	// 跳转回首页的设置
     protected $rehome = "<script>window.location.replace('/manager');</script>";
@@ -15,16 +12,8 @@ class ManagerBase extends Controller
         // 基础初始化
     	// 基础初始化的东西开始
 
-        // 创建上传中心目录
-        mkdirs("uploadcenter");
-        mkdirs("uploadcenter/banner");
+        parent::_initialize();
 
-        // 创建配置目录
-        mkdirs("config");
-        mkdirs("config/banner");
-        mkdirs("config/notice");
-
-    	return;
     }
 
 	public function _empty()
