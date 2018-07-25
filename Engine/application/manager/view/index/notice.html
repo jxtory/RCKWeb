@@ -41,6 +41,7 @@
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
 				<a onClick="notice_save();" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe632;</i> 保存</a>
+				<a onClick="notice_save_about();" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe632;</i> 自动设置：关于人才库</a>
 			</div>
 		</div>
 	</form>
@@ -92,6 +93,41 @@ function notice_save()
 				layer.msg("提交失败");
 			}
 
+	});
+}
+
+function notice_save_about()
+{
+	$("[name='notice_title']").val("关于人才库");
+	$("[name='notice_content']").val("“专业人才库管理中心”下设24种大类，840种类别专业的人才培养。 目前已成立了易学国学、医疗美容、健康教育、少儿艺术、婴幼儿早期教育、机器人技术、建筑设计国际认证、管理创新教育、在线教育、防水工程、艺术类培训等项目，主要以传承中国优秀传统文化、倡导健康和美化人民生活、提高中国下一代和全民素质、建立和谐社会、鼓励创新创业为主要发展方向，并且设立全国专业人才考评专家委员会和项目专家委员会，以专业化为主导，由行业内最具权威的国内、国外专家进行专业化的指导，树立行业标准，为中国和世界进行人才的交流搭建平台。");
+	// 保存通知栏
+	layer.msg("是否要保存？", {
+		time: 0,
+		btn: ['是的', '取消'],
+		btn1:function(){
+				$.post(
+					"notice.html",
+					{
+						types: "setNotice",
+						notice_title: '关于人才库',
+						notice_content: '“专业人才库管理中心”下设24种大类，840种类别专业的人才培养。 目前已成立了易学国学、医疗美容、健康教育、少儿艺术、婴幼儿早期教育、机器人技术、建筑设计国际认证、管理创新教育、在线教育、防水工程、艺术类培训等项目，主要以传承中国优秀传统文化、倡导健康和美化人民生活、提高中国下一代和全民素质、建立和谐社会、鼓励创新创业为主要发展方向，并且设立全国专业人才考评专家委员会和项目专家委员会，以专业化为主导，由行业内最具权威的国内、国外专家进行专业化的指导，树立行业标准，为中国和世界进行人才的交流搭建平台。'
+
+					},
+
+					function(data){
+						if(data == "1"){
+							layer.msg("提交成功");
+						    setTimeout(function(){
+						        window.location.reload();
+						    },1000); 
+						} else if (data == "2"){
+							layer.msg("未知的错误");
+						} else {
+							layer.msg("提交失败");
+						}
+
+				});
+		}
 	});
 }
 
