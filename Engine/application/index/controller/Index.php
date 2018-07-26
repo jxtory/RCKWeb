@@ -3,14 +3,6 @@ namespace app\index\controller;
 
 class Index extends RCKBase
 {
-    // 轮播图配置路径和文件
-    private $bannerConfigPath = "config/banner/bannerConfig.json";
-    private $bannerConfig = ['__images__/banner01.jpg', '__images__/banner02.jpg', '__images__/banner03.jpg', '__images__/banner04.jpg'];
-
-    // 通知栏配置文件
-    private $noticeConfigPath = 'config/notice/noticeConfig.json';
-    private $noticeConfig = [];
-
     public function index()
     {
     	// 渲染首页

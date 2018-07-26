@@ -5,10 +5,6 @@ use \think\Controller;
 
 class Index extends ManagerBase
 {
-    // 通知栏配置文件
-    private $noticeConfigPath = 'config/notice/noticeConfig.json';
-    private $noticeConfig = [];
-
     public function index()
     {
     	return $this->fetch("index");
@@ -58,6 +54,14 @@ class Index extends ManagerBase
         $this->assign('notice', $this->noticeConfig);
 
         return $this->fetch('notice');
+    }
+
+    public function showboard()
+    {
+        // 展示板设置
+
+        // 渲染
+        return $this->fetch("showboard");
     }
 
 }

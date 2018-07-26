@@ -5,14 +5,6 @@ use \think\Controller;
 
 class Uploadcenter extends ManagerBase
 {
-    // 上传中心目录
-    private $uploadCenter = "uploadcenter";
-
-    // 轮播图目录和配置文件
-    private $bannerPath = "uploadcenter/banner";
-    private $bannerConfigPath = "config/banner/bannerConfig.json";
-    private $bannerConfig = ['__images__/banner01.jpg', '__images__/banner02.jpg', '__images__/banner03.jpg', '__images__/banner04.jpg'];
-
     public function index()
     {
     	return $this->fetch("index");
