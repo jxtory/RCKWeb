@@ -602,13 +602,13 @@ body {
 }
 .subject{
 	width: 100%;
-	height: 50px;
+	height: 40px;
 	background: #fff;
 }
 .subgectTitle{
 	width: 1200px;
-	height: 50px;
-	line-height: 50px;
+	height: 40px;
+	line-height: 40px;
 	margin: 0 auto;
 }
 /*--------------------------*/
