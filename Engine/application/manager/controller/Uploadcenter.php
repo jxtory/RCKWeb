@@ -10,24 +10,6 @@ class Uploadcenter extends ManagerBase
     	return $this->fetch("index");
     }
 
-    public function banner()
-    {
-    	// 轮播图管理页面
-        // 查看轮播图库
-        $bannerFiles = scanBannerFile();
-        $this->assign('bannerFiles', $bannerFiles);
-
-        // 查看放映中的轮播图
-        if(file_exists($this->bannerConfigPath)){$this->bannerConfig = json_decode(file_get_contents($this->bannerConfigPath));}
-        foreach ($this->bannerConfig as $key => $value) {
-            $i = $key + 1;
-            if(!file_exists($value)){$this->bannerConfig[$key] = "__images__/banner0{$i}.jpg";}
-        }
-        $this->assign('banners', $this->bannerConfig);
-
-    	return $this->fetch('banner');
-    }
-
     public function banner_add()
     {
         // 轮播图上传

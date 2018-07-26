@@ -14,8 +14,48 @@
 	展示板
 	<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
 </nav>
+
+<div class="page-container">
+	<h3>展示板</h3>
+	<div class="portfolio-content">
+			<ul class="cl portfolio-area">
+				<li class="item">
+					<div class="portfoliobox">
+						<div class="picbox"><a href="javascript: void(0);"><img src="/"></a></div>
+						<div class="textbox">第一张</div>
+					</div>
+				</li>
+				<li class="item">
+					<div class="portfoliobox">
+						<div class="picbox"><a href="javascript: void(0);"><img src="/"></a></div>
+						<div class="textbox">第二张</div>
+					</div>
+				</li>
+				<li class="item">
+					<div class="portfoliobox">
+						<div class="picbox"><a href="javascript: void(0);"><img src="/"></a></div>
+						<div class="textbox">第三张</div>
+					</div>
+				</li>
+				<li class="item">
+					<div class="portfoliobox">
+						<div class="picbox"><a href="javascript: void(0);"><img src="/"></a></div>
+						<div class="textbox">第四张</div>
+					</div>
+				</li>
+			</ul>
+	</div>
+
+</div>
 	
 {include file="common/js" /}
 {include file="common/showLayer" /}
+
+<script>
+	$(function(){
+		$(".portfolio-area li").Huihover();		
+	});	
+</script>
+
 </body>
 </html>
