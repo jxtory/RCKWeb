@@ -39,6 +39,15 @@ class Index extends RCKBase
         }
         $this->assign('notice', $this->noticeConfig);
 
+        // 展示板推送
+        if(file_exists($this->showboardConfigPath)){
+            $this->showboardConfig = json_decode(file_get_contents($this->showboardConfigPath), true);
+        } else {
+            $this->showboardConfig = json_decode(json_encode($this->showboardConfig), true);
+        }
+
+        $this->assign('showboard', $this->showboardConfig);
+
     	return $this->fetch("index");
     }
 

@@ -78,6 +78,15 @@ class Index extends ManagerBase
     {
         // 展示板设置
 
+        // 读取配置文件
+        if(file_exists($this->showboardConfigPath)){
+            $this->showboardConfig = json_decode(file_get_contents($this->showboardConfigPath), true);
+        } else {
+            $this->showboardConfig = json_decode(json_encode($this->showboardConfig), true);
+        }
+
+        $this->assign('showboard', $this->showboardConfig);
+
         // 渲染
         return $this->fetch("showboard");
     }

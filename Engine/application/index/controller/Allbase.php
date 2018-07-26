@@ -21,7 +21,29 @@ class Allbase extends Controller
 
     // 展示板配置文件路径、文件
     protected $showboardConfigPath = 'config/showboard/showboardConfig.json';
-    protected $showboardConfig = [];
+    protected $showboardConfig = [
+                    [
+                        'caption'   =>  '演示1',
+                        'value'     =>  '666',
+                        'image'     =>  'framework\assets\frontend\css\img\Num1.jpg'
+                    ],
+                    [
+                        'caption'   =>  '演示2',
+                        'value'     =>  '888',
+                        'image'     =>  'framework\assets\frontend\css\img\Num2.jpg'
+                    ],
+                    [
+                        'caption'   =>  '演示3',
+                        'value'     =>  '6666',
+                        'image'     =>  'framework\assets\frontend\css\img\Num3.jpg'
+                    ],
+                    [
+                        'caption'   =>  '演示4',
+                        'value'     =>  '88888',
+                        'image'     =>  'framework\assets\frontend\css\img\Num4.jpg'
+                    ],
+
+                ];
 
     public function _initialize()
     {
