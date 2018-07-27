@@ -20,6 +20,7 @@ class Allbase extends Controller
     protected $noticeConfig = [];
 
     // 展示板配置文件路径、文件
+    protected $showboardPath = "uploadcenter/showboard";
     protected $showboardConfigPath = 'config/showboard/showboardConfig.json';
     protected $showboardConfig = [
                     [
@@ -51,7 +52,8 @@ class Allbase extends Controller
         
         // 创建上传中心目录
         mkdirs("uploadcenter");
-        mkdirs("uploadcenter/banner");
+        mkdirs("uploadcenter/banner");          // 轮播图
+        mkdirs("uploadcenter/showboard");       // 展示板
 
         // 创建配置目录
         mkdirs("config");                       // 配置目录

@@ -28,11 +28,22 @@ class Uploadcenter extends ManagerBase
     	return $this->fetch('banner_add');
     }
 
-    public function showboard_add()
+    public function showboard_add($offset = 0)
     {
-        // 展示板图上传
+        // 获取修改哪一个展示板
         if(request()->isGet()){
             $this->assign("pos_offset", input("get.offset"));
+        }
+
+        // 展示板图上传
+        if(request()->isPost()){
+            // 文件上传处理
+            $files = request()->file();
+
+            foreach ($files as $file) {
+                // 文件取名规则 —— function myUploadRule 定义在 Common.php
+                $info = $file->move($this->showboardPath, $offset);
+            }
         }
 
         return $this->fetch('showboard_add');
