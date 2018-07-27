@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+{include file="common/meta" /}
+<title>展示板-上传图片</title>
+<link href="_framework_/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<div class="page-container">
+	<h4>第{$pos_offset??"?"}栏</h4>
+	<form class="form form-horizontal" id="form-article-add">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">
+				<span class="c-red">*</span>
+				标题：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" id="website-title" placeholder="标题" name="caption" value="" class="input-text">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">
+				<span class="c-red">*</span>
+				数值：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" id="website-title" placeholder="数值" name="value" value="" class="input-text">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">
+				<span class="c-red">*</span>
+				显示图：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<div id="uploader">
+				    <div id="fileList" class="uploader-list"></div>
+				    <div id="filePicker">选择图片</div>
+				</div>
+			</div>
+		</div>
+
+	</form>
+
+</div>
+
+{include file="common/js" /}
+<script type="text/javascript" src="_framework_/lib/webuploader/0.1.5/webuploader.min.js"></script> 
+
+</script>
+
+</body>
+</html>

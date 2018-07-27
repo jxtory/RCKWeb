@@ -28,6 +28,16 @@ class Uploadcenter extends ManagerBase
     	return $this->fetch('banner_add');
     }
 
+    public function showboard_add()
+    {
+        // 展示板图上传
+        if(request()->isGet()){
+            $this->assign("pos_offset", input("get.offset"));
+        }
+
+        return $this->fetch('showboard_add');
+    }
+
     public function uploadcenter_handle()
     {
         // 各种提交请求处理
