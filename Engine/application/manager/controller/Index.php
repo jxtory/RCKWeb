@@ -74,15 +74,31 @@ class Index extends ManagerBase
         return $this->fetch('notice');
     }
 
-    public function showboard()
+    public function showboard($offset = 0)
     {
-        // 展示板设置
-
         // 读取配置文件
         if(file_exists($this->showboardConfigPath)){
             $this->showboardConfig = json_decode(file_get_contents($this->showboardConfigPath), true);
         } else {
             $this->showboardConfig = json_decode(json_encode($this->showboardConfig), true);
+        }
+
+        // 展示板设置
+        if(input("post.types") == "setShowboard"){
+            $datas = input();
+            unset($datas['types']);
+
+            $i = $offset - 1;
+
+            $this->showboardConfig[$i]['caption'] = $datas['caption'];
+            $this->showboardConfig[$i]['value'] = $datas['value'];
+
+            if(file_put_contents($this->showboardConfigPath, json_encode($this->showboardConfig))){
+                return true;
+            } else {
+                return false;
+            }
+
         }
 
         $this->assign('showboard', $this->showboardConfig);

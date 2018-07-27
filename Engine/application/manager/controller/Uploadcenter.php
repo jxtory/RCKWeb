@@ -31,9 +31,21 @@ class Uploadcenter extends ManagerBase
     public function showboard_add($offset = 0)
     {
         // 获取修改哪一个展示板
+
+        $i = $offset - 1;
+
         if(request()->isGet()){
             $this->assign("pos_offset", input("get.offset"));
         }
+
+        // 读取配置文件
+        if(file_exists($this->showboardConfigPath)){
+            $this->showboardConfig = json_decode(file_get_contents($this->showboardConfigPath), true);
+        } else {
+            $this->showboardConfig = json_decode(json_encode($this->showboardConfig), true);
+        }
+
+        $this->assign("showboard", $this->showboardConfig[$i]);
 
         // 展示板图上传
         if(request()->isPost()){
@@ -41,9 +53,17 @@ class Uploadcenter extends ManagerBase
             $files = request()->file();
 
             foreach ($files as $file) {
-                // 文件取名规则 —— function myUploadRule 定义在 Common.php
                 $info = $file->move($this->showboardPath, $offset);
             }
+
+
+            $this->showboardConfig[$i]['image'] = $this->showboardPath . DS . $info->getSavename();
+            $this->assign("pos_offset", input("get.offset"));
+
+            if(!file_put_contents($this->showboardConfigPath, json_encode($this->showboardConfig))){
+                return false;
+            }
+
         }
 
         return $this->fetch('showboard_add');

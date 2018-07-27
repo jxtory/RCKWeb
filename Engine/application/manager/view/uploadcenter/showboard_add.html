@@ -44,8 +44,53 @@
 
 </div>
 
+<div class="page-container">
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<a onClick="showboard_save();" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe632;</i> 保存</a>
+			</div>
+		</div>
+	
+</div>
+
 {include file="common/js" /}
 <script type="text/javascript" src="_framework_/lib/webuploader/0.1.5/webuploader.min.js"></script> 
+<script>
+// 值块
+var showboard_caption = "{$showboard['caption']}";
+var showboard_value = "{$showboard['value']}";
+
+$("[name='caption']").val(showboard_caption);
+$("[name='value']").val(showboard_value);
+
+function showboard_save()
+{
+	// 保存通知栏
+	$.post(
+		'{:url("manager/index/showboard", "offset=$pos_offset")}',
+		{
+			types: "setShowboard",
+			caption: $("[name='caption']").val(),
+			value: $("[name='value']").val()
+
+		},
+
+		function(data){
+			if(data == "1"){
+				layer.msg("提交成功");
+			    setTimeout(function(){
+			        window.location.reload();
+			    },1000); 
+			} else if (data == "2"){
+				layer.msg("未知的错误");
+			} else {
+				layer.msg("提交失败");
+			}
+
+	});
+}
+
+</script>
 <script>
 $(function(){
 	$list = $("#fileList");
