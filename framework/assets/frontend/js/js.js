@@ -37,3 +37,16 @@ $(document).ready(function(){
 		});
 	});
 });
+
+	// S动态控制.content Height
+//	$(function(){
+//		var cLeft = $(".cLeft").css("height");
+//		var cRight = $(".cRight").css("height");
+//		var commHeight = 0;
+//
+//		commHeight = parseInt(cLeft) > parseInt(cRight) ? cLeft : cRight;
+//
+//		$(".content").css("height", commHeight);
+//
+//	});
+	// E动态控制.content Height
