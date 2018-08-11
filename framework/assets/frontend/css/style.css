@@ -793,3 +793,15 @@ body {
 	height: 40px;
 	margin: 0 auto;
 }
+.wrap>div {
+            opacity: 0;
+            padding: 200px;
+        }
+.layerRight,.layerChild{
+	background: #fff;
+	width: 1200px;
+	height: 1200px;
+	padding:120px 20px 20px 20px;
+	margin: 0 auto;
+	opacity: 1;
+}

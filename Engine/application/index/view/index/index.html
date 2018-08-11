@@ -28,7 +28,7 @@
 							</ul>
 							<p class="clear"></p>
 							<input type="submit" class="openAccount-down" value="登陆" style="margin-right: 15px;">
-							<input type="submit" class="openAccount-down" value="注册" > 
+							<a href="#" class="openAccount-down" id="Right">注册</a>
 						</form>
 					</div>
 					<div class="regist-ul" id="SYreg" style="display:none">
@@ -66,7 +66,16 @@
 		<div class="pnBtn next"> <span class="blackBg"></span> <a class="arrow" href="javascript:void(0)"></a> </div>
 	</div>
 	<!--焦点图结束-->
-	
+<div class="wrap">	
+<div class="layerRight">
+<h3>右侧弹层内容...</h3>
+<button id="Close">关闭</button>
+<button id="btnChild">调用第2层</button>
+</div>
+<div class="layerChild">
+<h3>我是第2层</h3>
+</div>
+</div>
 	<!--中部内容开始-->
 	<div class="middleDiv">
 		<div class="aboutUs">
@@ -184,6 +193,7 @@
 	<script type="text/javascript" src="__js__/jquery.SuperSlide.2.1.1.js"></script>
 	<script type="text/javascript" src="__js__/HQFn.js"></script>
 	<script type="text/javascript" src="__js__/fan.js"></script>
+	<script type="text/javascript" src="__js__/mSlider.min.js"></script>
 	<!--焦点图Js开始-->
 	{$port_Manager}
 </body>

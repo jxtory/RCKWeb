@@ -50,3 +50,38 @@ $(document).ready(function(){
 //
 //	});
 	// E动态控制.content Height
+
+    $(function(){
+        //移动端使用touchend
+        var event = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i) ? 'touchend' : 'click';
+
+        // 选择器
+        var Q = function (id) {
+            return document.getElementById(id)
+        };
+
+        //方向控制
+        //右
+        var _right = new mSlider({
+            dom: ".layerRight",
+            direction: "top"
+        });
+        var _child = new mSlider({
+            dom: ".layerChild",
+            direction: "top",
+            time: "1000"
+        });
+
+        Q("Right").addEventListener(event, function (e) {
+            _right.open();
+        });
+
+        Q("Close").addEventListener(event, function (e) {
+            _right.close();
+        });
+
+        Q("btnChild").addEventListener(event, function (e) {
+            _right.close();
+            _child.open();
+        })
+    });
