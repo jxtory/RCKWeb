@@ -69,7 +69,7 @@ $(document).ready(function(){
         var _child = new mSlider({
             dom: ".layerChild",
             direction: "top",
-            time: "1000"
+            time: "3000"
         });
 
         Q("Right").addEventListener(event, function (e) {
