@@ -69,9 +69,28 @@
 	
 <div class="wrap">	
 <div class="layerRight">
-{include file="common/register" /}
+	<div class="reg_div">
+	  <p>用户注册</p>
+	  <ul class="reg_ul">
+	    <li> <span>用户名：</span>
+	      <input type="text" name="" value="" placeholder="4-24位用户名" class="reg_user">
+	      <span class="tip user_hint"></span> </li>
+	    <li> <span>密码：</span>
+	      <input type="password" name="" value="" placeholder="6-16位密码" class="reg_password">
+	      <span class="tip password_hint"></span> </li>
+	    <li> <span>确认密码：</span>
+	      <input type="password" name="" value="" placeholder="确认密码" class="reg_confirm">
+	      <span class="tip confirm_hint"></span> </li>
+	    <li> <span>邮箱：</span>
+	      <input type="text" name="" value="" placeholder="邮箱" class="reg_email">
+	      <span class="tip email_hint"></span> </li>
+	    <li> <span>手机号码：</span>
+	      <input type="email" name="" value="" placeholder="手机号" class="reg_mobile">
+	      <span class="tip mobile_hint"></span> </li>
+	    <li> <a href="javascript: void(0);" class="register" name="button">注册</a> </li>
+	  </ul>
+	</div>
 <button id="Close">关闭</button>
-<button id="btnChild">调用第2层</button>
 </div>
 <div class="layerChild">
 <p class="fs20 center" style="line-height: 60px;">恭喜您﹗注册成功，现在您可以去登陆了﹗</p>
@@ -197,6 +216,7 @@
 	<script type="text/javascript" src="__js__/HQFn.js"></script>
 	<script type="text/javascript" src="__js__/fan.js"></script>
 	<script type="text/javascript" src="__js__/mSlider.min.js"></script>
+	<script type="text/javascript" src="__js__/register.js"></script>
 	<!--焦点图Js开始-->
 	{$port_Manager}
 </body>

@@ -51,6 +51,8 @@ $(document).ready(function(){
 //	});
 	// E动态控制.content Height
 
+
+/* - - - - - - - - - - ↓注册页面JS↓ - - - - - - - - - - */
     $(function(){
         //移动端使用touchend
         var event = navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i) ? 'touchend' : 'click';
@@ -85,3 +87,4 @@ $(document).ready(function(){
             _child.open();
         })
     });
+

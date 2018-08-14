@@ -51,6 +51,12 @@ class Index extends RCKBase
     	return $this->fetch("index");
     }
 
+    // 首页发出注册事件
+    public function register()
+    {
+        return false;
+    }
+
     public function contentlist()
     {
         // 渲染
