@@ -67,36 +67,50 @@
 	</div>
 	<!--焦点图结束-->
 	
-<div class="wrap">	
-<div class="layerRight">
-	<div class="reg_div">
-	  <p>用户注册</p>
-	  <ul class="reg_ul">
-	    <li> <span>用户名：</span>
-	      <input type="text" name="" value="" placeholder="4-24位用户名" class="reg_user">
-	      <span class="tip user_hint"></span> </li>
-	    <li> <span>密码：</span>
-	      <input type="password" name="" value="" placeholder="6-16位密码" class="reg_password">
-	      <span class="tip password_hint"></span> </li>
-	    <li> <span>确认密码：</span>
-	      <input type="password" name="" value="" placeholder="确认密码" class="reg_confirm">
-	      <span class="tip confirm_hint"></span> </li>
-	    <li> <span>邮箱：</span>
-	      <input type="text" name="" value="" placeholder="邮箱" class="reg_email">
-	      <span class="tip email_hint"></span> </li>
-	    <li> <span>手机号码：</span>
-	      <input type="email" name="" value="" placeholder="手机号" class="reg_mobile">
-	      <span class="tip mobile_hint"></span> </li>
-	    <li> <a href="javascript: void(0);" class="register" name="button">注册</a> <a href="javascript: void(0);" class="regClose" id="Close">取消</a></li>
-		  <li>  </li>
-	  </ul>
+<div class="wrap">
+	<div class="layerRight">
+		<div class="regLaye">
+			<p>用户注册</p>
+			<div class="regImg"></div>
+			<div class="reg_div">
+				<ul class="reg_ul">
+					<li>
+						<span>用户名：</span>
+						<input type="text" name="" value="" placeholder="4-24位用户名" class="reg_user">
+						<span class="tip user_hint"></span>
+					</li>
+					<li>
+						<span>密码：</span>
+						<input type="password" name="" value="" placeholder="6-16位密码" class="reg_password">
+						<span class="tip password_hint"></span>
+					</li>
+					<li>
+						<span>确认密码：</span>
+						<input type="password" name="" value="" placeholder="确认密码" class="reg_confirm">
+						<span class="tip confirm_hint"></span>
+					</li>
+					<li>
+						<span>邮箱：</span>
+						<input type="text" name="" value="" placeholder="邮箱" class="reg_email">
+						<span class="tip email_hint"></span>
+					</li>
+					<li>
+						<span>手机号码：</span>
+						<input type="email" name="" value="" placeholder="手机号" class="reg_mobile">
+						<span class="tip mobile_hint"></span>
+					</li>
+					<li>
+						<a href="javascript: void(0);" class="register" name="button">注册</a>
+						<a href="javascript: void(0);" class="regClose" id="Close">取消</a>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
-
-</div>
-<div class="layerChild">
-<p class="fs20 center" style="line-height: 60px;">恭喜您﹗注册成功，现在您可以去登陆了﹗</p>
-<p class="fs16 center">该页面将在3秒后自动消失</p>
-</div>
+	<div class="layerChild">
+		<p class="fs20 center" style="line-height: 60px;">恭喜您﹗注册成功，现在您可以去登陆了﹗</p>
+		<p class="fs16 center">该页面将在3秒后自动消失</p>
+	</div>
 </div>
 	
 	<!--中部内容开始-->
@@ -106,8 +120,8 @@
 			<p class="fs14 indent rgbaaa" >{$notice->content}</p>
 			<div class="buttonDiv">
 				<ul>
-					<li class="buttonL"><a class="fs16" href="#">了解更多</a></li>
-					<li class="buttonR"><a class="fs16" href="#">加入我们</a></li>
+					<li class="buttonL transition"><a class="fs16 transition" href="#">了解更多</a></li>
+					<li class="buttonR transition"><a class="fs16" href="#">加入我们</a></li>
 				</ul>
 			</div>
 			<hr>
