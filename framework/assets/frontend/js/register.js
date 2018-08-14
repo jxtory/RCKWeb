@@ -63,19 +63,8 @@
 	// click
 	$('.register').click(function(){
 	  if(user_Boolean && password_Boolean && varconfirm_Boolean && emaile_Boolean && Mobile_Boolean == true){
-	  	$.post(
-	  		url: "",
-	  		data: {
-
-	  		},
-	  		function(data){
-	  			if(data == true){
-	  				_right.close();
-	  				_child.open();
-	  			}
-	  		}
-	  	);
-
+		_right.close();
+		_child.open();
 	  }else {
 	    alert("请完善信息");
 	  }
