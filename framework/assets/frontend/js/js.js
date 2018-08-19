@@ -83,20 +83,39 @@ $(document).ready(function(){
         });
 
         Q("btnChild").addEventListener(event, function (e) {
-          _right.close();
-          _child.open();
-        })
-
-        Q("register").addEventListener(event, function (e) {
             if(user_Boolean && password_Boolean && varconfirm_Boolean && emaile_Boolean && Mobile_Boolean){
+                var url = "index/index/register.html";
+                var vun = $(".reg_user").val();
+                var vps = $(".reg_password").val();
+                var vem = $(".reg_email").val();
+                var vmb = $(".reg_mobile").val();
+
+                $.post(
+                    url,
+                    {
+                        action: "register",
+                        username: vun,
+                        password: vps,
+                        email: vem,
+                        mobile: vmb
+                    },
+                    function(data){
+                        if(data == "true"){
+                            alert("注册成功了");
+                        } else if(data == "false"){
+                            alert("注册失败了");
+                        }
+                    }
+
+                );
               _right.close();
               _child.open();
-            }else {
-              alert("请完善信息");
+                
+            } else {
+                alert("请完善信息");
             }
-        })
 
-
+        });
     });
 
 

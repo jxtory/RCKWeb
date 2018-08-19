@@ -57,11 +57,11 @@ class Index extends RCKBase
         if(input("post.action") == "register"){
             $datas = input();
             unset($datas['action']);
-            file_put_contents("user.txt", $datas);
-            return true;
+            file_put_contents("user.txt", implode("----", $datas) . PHP_EOL, FILE_APPEND);
+            return "true";
         }
 
-        return false;
+        return "false";
     }
 
     public function contentlist()
