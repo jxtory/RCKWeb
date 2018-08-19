@@ -54,6 +54,13 @@ class Index extends RCKBase
     // 首页发出注册事件
     public function register()
     {
+        if(input("post.action") == "register"){
+            $datas = input();
+            unset($datas['action']);
+            file_put_contents("user.txt", $datas);
+            return true;
+        }
+
         return false;
     }
 
