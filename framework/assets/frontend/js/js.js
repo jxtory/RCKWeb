@@ -83,9 +83,22 @@ $(document).ready(function(){
         });
 
         Q("btnChild").addEventListener(event, function (e) {
-            _right.close();
-            _child.open();
+          _right.close();
+          _child.open();
         })
+
+        Q("register").addEventListener(event, function (e) {
+            if(user_Boolean && password_Boolean && varconfirm_Boolean && emaile_Boolean && Mobile_Boolean){
+              _right.close();
+              _child.open();
+            }else {
+              alert("请完善信息");
+            }
+        })
+
+
     });
+
+
 
 

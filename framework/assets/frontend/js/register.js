@@ -58,14 +58,3 @@
 	    Mobile_Boolean = false;
 	  }
 	});
-
-
-	// click
-	$('.register').click(function(){
-	  if(user_Boolean && password_Boolean && varconfirm_Boolean && emaile_Boolean && Mobile_Boolean == true){
-		_right.close();
-		_child.open();
-	  }else {
-	    alert("请完善信息");
-	  }
-	});
