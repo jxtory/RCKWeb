@@ -101,9 +101,9 @@ $(document).ready(function(){
                     },
                     function(data){
                         if(data == "true"){
-                            alert("注册成功了");
+                            // alert("注册成功了");
                         } else if(data == "false"){
-                            alert("注册失败了");
+                            // alert("注册失败了");
                         }
                     }
 
