@@ -57,8 +57,36 @@ class Index extends RCKBase
         if(input("post.action") == "register"){
             $datas = input();
             unset($datas['action']);
-            file_put_contents("user.txt", implode("----", $datas) . PHP_EOL, FILE_APPEND);
-            return "true";
+            // file_put_contents("user.txt", implode("----", $datas) . PHP_EOL, FILE_APPEND);
+
+            $data = [
+                'username'      =>      $datas['username'],
+                'password'      =>      md5($datas['password']),
+                'email'         =>      $datas['email'],
+                'mobile'        =>      $datas['mobile']
+            ];
+
+            if(db('users')->where("username", $datas['username'])->find()){
+                return "username repeat";
+            }
+
+            $user = db("users")->insert($data);
+
+            if($user){
+                return "true";
+            } else {
+                return "false";
+            }            
+
+        }
+
+        if(input("post.action") == "askuserrepeat"){
+            $datas = input();
+            unset($datas['action']);
+
+            if(db('users')->where("username", $datas['username'])->find()){
+                return "true";
+            }
         }
 
         return "false";

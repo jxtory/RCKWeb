@@ -101,15 +101,16 @@ $(document).ready(function(){
                     },
                     function(data){
                         if(data == "true"){
-                            // alert("注册成功了");
+                            _right.close();
+                            _child.open();
                         } else if(data == "false"){
-                            // alert("注册失败了");
+                            alert("注册失败了");
+                        } else if(data == "username repeat"){
+                            alert("用户名重复");
                         }
                     }
 
                 );
-              _right.close();
-              _child.open();
                 
             } else {
                 alert("请完善信息");

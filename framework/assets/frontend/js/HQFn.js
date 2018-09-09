@@ -13,9 +13,12 @@
 		$('.fan0508-bdnav > div').eq(index).css('display', 'block');
 		//console.log(_num)
 	})
-	regFn({id:'reg',notNeedName:true,accuntHref:webAccount.TT});
+	/* 检查问题!! */
+	// regFn({id:'reg',notNeedName:true,accuntHref:webAccount.TT});
 	regFn_SY({id:'SYreg',notNeedName:true});
 	HQ();
 	$(".data-productTab").slide({mainCell:".bd ul",autoPlay:true,effect:"leftLoop",vis:6,scroll:1,trigger:"click"});
 	$(".head-login .login-right").slide({trigger:"click",titCell:".fan0508-hdnav li" ,mainCell:".fan0508-bdnav"});
-})(jQuery)
+})
+/* 检查问题!! */
+// (jQuery)

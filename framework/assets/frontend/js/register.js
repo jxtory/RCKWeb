@@ -7,11 +7,34 @@
 	  if ((/^[a-z0-9_-]{4,24}$/).test($(".reg_user").val())){
 	    $('.user_hint').html("✔").css("color","green");
 	    user_Boolean = true;
+	    checkUserRepeat();
 	  }else {
 	    $('.user_hint').html("×").css("color","red");
 	    user_Boolean = false;
 	  }
 	});
+
+	function checkUserRepeat(){
+		// $('.reg_user').bind('input propertychange',function(){
+		var url = "index/index/register.html";
+		var vun = $(".reg_user").val();
+		$.post(
+		    url,
+		    {
+		        action: "askuserrepeat",
+		        username: vun
+		    },
+		    function(data){
+		        if(data == "true"){
+		        	$('.user_hint').html("用户名重复").css("color","red");
+		        	user_Boolean = false;
+		        } 
+		    }
+		);
+			
+		// });
+	}
+
 	// password
 	$('.reg_password').blur(function(){
 	  if ((/^[a-z0-9_-]{6,16}$/).test($(".reg_password").val())){
