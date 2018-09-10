@@ -119,6 +119,27 @@ $(document).ready(function(){
         });
     });
 
+/* - - - - - - - - - - ↓登录事件JS↓ - - - - - - - - - - */
+    $(function(){
+        $(".openAccount-down").click(function(){
+            var url = "index/index/login.html";
+            var vun = $(".telinput").val();
+            var vps = $(".codenput").val();
 
+            $.post(
+                url,
+                {
+                    username: vun,
+                    password: vps
+                },
+                function(data){
+                    if(data == "false"){
+                        alert("登录失败！");
+                    } else {
+                        window.location.reload();
+                    }
+                }
+            );
+        });
 
-
+    });

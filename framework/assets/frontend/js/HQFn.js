@@ -1,5 +1,5 @@
 
-(function($){
+// (function($){
 	//首页资源收集
 	//$(".head-login .login-right").slide({trigger:"click",titCell:".fan0508-hdnav li" ,mainCell:".fan0508-bdnav"})
 	$('.fan0508-hdnav ul li').click(function(){
@@ -15,10 +15,10 @@
 	})
 	/* 检查问题!! */
 	// regFn({id:'reg',notNeedName:true,accuntHref:webAccount.TT});
-	regFn_SY({id:'SYreg',notNeedName:true});
-	HQ();
+	// regFn_SY({id:'SYreg',notNeedName:true});
+	// HQ();
 	$(".data-productTab").slide({mainCell:".bd ul",autoPlay:true,effect:"leftLoop",vis:6,scroll:1,trigger:"click"});
 	$(".head-login .login-right").slide({trigger:"click",titCell:".fan0508-hdnav li" ,mainCell:".fan0508-bdnav"});
-})
+// })
 /* 检查问题!! */
 // (jQuery)

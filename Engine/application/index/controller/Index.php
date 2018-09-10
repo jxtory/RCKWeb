@@ -92,6 +92,43 @@ class Index extends RCKBase
         return "false";
     }
 
+    // 首页发出登录事件
+    public function login()
+    {
+        if(request()->isPost()){
+            $data = input('post.');
+            // if(!captcha_check($data['captcha'])){
+            //     $this->error("验证码错误");
+            //  //验证失败
+            // };
+            $user = db('users', $this->dbUser)->where('username', $data['username'])->find();
+            if($user){
+                if($user['password'] == md5($data['password'])){
+                    // $loginsum = ['loginsum' =>  $user['loginsum'] + 1, "loginlast" => date('Y-m-d H:i:s')];
+                    // $loginsum = db('user', $this->dbUser)->where("id", $user['id'])->update($loginsum);
+                    session("username", $data['username']);
+                    session("uid", $user['id']);
+                    // session("loginsum", $loginsum + 1);
+                    return "true";
+                } else {
+                    return "false";
+                }
+
+            } else {
+                return "false";
+            }
+            // $this->success('登陆成功', 'index/index');
+        }
+        return $this->fetch("");
+    }
+
+    // 退出登录
+    public function logout()
+    {
+        session(null);
+        return "true";
+    }
+
     public function contentlist()
     {
         // 渲染
