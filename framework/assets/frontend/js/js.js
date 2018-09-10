@@ -121,7 +121,8 @@ $(document).ready(function(){
 
 /* - - - - - - - - - - ↓登录事件JS↓ - - - - - - - - - - */
     $(function(){
-        $(".openAccount-down").click(function(){
+        // 登录
+        $(".login").click(function(){
             var url = "index/index/login.html";
             var vun = $(".telinput").val();
             var vps = $(".codenput").val();
@@ -137,6 +138,25 @@ $(document).ready(function(){
                         alert("登录失败！");
                     } else {
                         window.location.reload();
+                    }
+                }
+            );
+        });
+
+        // 退出登录
+        $(".logout").click(function(){
+            var url = "index/index/logout.html";
+
+            $.post(
+                url,
+                {
+                    action: "logout"
+                },
+                function(data){
+                    if(data == "true"){
+                        window.location.reload();
+                    } else {
+                        alert("无法退出!");
                     }
                 }
             );

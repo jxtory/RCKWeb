@@ -101,13 +101,16 @@ class Index extends RCKBase
             //     $this->error("验证码错误");
             //  //验证失败
             // };
-            $user = db('users', $this->dbUser)->where('username', $data['username'])->find();
+            $user = db('users')->where('username', $data['username'])->find();
             if($user){
                 if($user['password'] == md5($data['password'])){
                     // $loginsum = ['loginsum' =>  $user['loginsum'] + 1, "loginlast" => date('Y-m-d H:i:s')];
                     // $loginsum = db('user', $this->dbUser)->where("id", $user['id'])->update($loginsum);
                     session("username", $data['username']);
                     session("uid", $user['id']);
+                    // Login time
+                    ini_set('session.gc_maxlifetime', "3600"); // 秒
+                    ini_set("session.cookie_lifetime","3600"); // 秒
                     // session("loginsum", $loginsum + 1);
                     return "true";
                 } else {
@@ -119,14 +122,20 @@ class Index extends RCKBase
             }
             // $this->success('登陆成功', 'index/index');
         }
-        return $this->fetch("");
+        return;
     }
 
     // 退出登录
     public function logout()
     {
         session(null);
-        return "true";
+        session_destroy();
+        // return $this->redirect("index");
+        return "
+            <script>
+                window.location.assign('/');
+            </script>
+        ";
     }
 
     public function contentlist()

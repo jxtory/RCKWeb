@@ -10,6 +10,7 @@
 	<div class="index-banner">
 		<div class="head-login">
 			<div class="login-right">
+				{if condition="$Request.session.username == null" }
 				<div class="fan0508-hdnav">
 					<ul>
 						<li class="on">帐号登陆</li>
@@ -27,7 +28,7 @@
 									<input class="codenput" type="password" placeholder=""></li>
 							</ul>
 							<p class="clear"></p>
-							<input type="submit" class="openAccount-down" value="登陆" style="margin-right: 15px;">
+							<input type="submit" class="openAccount-down login" value="登陆" style="margin-right: 15px;">
 							<a href="javascript: void(0);" class="openAccount-down" id="Right">注册</a>
 						</form>
 					</div>
@@ -38,12 +39,43 @@
 									<input class="search" type="" placeholder="">
 								</li>
 							</ul>
-							<p class="clear"></p>
+							<p class="clear fs14 rgbaaa" style="margin-bottom: 15px;">请输入XX位证书编号</p>
 							<input type="submit" class="openAccount-down" value="查询">
-							<p class="searchMore"> <a href="javascript: void(0);">更多查询</a></p>
 						</form>
 					</div>
 				</div>
+
+
+				{else /}
+								<div class="fan0508-hdnav">
+									<ul>
+				<!--						<li class="on">帐号登陆</li>-->
+										<li class="on">用户信息</li>
+										<li class="last-li">证书查询</li>
+									</ul>
+								</div>
+								<div class="fan0508-bdnav">
+										<div class="user rgbaaa fs14" style="margin: 45px;">
+											<p>用户名 : <a href="javascript: void(0);" style="color: aliceblue; font-weight: bold;">{$Request.session.username}</a></p>
+											<p style="margin-top:15px;"><a href="javascript: void(0);" class="fs16" style="color: aliceblue; ">我的证书</a>
+											<span style="margin-left: 25px;"><a href="javascript: void(0);" class="fs16" style="color: aliceblue; ">申请入库</a></span></p>
+											<p style="margin-top: 15px;"><a href="javascript: void(0);" class="fs16" style="color: aliceblue; ">修改密码</a>
+											<span class="logout" style="margin-left: 25px;"><a href="{:url('index/index/logout')}" class="fs16" style="color: aliceblue; ">退出登录</a></span></p>
+										</div>
+									<div class="regist-ul" id="SYreg" style="display:none">
+										<form action="javascript: void(0);" method="post" name="" target="_self">
+											<ul>
+												<li>
+													<input class="search" type="" placeholder="">
+												</li>
+											</ul>
+											<p class="clear"></p>
+											<input type="submit" class="openAccount-down" value="查询">
+											<p class="searchMore"> <a href="javascript: void(0);">更多查询</a></p>
+										</form>
+									</div>
+								</div>
+				{/if}
 			</div>
 		</div>
 		<div class="hd">
