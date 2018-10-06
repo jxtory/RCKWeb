@@ -14,6 +14,14 @@ class ManagerBase extends Allbase
 
         parent::_initialize();
 
+        //检测登陆状态
+        if(!session('manager')){
+            return $this->redirect('passport/login');
+        } else {
+
+        }
+
+
     }
 
 	public function _empty()

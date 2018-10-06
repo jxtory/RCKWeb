@@ -10,6 +10,13 @@ class Index extends ManagerBase
     	return $this->fetch("index");
     }
 
+    // 后台登陆
+    public function login()
+    {
+        return $this->fetch('');
+
+    }
+
     public function welcome()
     {
     	// 欢迎页面
