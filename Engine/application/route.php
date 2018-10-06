@@ -17,5 +17,6 @@ return [
         ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
         ':name' => ['index/hello', ['method' => 'post']],
     ],
-    'contentlist' => 'index/contentlist/contentlist'
+    'contentlist' => 'index/contentlist/contentlist',
+    'admin' =>	'manager/index/index'
 ];
