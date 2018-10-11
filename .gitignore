@@ -3,6 +3,7 @@
 
 # 前端和后台框架
 /framework/assets/huiadmin/*
+/framework/assets/Ueditor/*
 
 # 上传中心
 /uploadcenter

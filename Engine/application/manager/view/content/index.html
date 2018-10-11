@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+{include file="common/meta" /}
+<title>编辑页面</title>
+<!-- 引入 百度编辑器样式 -->
+<link href="_UEditor_themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<!-- 结束 百度编辑器样式 -->
+</head>
+<body>
+<div class="page-container">
+	<p>
+		我是编辑页面呵呵呵
+	</p>
+
+	<!--style给定宽度可以影响编辑器的最终宽度-->
+	<script type="text/plain" id="myEditor" style="width:800px;height:500px;">
+	    <p>在此进行页面编辑</p>
+	</script>
+
+</div>
+
+{include file="common/js" /}
+<script type="text/javascript" charset="utf-8" src="_UEditor_umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="_UEditor_umeditor.min.js"></script>
+<script type="text/javascript" src="_UEditor_lang/zh-cn/zh-cn.js"></script>	
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+    var ua = UM.getEditor('myEditor');
+</script>
+
+{include file="common/footer" /}
+
+
+</body>
+</html>

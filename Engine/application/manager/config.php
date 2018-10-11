@@ -14,6 +14,7 @@ return [
     'view_replace_str'       => [
             '__rck__'		=>  '专业人才库',
             '_framework_'	=>	'/framework/assets/huiadmin/',
-            '__images__'	=>	'framework\assets\frontend\images'
+            '__images__'	=>	'framework\assets\frontend\images',
+            '_UEditor_'		=>	'/framework/assets/Ueditor/'
     ],
 ];
