@@ -46,6 +46,8 @@ class Allbase extends Controller
 
                 ];
 
+    protected $managerConfigPathKey = 'config/manager/key';
+
     public function _initialize()
     {
         // 通用初始化
@@ -60,6 +62,7 @@ class Allbase extends Controller
         mkdirs("config/banner");                //  轮播图
         mkdirs("config/notice");                //  通知栏
         mkdirs("config/showboard");             //  展示板
+        mkdirs("config/manager");               //  创建后台配置
 
     }
 

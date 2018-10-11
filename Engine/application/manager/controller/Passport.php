@@ -11,7 +11,7 @@ class Passport extends ManagerBase
     // 后台登陆
     public function login()
     {
-        $auth = file_get_contents("config/manager/key.txt");
+        $auth = file_get_contents("config/manager/key");
         $authac = explode("|", $auth)[0];
         $authpa = explode("|", $auth)[1];
 
@@ -25,6 +25,13 @@ class Passport extends ManagerBase
             }
         }
         return $this->fetch('');
+    }
+
+    // 退出登录
+    public function logout()
+    {
+        session(null);
+        $this->redirect('/admin');
     }
 
     public function adminerror()

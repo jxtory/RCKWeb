@@ -14,6 +14,10 @@ class ManagerBase extends Allbase
 
         parent::_initialize();
 
+        if(!file_exists($this->managerConfigPathKey)){
+            file_put_contents($this->managerConfigPathKey, "admin|rck888rck");
+        }
+
         //检测登陆状态
         if(!session('manager')){
             return $this->redirect('passport/login');
