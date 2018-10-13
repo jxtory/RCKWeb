@@ -16,4 +16,36 @@ class Content extends ManagerBase
     	return $this->fetch("index");
     }
 
+    public function addContent()
+    {
+    	// 创建新内容
+    	if(input("post.type") == "addContent"){
+    		$datas = input();
+    		// 卸载请求头
+    		unset($datas['type']);
+
+
+    		$columnname = $datas['column'];
+    		$cid = db("column")->where("columnname", $columnname)->find()['id'];
+
+    		$data = [
+    			'title'			=>	$datas['conTitle'],
+    			'cid'			=>	$cid,
+    			'purl'			=>	$datas['conThumbnailUrl'],
+    			'content'		=>	$datas['contentAll'],
+    			'createtime'	=>	date("Y-m-d h:i:s", time())
+    		];
+
+    		$res = db("contents")->insert($data, true);
+
+    		if($res){
+    			return "1";
+    		} else {
+    			return "2";
+    		}
+    	}
+
+    	return;
+    }
+
 }

@@ -12,20 +12,12 @@
 <body>
 <div class="page-container">
 	<form class="form form-horizontal" id="form-article-add">
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">
-				<span class="c-red">*</span>
-				内容标题：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" id="website-title" placeholder="请填写标题" name="notice_title" value="" class="input-text">
-			</div>
-		</div>
 
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">所属栏目：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<span class="select-box">
-				  <select class="select" size="1" name="demo1">
+				  <select class="select" size="1" id="column" name="column">
 				    {volist name="collist" id="cl"}
 				        <option value="{$cl.columnname}">{$cl.columnname}</option>
 				    {/volist}
@@ -36,8 +28,18 @@
 		</div>
 
 		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">
+				<span class="c-red">*</span>
+				内容标题：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" id="website-title" placeholder="请填写标题" id="conTitle" name="conTitle" value="" class="input-text">
+			</div>
+		</div>
+
+		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">缩略快照：</label>
 			<div class="formControls col-xs-8 col-sm-9">
+				<input type="hidden" id="conThumbnailUrl" name="conThumbnailUrl" value="">
 				<div id="uploader">
 				    <div id="fileList" class="uploader-list"></div>
 				    <div id="filePicker">上传缩略图</div>
@@ -57,6 +59,15 @@
 				</script>
 			</div>
 		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"></label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input class="btn btn-primary radius" id="conSubmit" type="button" value="提交编辑">
+				
+			</div>
+
+		</div>
 	</form>
 </div>
 
@@ -75,6 +86,10 @@ $(function(){
 	// 初始化Web Uploader
 	var uploader = WebUploader.create({
 
+		// 限制大小
+	    fileSizeLimit: 2 * 1024 * 1024, // 单个文件限制2M大小
+	    fileSingleSizeLimit: 50 * 1024 * 1024,  // 文件总大小限制在50M
+
 	    // 选完文件后，是否自动上传。
 	    auto: true,
 
@@ -82,7 +97,7 @@ $(function(){
 		swf: '_framework_lib/webuploader/0.1.5/Uploader.swf',
 
 	    // 文件接收服务端。
-		server: '{:url("manager/uploadcenter/?")}',
+		server: '{:url("manager/uploadcenter/addConThumbnail")}',
 
 	    // 选择文件的按钮。可选。
 	    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -147,8 +162,10 @@ $(function(){
 	});
 
 	// 文件上传成功，给item添加成功class, 用样式标记上传成功。
-	uploader.on( 'uploadSuccess', function( file ) {
+	uploader.on( 'uploadSuccess', function( file, response ) {
 	    $( '#'+file.id ).addClass('upload-state-done');
+	    $("#uploader").html('<img src="/' + response._raw + '" width="340" height="180">');
+	    $("#conThumbnailUrl").val(response._raw);
 	});
 
 	// 文件上传失败，显示上传出错。
@@ -165,13 +182,66 @@ $(function(){
 	});
 
 	// 完成上传完了，成功或者失败，先删除进度条。
-	uploader.on( 'uploadComplete', function( file ) {
+	uploader.on( 'uploadComplete', function(file) {
 	    $( '#'+file.id ).find('.progress').remove();
-	    $("#uploader").html("上传已完成");
-	    layer.msg("展示板图片已即时生效");
+	    // $("#uploader").html("上传已完成");
+	    layer.msg("缩略图已上传！");
+	});
+
+	uploader.on('error', function(type){
+		if (type == "Q_TYPE_DENIED") {
+		    layer.msg("请上传JPG、PNG、GIF、BMP格式文件");
+		} else if (type == "Q_EXCEED_SIZE_LIMIT") {
+		    layer.msg("文件大小不能超过2M");
+		}else {
+		        layer.msg("上传出错！请检查后重新上传！错误代码"+type);
+		}
+	});
+
+});	
+</script>
+
+<script>
+$(function(){
+	$("#conSubmit").click(function(event) {
+		/* Act on the event */
+		contentSubmit();
 	});
 
 });
+
+function contentSubmit(){
+    // var url = "{:url('dm/personnels/box1')}";
+    var url = "addContent.html";
+    var columnVal = $("#column").val();
+    var conTitleVal = $("input[name='conTitle']").val();
+    var conThumbnailUrlVal = $("input[name='conThumbnailUrl']").val();
+    var contentAll = UE.getEditor('myEditor').getContent();
+
+    $.post(
+        url,
+        {
+            type: 'addContent',
+            column: columnVal,
+            conTitle: conTitleVal,
+            conThumbnailUrl: conThumbnailUrlVal,
+            contentAll: contentAll
+        }, function(data, textStatus, xhr) {
+        /*optional stuff to do after success */
+        if(data == "1"){
+        	layer.msg("提交成功！3秒后刷新！")
+        	$("#conSubmit").fadeOut();
+            setTimeout(function(){
+                window.location.reload();
+            },3000); 
+        } else if (data == "2"){
+        	layer.msg("异常错误！");
+        } else {
+        	layer.msg("提交失败！");
+        }
+
+    });
+}
 	
 </script>
 

@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: cnpse
 Target Host: localhost
 Target Database: cnpse
-Date: 2018/10/12 1:50:32
+Date: 2018/10/14 0:25:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,12 +22,12 @@ CREATE TABLE `cnpse_column` (
 -- Table structure for cnpse_contents
 -- ----------------------------
 CREATE TABLE `cnpse_contents` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) NOT NULL,
   `cid` int(11) NOT NULL,
   `purl` varchar(255) DEFAULT NULL,
   `content` text,
-  `createtime` date NOT NULL,
+  `createtime` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -35,7 +35,7 @@ CREATE TABLE `cnpse_contents` (
 -- Table structure for cnpse_contenttop
 -- ----------------------------
 CREATE TABLE `cnpse_contenttop` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL,
   `top1` int(11) DEFAULT NULL,
   `top2` int(11) DEFAULT NULL,

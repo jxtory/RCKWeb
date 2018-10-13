@@ -28,6 +28,23 @@ class Uploadcenter extends ManagerBase
     	return $this->fetch('banner_add');
     }
 
+    public function addConThumbnail()
+    {
+        // 内容缩略图上传
+        if(request()->isPost()){
+            // 文件上传处理
+            $files = request()->file();
+
+            foreach ($files as $file) {
+                // 文件取名规则 —— function myUploadRule 定义在 Common.php
+                $mUR = 'myUploadRule';
+                $info = $file->rule($mUR)->move($this->thumbnailPath);
+            }
+            return $this->thumbnailPath . DS . $info->getSaveName();
+        }
+        return;
+    }
+
     public function showboard_add($offset = 0)
     {
         // 获取修改哪一个展示板

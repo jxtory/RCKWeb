@@ -7,6 +7,9 @@ use think\Loader;
 
 class Allbase extends Controller
 {
+    // 各种路径定义
+    protected $thumbnailPath = "uploadcenter/thumbnail";
+
     // 上传中心目录
     protected $uploadCenter = "uploadcenter";
 
@@ -54,6 +57,7 @@ class Allbase extends Controller
         
         // 创建上传中心目录
         mkdirs("uploadcenter");
+        mkdirs("uploadcenter/thumbnail");       // 缩略图
         mkdirs("uploadcenter/banner");          // 轮播图
         mkdirs("uploadcenter/showboard");       // 展示板
 
