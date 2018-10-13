@@ -48,4 +48,19 @@ class Content extends ManagerBase
     	return;
     }
 
+    public function contentList()
+    {
+        // 内容列表页面
+        return $this->fetch("contentList");
+    }
+
+    public function lookcolumn()
+    {
+        // 查看栏目
+        $cols = db("column")->select();
+        $this->assign("columns", $cols);
+
+        return $this->fetch("lookcolumn");
+    }
+
 }
