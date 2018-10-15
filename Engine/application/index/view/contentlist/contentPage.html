@@ -77,12 +77,13 @@
   {/volist}
   </div>
   <div class="cRight">
-    <h1 class="center rgb900">{$secTitle}</h1><br>
-    <ul>
-      {volist name="assocontent" id="acs"}
-      <li><a href="">[{$acs['columnname']}]{$acs['title']}</a><span>{$acs['createtime']}</span></li>
-      {/volist}
-    </ul>
+    <div>
+      <h1 class="center rgb900">{$page['title']}</h1>
+      <h3 class="center">{$page['createtime']}</h3><br>
+
+    </div>
+    {$page['content']}
+
   </div>  
 </div>
 <div class="margin20"></div>

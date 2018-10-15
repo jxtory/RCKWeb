@@ -18,5 +18,6 @@ return [
         ':name' => ['index/hello', ['method' => 'post']],
     ],
     'contentlist' => 'index/contentlist/contentlist',
+    'contentPage' => 'index/contentlist/contentPage',
     'admin' =>	'manager/index/index'
 ];
