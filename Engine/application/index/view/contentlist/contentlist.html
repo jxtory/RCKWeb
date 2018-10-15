@@ -1,118 +1,103 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-{include file="common/meta" /}	
-<title></title>
-	<style>
-		.notice{
-			width: 90%;
-			height: 200px;
-			padding: 5%;
-			margin: 10px 0;
-		}
-		.notice p{
-			font-size: 2em;
-			text-align: center;
-			color: #900;
-			font-weight: bold;
-		}
-		.notice ul{
-			border-top: 1px solid #a00;
-			margin-top: 20px;
-		}
-		.notice ul li{
-			font-size: 1em;
-			text-indent: 1em;
-			border-bottom: 1px dotted #a00;
-			line-height: 3em;
-		}
-		.notice ul li a{
-			display: block;
-			overflow: hidden;
-			text-overflow:ellipsis;
-			white-space: nowrap;
-		}
-		.notice span {
-			color: #a00;
-			font-style: italic;
-			float: right;
-			margin-right: 5px;
-		}
-		.cRight h1{
-			margin-bottom: 10px;
-		}
-		.cRight ul li{
-			line-height: 2.4em;
-			font-size: 1.2em;
-			border-bottom: 1px dotted #a00;
-		}
-		.cRight ul li span{
-			float: right;
-			font-style: italic;
-			font-size: 0.9em;
-			line-height: 2.6m;
-		}
-		
-	</style>
+{include file="common/meta" /}  
+<title>{$title}</title>
+  <style>
+    .notice{
+      width: 90%;
+      height: 200px;
+      padding: 5%;
+      margin: 10px 0;
+    }
+    .notice p{
+      font-size: 2em;
+      text-align: center;
+      color: #900;
+      font-weight: bold;
+    }
+    .notice ul{
+      border-top: 1px solid #a00;
+      margin-top: 20px;
+    }
+    .notice ul li{
+      font-size: 1em;
+      text-indent: 1em;
+      border-bottom: 1px dotted #a00;
+      line-height: 3em;
+    }
+    .notice ul li a{
+      display: block;
+      overflow: hidden;
+      text-overflow:ellipsis;
+      white-space: nowrap;
+    }
+    .notice span {
+      color: #a00;
+      font-style: italic;
+      float: right;
+      margin-right: 5px;
+    }
+    .cRight h1{
+      margin-bottom: 10px;
+    }
+    .cRight ul li{
+      line-height: 2.4em;
+      font-size: 1.2em;
+      border-bottom: 1px dotted #a00;
+    }
+    .cRight ul li span{
+      float: right;
+      font-style: italic;
+      font-size: 0.9em;
+      line-height: 2.6m;
+    }
+    
+  </style>
 </head>
 <body>
 {include file="common/top" /}
 <div class="pageImg"></div>
 <div class="posPage">
-	<div class="page"><span>首页</span><span>&#62;</span><span>首页</span></div>
+  <div class="page"><span>首页</span><span>&#62;</span><span>{$title}</span></div>
 </div>
 <div class="content">
-	<div class="cLeft">
-		<div class="notice">
-			<p>通知公告</p>
-			<ul>
-				<li><span>新</span><a href="#">1111111asdasdasdasasdasdd1asdas</a></li>
-				<li><a href="#">1111111asdasdasdasasdasdd1asdas</a></li>
-				<li><a href="#">11111111111111</a></li>
-				<li><a href="#">11111111111111</a></li>
-			</ul>
-		</div>
-		<div class="notice">
-			<p>资讯聚焦</p>
-			<ul>
-				<li><a href="#">11111111111111</a></li>
-				<li><a href="#">11111111111111</a></li>
-				<li><a href="#">11111111111111</a></li>
-				<li><a href="#">11111111111111</a></li>
-			</ul>
-		</div>
-		<div class="notice">
-			<p>政策法规</p>
-			<ul>
-				<li><a href="#">11111111111111</a></li>
-				<li><a href="#">11111111111111</a></li>
-				<li><a href="#">11111111111111</a></li>
-				<li><a href="#">11111111111111</a></li>
-			</ul>
-		</div>
-	</div>
-	<div class="cRight">
-		<h1 class="center rgb900">机构介绍</h1><br>
-		<ul>
-			<li><a href="#">概况</a><span>2018-10-01</span></li>
-			<li><a href="#">专家委员</a><span>2018-10-01</span></li>
-			<li><a href="#">专业项目</a><span>2018-10-01</span></li>
-		</ul>
-	</div>	
+  <div class="cLeft">
+  {volist name="leftColumns" id="lCs"}
+  <div class="notice">
+    <p><a href="/contentlist.html?listType={$lCs['id']}" style="color: #900;">{$lCs['columnname']}</a></p>
+    <ul>
+        {volist name="cas[$lCs['id']]" id="casv"}
+        <li>{if condition="$i == 1"}
+          <span>新</span>
+         {/if}<a href="">[{$casv['columnname']}]{$casv['title']}</a></li>
+        {/volist}
+    </ul>
+  </div>
+  {/volist}
+  </div>
+  <div class="cRight">
+    <h1 class="center rgb900">{$title}</h1><br>
+    <ul>
+      {volist name="assocontent" id="acs"}
+      <li><a href="#">[{$acs['columnname']}]{$acs['title']}</a><span>{$acs['createtime']}</span></li>
+      {/volist}
+    </ul>
+  </div>  
 </div>
 <div class="margin20"></div>
 <div class="cAd">
-	<div class="link">友情链接:</div>
+  <div class="link">友情链接:</div>
 </div>
 <!--学科链接开始-->
 {include file="common/subject" /}
-	<!--学科链接结束-->
+  <!--学科链接结束-->
 {include file="common/footer" /}
-	<!--网站底部结束-->
-	<!--焦点图Js开始-->
-	<script type="text/javascript" src="__js__/jquery.SuperSlide.2.1.1.js"></script>
-	<script type="text/javascript" src="__js__/HQFn.js"></script>
-	<script type="text/javascript" src="__js__/fan.js"></script>
-	<!--焦点图Js开始-->
+  <!--网站底部结束-->
+  <!--焦点图Js开始-->
+  <script type="text/javascript" src="__js__/jquery.SuperSlide.2.1.1.js"></script>
+  <script type="text/javascript" src="__js__/HQFn.js"></script>
+  <script type="text/javascript" src="__js__/fan.js"></script>
+  <!--焦点图Js开始-->
 </body>
 </html>

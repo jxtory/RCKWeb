@@ -102,38 +102,38 @@
 .pagination-sm > li:last-child > span {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
-}	
+} 
 </style>
 </head>
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
-	<span class="c-gray en">&gt;</span>
-	内容管理
-	<span class="c-gray en">&gt;</span>
-	内容列表
-	<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
+  <span class="c-gray en">&gt;</span>
+  内容管理
+  <span class="c-gray en">&gt;</span>
+  内容列表
+  <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
 </nav>
 <div class="page-container">
 
-	<div class="mt-20">
-		<table class="table table-border table-bordered table-bg table-hover table-sort">
-			<thead>
-				<tr class="text-c">
-					<th width="40">ID</th>
-					<th width="60">所属栏目</th>
-					<th width="100">内容标题</th>
-					<th width="100">发布日期</th>
-					<th width="220">操作</th>
-				</tr>
-			</thead>
-			<tbody>
-				{volist name="contents" id="data"}
-				<tr class="text-c va-m">
-					<td>{$data['id']}</td>
-					<td>{$data['columnname']}</td>
-					<td>{$data['title']}</td>
-					<td>{$data['createtime']}</td>
-					<td>
+  <div class="mt-20">
+    <table class="table table-border table-bordered table-bg table-hover table-sort">
+      <thead>
+        <tr class="text-c">
+          <th width="40">ID</th>
+          <th width="60">所属栏目</th>
+          <th width="100">内容标题</th>
+          <th width="100">发布日期</th>
+          <th width="220">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        {volist name="contents" id="data"}
+        <tr class="text-c va-m">
+          <td>{$data['id']}</td>
+          <td>{$data['columnname']}</td>
+          <td>{$data['title']}</td>
+          <td>{$data['createtime']}</td>
+          <td>
             置顶1
             |
             置顶2
@@ -141,21 +141,21 @@
             置顶3
             |
             置顶4
-						|
-						编辑
-						|
-						删除
+            |
+            编辑
+            |
+            删除
 
-					</td>
-				</tr>
-				{/volist}
-			</tbody>
-		</table>
-	</div>
-	<div class="text-c">
-		{$contents->render()}
-		
-	</div>
+          </td>
+        </tr>
+        {/volist}
+      </tbody>
+    </table>
+  </div>
+  <div class="text-c">
+    {$contents->render()}
+    
+  </div>
 </div>
 
 

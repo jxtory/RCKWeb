@@ -12,6 +12,10 @@ class RCKBase extends Allbase
     	// 基础初始化的东西开始
 
         parent::_initialize();
+        $topShowCol = db("column")->where("pid is null")->select();
+        $topShowColAll = db("column")->where("pid is not null")->select();
+        $this->assign("topShowCol", $topShowCol);
+        $this->assign("topShowColAll", $topShowColAll);
     }
 
 	public function _empty()

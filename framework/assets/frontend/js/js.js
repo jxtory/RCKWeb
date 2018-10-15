@@ -64,59 +64,62 @@ $(document).ready(function(){
 
         //方向控制
         //右
-        var _right = new mSlider({
-            dom: ".layerRight",
-            direction: "top"
-        });
-        var _child = new mSlider({
-            dom: ".layerChild",
-            direction: "top",
-            time: "3000"
-        });
+        if($("title").text() == "首页"){
+            var _right = new mSlider({
+                dom: ".layerRight",
+                direction: "top"
+            });
+            var _child = new mSlider({
+                dom: ".layerChild",
+                direction: "top",
+                time: "3000"
+            });
+            
+            Q("Right").addEventListener(event, function (e) {
+                _right.open();
+            });
 
-        Q("Right").addEventListener(event, function (e) {
-            _right.open();
-        });
+            Q("Close").addEventListener(event, function (e) {
+                _right.close();
+            });
 
-        Q("Close").addEventListener(event, function (e) {
-            _right.close();
-        });
+            Q("btnChild").addEventListener(event, function (e) {
+                if(user_Boolean && password_Boolean && varconfirm_Boolean && emaile_Boolean && Mobile_Boolean){
+                    var url = "index/index/register.html";
+                    var vun = $(".reg_user").val();
+                    var vps = $(".reg_password").val();
+                    var vem = $(".reg_email").val();
+                    var vmb = $(".reg_mobile").val();
 
-        Q("btnChild").addEventListener(event, function (e) {
-            if(user_Boolean && password_Boolean && varconfirm_Boolean && emaile_Boolean && Mobile_Boolean){
-                var url = "index/index/register.html";
-                var vun = $(".reg_user").val();
-                var vps = $(".reg_password").val();
-                var vem = $(".reg_email").val();
-                var vmb = $(".reg_mobile").val();
-
-                $.post(
-                    url,
-                    {
-                        action: "register",
-                        username: vun,
-                        password: vps,
-                        email: vem,
-                        mobile: vmb
-                    },
-                    function(data){
-                        if(data == "true"){
-                            _right.close();
-                            _child.open();
-                        } else if(data == "false"){
-                            alert("注册失败了");
-                        } else if(data == "username repeat"){
-                            alert("用户名重复");
+                    $.post(
+                        url,
+                        {
+                            action: "register",
+                            username: vun,
+                            password: vps,
+                            email: vem,
+                            mobile: vmb
+                        },
+                        function(data){
+                            if(data == "true"){
+                                _right.close();
+                                _child.open();
+                            } else if(data == "false"){
+                                alert("注册失败了");
+                            } else if(data == "username repeat"){
+                                alert("用户名重复");
+                            }
                         }
-                    }
 
-                );
-                
-            } else {
-                alert("请完善信息");
-            }
+                    );
+                    
+                } else {
+                    alert("请完善信息");
+                }
 
-        });
+            });
+        }
+
     });
 
 /* - - - - - - - - - - ↓登录事件JS↓ - - - - - - - - - - */
@@ -162,4 +165,12 @@ $(document).ready(function(){
             );
         });
 
+    });
+
+
+/* - - - - - - - - - - ↓navIng自动上JS↓ - - - - - - - - - - */
+
+    $(function(){
+        var myTitle = $("title").text();
+        $("li>a:contains('" + myTitle + "')").parent().addClass("navIng");
     });
