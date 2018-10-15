@@ -38,6 +38,7 @@ class Contentlist extends RCKBase
 
             for ($i=0; $i < count($leftColumns); $i++) { 
                 $cas[$leftColumns[$i]['id']] = db("contents a")
+                    ->field("a.*,a.id as aid, b.columnname as bcolumnname")
                     ->join("cnpse_column b", "a.cid = b.id and b.pid = " . $leftColumns[$i]['id'])
                     ->order("createtime desc")
                     ->limit(4)
@@ -91,6 +92,7 @@ class Contentlist extends RCKBase
 
             for ($i=0; $i < count($leftColumns); $i++) { 
                 $cas[$leftColumns[$i]['id']] = db("contents a")
+                    ->field("a.*,a.id as aid, b.columnname as bcolumnname")
                     ->join("cnpse_column b", "a.cid = b.id and b.pid = " . $leftColumns[$i]['id'])
                     ->order("createtime desc")
                     ->limit(4)
@@ -104,12 +106,14 @@ class Contentlist extends RCKBase
             // dump(db("column")->where("id", $asoid)->find()['pid']);die;
             if(db("column")->where("id", $asoid)->find()['pid'] == null){
                 $acs = db("contents a")
+                    ->field("a.*,a.id as aid, b.columnname as bcolumnname")
                     ->join("cnpse_column b", "a.cid = b.id and b.pid = " . $asoid)
                     ->order("createtime desc")
                     // ->select();
                     ->paginate(15);
             } else {
                 $acs = db("contents a")
+                    ->field("a.*,a.id as aid, b.columnname as bcolumnname")
                     ->join("cnpse_column b", "a.cid = b.id and b.id = " . $asoid)
                     ->order("createtime desc")
                     // ->select();
