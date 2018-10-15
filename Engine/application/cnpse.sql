@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: cnpse
 Target Host: localhost
 Target Database: cnpse
-Date: 2018/10/14 0:25:15
+Date: 2018/10/16 0:47:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -59,15 +59,14 @@ CREATE TABLE `cnpse_users` (
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `cnpse_column` VALUES ('1', '机构介绍', null);
-INSERT INTO `cnpse_column` VALUES ('2', '通知公告', null);
-INSERT INTO `cnpse_column` VALUES ('3', '资讯聚焦', null);
-INSERT INTO `cnpse_column` VALUES ('4', '政策法规', null);
-INSERT INTO `cnpse_column` VALUES ('5', '机构公告', '2');
-INSERT INTO `cnpse_column` VALUES ('6', '培训招生', '2');
-INSERT INTO `cnpse_column` VALUES ('7', '中心要闻', '3');
-INSERT INTO `cnpse_column` VALUES ('8', '最新资讯', '3');
-INSERT INTO `cnpse_column` VALUES ('9', '视频中心', '3');
-INSERT INTO `cnpse_column` VALUES ('10', '国家政策', '4');
-INSERT INTO `cnpse_column` VALUES ('11', '部委法规', '4');
-INSERT INTO `cnpse_column` VALUES ('12', '中心规章', '4');
+INSERT INTO `cnpse_column` VALUES ('1', '通知公告', null);
+INSERT INTO `cnpse_column` VALUES ('2', '资讯聚焦', null);
+INSERT INTO `cnpse_column` VALUES ('3', '政策法规', null);
+INSERT INTO `cnpse_column` VALUES ('4', '机构公告', '1');
+INSERT INTO `cnpse_column` VALUES ('5', '培训招生', '1');
+INSERT INTO `cnpse_column` VALUES ('6', '中心要闻', '2');
+INSERT INTO `cnpse_column` VALUES ('7', '最新资讯', '2');
+INSERT INTO `cnpse_column` VALUES ('8', '视频中心', '2');
+INSERT INTO `cnpse_column` VALUES ('9', '国家政策', '3');
+INSERT INTO `cnpse_column` VALUES ('10', '部委法规', '3');
+INSERT INTO `cnpse_column` VALUES ('11', '中心规章', '3');

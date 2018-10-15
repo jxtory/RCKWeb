@@ -51,6 +51,13 @@ class Content extends ManagerBase
     public function contentList()
     {
         // 内容列表页面
+        $datas = db("contents a")
+            ->field("a.id, a.title, a.cid, a.createtime, b.columnname")
+            ->join("cnpse_column b", "cid = b.id")
+            ->paginate(15);
+
+        $this->assign('contents', $datas);
+
         return $this->fetch("contentList");
     }
 
