@@ -5,21 +5,21 @@ class Contentlist extends RCKBase
 {
     public function contentPage()
     {
-        // äÖÈ¾
+        // æ¸²æŸ“
         if(request()->isGet()){
-            // »ñÈ¡ÇëÇóÀàÐÍ
+            // èŽ·å–è¯·æ±‚ç±»åž‹
             $listType = input("listType");
             $contentId = input("cid");
-            // »ñÈ¡À¸Ä¿
+            // èŽ·å–æ ç›®
             $cols = db("column")->where("id", $listType)->find();
             $this->assign("secTitle", $cols['columnname']);
 
-            // ¿ÕÒ³ÃæÅÐ¶Ï
+            // ç©ºé¡µé¢åˆ¤æ–­
             if($listType == null || $cols == null){
-                abort(404,'Ò³Ãæ²»´æÔÚ');
+                abort(404,'é¡µé¢ä¸å­˜åœ¨');
             }
 
-            // äÖÈ¾±êÌâ
+            // æ¸²æŸ“æ ‡é¢˜
             if($cols['pid'] == null){
                 $title = $cols['columnname'];
                 $this->assign("title", $title);
@@ -29,11 +29,11 @@ class Contentlist extends RCKBase
                 $this->assign("title", $title);
             }
 
-            // ÍÆËÍÀ¸Ä¿
+            // æŽ¨é€æ ç›®
             $leftColumns = db("column")->where("pid is null")->select();
             $this->assign("leftColumns", $leftColumns);
 
-            // ÍÆËÍ²à±ßÄÚÈÝ
+            // æŽ¨é€ä¾§è¾¹å†…å®¹
             $cs = db("column")->where("pid is null")->count();
 
             for ($i=0; $i < count($leftColumns); $i++) { 
@@ -47,11 +47,12 @@ class Contentlist extends RCKBase
 
             $this->assign("cas", $cas);
 
-            // ÍÆËÍÎÄÕÂ
+            // æŽ¨é€æ–‡ç« 
             $content = db("contents")->where("id", $contentId)->find();
             $this->assign("page", $content);
+            $this->assign("contentTitle", $content['title']);
 
-            // äÖÈ¾Ò³Ãæ
+            // æ¸²æŸ“é¡µé¢
             return $this->fetch("contentPage");
         }
 
@@ -60,20 +61,69 @@ class Contentlist extends RCKBase
 
     public function contentlist()
     {
-        // äÖÈ¾
+        // æ¸²æŸ“
     	if(request()->isGet()){
-    		// »ñÈ¡ÇëÇóÀàÐÍ
+    		// èŽ·å–è¯·æ±‚ç±»åž‹
     		$listType = input("listType");
-    		// »ñÈ¡À¸Ä¿
+
+            // æœºæž„ä»‹ç»
+            if($listType == "introduce"){
+                // æŽ¨é€æ ç›®
+                $leftColumns = db("column")->where("pid is null")->select();
+                $this->assign("leftColumns", $leftColumns);
+
+                // æŽ¨é€ä¾§è¾¹å†…å®¹
+                $cs = db("column")->where("pid is null")->count();
+
+                for ($i=0; $i < count($leftColumns); $i++) { 
+                    $cas[$leftColumns[$i]['id']] = db("contents a")
+                        ->field("a.*,a.id as aid, b.columnname as bcolumnname")
+                        ->join("cnpse_column b", "a.cid = b.id and b.pid = " . $leftColumns[$i]['id'])
+                        ->order("createtime desc")
+                        ->limit(4)
+                        ->select();
+                }
+
+                $this->assign("cas", $cas);
+                $acs = [
+                    [
+                        'title'         =>  'æ¦‚å†µ',
+                        'createtime'    =>  'æœ€æ–°æ›´æ–°',
+                        'cid'           =>  'æœºæž„ä»‹ç»',
+                        'aid'           =>  'æ¦‚å†µ',
+                        'bcolumnname'   =>  'æœºæž„ä»‹ç»'
+                    ],
+                    [
+                        'title'         =>  'ä¸“å®¶å§”å‘˜',
+                        'createtime'    =>  'æœ€æ–°æ›´æ–°',
+                        'cid'           =>  'æœºæž„ä»‹ç»',
+                        'aid'           =>  'ä¸“å®¶å§”å‘˜',
+                        'bcolumnname'   =>  'æœºæž„ä»‹ç»'
+                    ],
+                    [
+                        'title'         =>  'ä¸“ä¸šé¡¹ç›®',
+                        'createtime'    =>  'æœ€æ–°æ›´æ–°',
+                        'cid'           =>  'æœºæž„ä»‹ç»',
+                        'aid'           =>  'ä¸“ä¸šé¡¹ç›®',
+                        'bcolumnname'   =>  'æœºæž„ä»‹ç»'
+                    ],
+                ];
+                $this->assign("assocontent", $acs);
+                $this->assign("title", "æœºæž„ä»‹ç»");
+                $this->assign("secTitle", "æœºæž„ä»‹ç»");
+                return $this->fetch("contentlist");
+            }
+
+    		// èŽ·å–æ ç›®
     		$cols = db("column")->where("id", $listType)->find();
             $this->assign("secTitle", $cols['columnname']);
 
-    		// ¿ÕÒ³ÃæÅÐ¶Ï
+    		// ç©ºé¡µé¢åˆ¤æ–­
     		if($listType == null || $cols == null){
-    			abort(404,'Ò³Ãæ²»´æÔÚ');
+    			abort(404,'é¡µé¢ä¸å­˜åœ¨');
     		}
 
-    		// äÖÈ¾±êÌâ
+    		// æ¸²æŸ“æ ‡é¢˜
     		if($cols['pid'] == null){
                 $title = $cols['columnname'];
 	    		$this->assign("title", $title);
@@ -83,11 +133,11 @@ class Contentlist extends RCKBase
 	    		$this->assign("title", $title);
     		}
 
-            // ÍÆËÍÀ¸Ä¿
+            // æŽ¨é€æ ç›®
             $leftColumns = db("column")->where("pid is null")->select();
             $this->assign("leftColumns", $leftColumns);
 
-            // ÍÆËÍ²à±ßÄÚÈÝ
+            // æŽ¨é€ä¾§è¾¹å†…å®¹
             $cs = db("column")->where("pid is null")->count();
 
             for ($i=0; $i < count($leftColumns); $i++) { 
@@ -101,7 +151,7 @@ class Contentlist extends RCKBase
 
             $this->assign("cas", $cas);
 
-            // ÍÆËÍ¹ØÁªÄÚÈÝ
+            // æŽ¨é€å…³è”å†…å®¹
             $asoid = db("column")->where("columnname", $cols['columnname'])->find()['id'];
             // dump(db("column")->where("id", $asoid)->find()['pid']);die;
             if(db("column")->where("id", $asoid)->find()['pid'] == null){
@@ -123,7 +173,7 @@ class Contentlist extends RCKBase
 
             $this->assign("assocontent", $acs);
 
-    		// äÖÈ¾Ò³Ãæ
+    		// æ¸²æŸ“é¡µé¢
 	        return $this->fetch("contentlist");
     	}
 
