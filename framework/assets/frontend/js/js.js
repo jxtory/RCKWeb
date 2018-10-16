@@ -174,3 +174,8 @@ $(document).ready(function(){
         var myTitle = $("title").text();
         $("li>a:contains('" + myTitle + "')").parent().addClass("navIng");
     });
+
+    $(document).ready(function(){
+        //这里写需要执行的代码
+        $("title").text("中国专业人才库-" + $("title").text());
+    });
