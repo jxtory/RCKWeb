@@ -26,10 +26,12 @@
 			<div class="formControls col-xs-8 col-sm-9">
 				<span class="select-box">
 				  <select class="select" size="1" id="column" name="column">
-				    {volist name="collist" id="cl"}
-				        <option value="{$cl.columnname}">{$cl.columnname}</option>
-				    {/volist}
-
+				  	{volist name="colList" id="ctl" key="k"}
+				  		<optgroup label="{$ctl['columnname']}"></optgroup>
+					    {volist name="colList[$k-1][0]" id="cl"}
+					        <option value="{$cl['columnname']}">┕{$cl['columnname']}</option>
+					    {/volist}
+				  	{/volist}
 				  </select>
 				</span>
 			</div>

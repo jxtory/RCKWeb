@@ -9,9 +9,15 @@ class Content extends ManagerBase
     {
     	// 添加内容页面
     	// 获取栏目列表
-    	$collist = db("column")->field("columnname")->where("pid is not null")->select();
+    	$colList = db("column")->field("id, columnname")->where("pid is null")->select();
+        
+        for ($i=0; $i < count($colList); $i++) { 
+            # code...
+            $colList[$i][] = db("column")->field("columnname")->where("pid", $colList[$i]['id'])->select();
+        }
+
     	// 推送栏目列表
-    	$this->assign("collist", $collist);
+    	$this->assign("colList", $colList);
 
     	return $this->fetch("index");
     }
