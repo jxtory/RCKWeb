@@ -59,7 +59,7 @@
 {include file="common/top" /}
 <div class="pageImg"></div>
 <div class="posPage">
-  <div class="page"><span>首页</span><span>&#62;</span><span>{$title}</span></div>
+  <div class="page"><span>首页</span><span>&#62;</span><span>{$title}</span>{if condition="$secTitle != $title"}<span>&#62;</span><span>{$secTitle}</span>{/if}</div>
 </div>
 <div class="content">
   <div class="cLeft">

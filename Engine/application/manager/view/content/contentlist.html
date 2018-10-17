@@ -133,14 +133,8 @@
           <td>{$data['columnname']}</td>
           <td>{$data['title']}</td>
           <td>{$data['createtime']}</td>
-          <td>
-            置顶1
-            |
-            置顶2
-            |
-            置顶3
-            |
-            置顶4
+          <td data-cid={$data['id']}>
+            <a href="javascript: void(0);">置顶操作</a>
             |
             编辑
             |
@@ -162,6 +156,24 @@
 {include file="common/js" /}
 {include file="common/showLayer" /}
 {include file="common/footer" /}
+
+<script>
+  $(function(){
+    $("a:contains('置顶操作')").click(function(event) {
+      /* Act on the event */
+      var setTopHtml ='123  ';
+      layer.open({
+        type: 1,
+        skin: 'layui-layer-lan', //加上边框
+        area: ['420px', '240px'], //宽高
+        content: 'html内容'
+      });
+      // alert($(this).parent().data("cid"))
+    });
+
+  });
+
+</script>
 
 </body>
 </html>

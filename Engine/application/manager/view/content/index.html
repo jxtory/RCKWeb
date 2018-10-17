@@ -228,6 +228,11 @@ function contentSubmit(){
     var conThumbnailUrlVal = $("input[name='conThumbnailUrl']").val();
     var contentAll = UE.getEditor('myEditor').getContent();
 
+    if(typeof conTitleVal == "undefined" || conTitleVal == null || conTitleVal == ""){
+    	layer.msg("内容标题不能为空！");
+    	return;
+    }
+
     $.post(
         url,
         {
