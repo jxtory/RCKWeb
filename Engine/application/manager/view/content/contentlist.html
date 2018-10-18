@@ -114,6 +114,11 @@
   <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
 </nav>
 <div class="page-container">
+  <div class="text-c">
+    <input type="text" name="searchBox" id="searchBox" placeholder="输入关键词，找到相关标题或内容" style="width:250px" class="input-text">
+    <button name="findContent" id="findContent" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 查找</button>
+    
+  </div>
 
   <div class="mt-20">
     <table class="table table-border table-bordered table-bg table-hover table-sort">
@@ -122,7 +127,7 @@
           <th width="40">ID</th>
           <th width="60">
               <select class="select" size="1" id="column" name="column">
-                <option value="ShowAll">所有栏目</option>
+                <option value="0">所有栏目</option>
                 {volist name="colList" id="ctl" key="k"}
                   <optgroup label="{$ctl['columnname']}"></optgroup>
                   {volist name="colList[$k-1][0]" id="cl"}
@@ -169,7 +174,22 @@
 {include file="common/footer" /}
 
 <script>
+  function ToSearch()
+  {
+    window.location.href="contentlist.html?colid=" + $("#column").val() + "&search=" + $("#searchBox").val();
+
+  }
   $(function(){
+    // 栏目列表
+    $("#column").change(function(event) {
+      /* Act on the event */
+      var colid = $(this).val();
+      // layer.msg("{:url('manager/content/contentlist', ['colid'=>" + colid + "])}");
+      window.location.href = "contentlist.html?colid=" + colid; 
+
+    });
+
+    // 置顶操作
     $("a:contains('置顶操作')").click(function(event) {
       /* Act on the event */
       var setTopHtml ='123  ';
@@ -182,6 +202,23 @@
       // alert($(this).parent().data("cid"))
     });
 
+    // 内容搜索
+    $("#searchBox").keydown(function(event) {
+      /* Act on the event */
+      if(event.keyCode == "13"){
+        ToSearch();
+      }
+    });
+
+    $("#findContent").click(function(event) {
+      /* Act on the event */
+      ToSearch();
+    });
+
+  });
+
+  $(document).ready(function(){
+    $("#column").val("{$setColId}");
   });
 
 </script>

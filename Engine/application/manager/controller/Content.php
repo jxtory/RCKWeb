@@ -56,26 +56,73 @@ class Content extends ManagerBase
 
     public function contentList()
     {
-        // 获取栏目列表
-        $colList = db("column")->field("id, columnname")->where("pid is null")->select();
-        
-        for ($i=0; $i < count($colList); $i++) { 
-            # code...
-            $colList[$i][] = db("column")->field("id, columnname")->where("pid", $colList[$i]['id'])->select();
+        if(request()->isGet()){
+            $colId = input("colid");
+            $search = input("search");
+
+            // 获取栏目列表
+            $colList = db("column")->field("id, columnname")->where("pid is null")->select();
+            
+            for ($i=0; $i < count($colList); $i++) { 
+                # code...
+                $colList[$i][] = db("column")->field("id, columnname")->where("pid", $colList[$i]['id'])->select();
+            }
+
+            // 推送栏目列表
+            $this->assign("colList", $colList);
+
+
+            // 内容列表页面
+            if(isset($search) || mb_strlen($search) > 0 || !is_null($search)){
+                $datas = db("contents a")
+                    ->field("a.id, a.title, a.cid, a.createtime, b.columnname")
+                    ->join("cnpse_column b", "cid = b.id")
+                    ->where("a.cid", $colId)
+                    ->where("title|content", "like", "%" . $search ."%")
+                    ->paginate(15);
+                
+            } else {
+                $datas = db("contents a")
+                    ->field("a.id, a.title, a.cid, a.createtime, b.columnname")
+                    ->join("cnpse_column b", "cid = b.id")
+                    ->where("a.cid", $colId)
+                    ->paginate(15);
+
+            }
+
+            $this->assign("setColId", $colId);
+
+            // 所有栏目时候
+            if(!isset($colId) || $colId == "0" || is_null($colId)){
+                if(isset($search) || mb_strlen($search) > 0 || !is_null($search)){
+                    $this->assign("setColId", "0");
+                    $colId = "0";
+                    // 内容列表页面
+                    $datas = db("contents a")
+                        ->field("a.id, a.title, a.cid, a.createtime, b.columnname")
+                        ->join("cnpse_column b", "cid = b.id")
+                        ->where("title|content","like", "%" . $search ."%")
+                        ->paginate(15);
+
+                } else {
+                    $this->assign("setColId", "0");
+                    $colId = "0";
+                    // 内容列表页面
+                    $datas = db("contents a")
+                        ->field("a.id, a.title, a.cid, a.createtime, b.columnname")
+                        ->join("cnpse_column b", "cid = b.id")
+                        ->paginate(15);
+                    
+                }
+
+            }
+
+
+            $this->assign('contents', $datas);
+
+            return $this->fetch("contentList");
         }
-
-        // 推送栏目列表
-        $this->assign("colList", $colList);
-
-        // 内容列表页面
-        $datas = db("contents a")
-            ->field("a.id, a.title, a.cid, a.createtime, b.columnname")
-            ->join("cnpse_column b", "cid = b.id")
-            ->paginate(15);
-
-        $this->assign('contents', $datas);
-
-        return $this->fetch("contentList");
+        return;
     }
 
     public function lookcolumn()
