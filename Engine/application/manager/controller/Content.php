@@ -56,6 +56,17 @@ class Content extends ManagerBase
 
     public function contentList()
     {
+        // 获取栏目列表
+        $colList = db("column")->field("id, columnname")->where("pid is null")->select();
+        
+        for ($i=0; $i < count($colList); $i++) { 
+            # code...
+            $colList[$i][] = db("column")->field("id, columnname")->where("pid", $colList[$i]['id'])->select();
+        }
+
+        // 推送栏目列表
+        $this->assign("colList", $colList);
+
         // 内容列表页面
         $datas = db("contents a")
             ->field("a.id, a.title, a.cid, a.createtime, b.columnname")
