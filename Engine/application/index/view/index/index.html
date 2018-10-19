@@ -221,7 +221,7 @@
 					<div class="itemTitle fs20 rgb888"><a href="javascript: void(0);">{$Cs['columnname']}</a></div>
 					<dl class="itemList">
 						{volist name="ctop[$Cs['id']]" id="ctopv" empty="$noTop"}
-						<dt><a href="{:url('index/contentlist/contentPage', ['listType'=>$ctopv['cid'], 'cid'=>$ctopv['aid']])}"><img src="{$ctopv['purl']}" alt=""><span>{$ctopv['title']}</span></a></dt>
+						<dt><a class="shadow" href="{:url('index/contentlist/contentPage', ['listType'=>$ctopv['cid'], 'cid'=>$ctopv['aid']])}"><img src="{$ctopv['purl']}" alt=""><span>{$ctopv['title']}</span></a></dt>
 						{/volist}
 						{volist name="cas[$Cs['id']]" id="casv"}
 						<dd><a href="{:url('index/contentlist/contentPage', ['listType'=>$casv['cid'], 'cid'=>$casv['aid']])}">[{$casv['bcolumnname']}]{$casv['title']}</a></dd>

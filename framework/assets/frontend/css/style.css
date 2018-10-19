@@ -388,13 +388,14 @@ body {
     left: 0;
     right: 0;
     color: #fff;
-    bottom: 10px;
+    bottom: 0px;
     font-size: 15px;
-    padding: 0 24px;
-    line-height: 1.5;
+    padding: 0.4em 1em;
+    line-height: 1.5em;
     height: 24px;
     overflow: hidden;
     transition: all 1s;
+	background: rgba(0,0,0,0.5);
 }
 .news .newsList .itemList dd {
     margin-bottom: 10px;
@@ -406,16 +407,13 @@ body {
     font-size: 14px;
     color: #909499;
 }
-.news .newsList .itemList dd a {
-    font-size: 14px;
-    color: #909499;
-}
 .news .newsList .itemList dd a:hover {
     color: #900;
 }
 .news .newsList .itemList dt a:hover img {
     transform: scale(1.1);
 }
+
 .news .newsList .more {
     width: 100px;
     height: 36px;
