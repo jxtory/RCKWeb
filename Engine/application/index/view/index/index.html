@@ -216,36 +216,20 @@
 		<div class="newsInfo">
 			<div class="newsTitle center fs24">新闻资讯</div>
 			<div class="newsList">
+				{volist name="Columns" id="Cs"}
 				<div class="item">
-					<div class="itemTitle fs20 rgb888"><a href="javascript: void(0);">通知公告</a></div>
+					<div class="itemTitle fs20 rgb888"><a href="javascript: void(0);">{$Cs['columnname']}</a></div>
 					<dl class="itemList">
-						<dt><a href="javascript: void(0);"><img src="__images__/new1.jpg" alt=""><span>习大大最近发表演讲</span></a></dt>
-						<dd><a href="javascript: void(0);">[机构公告]人才库网址更新</a></dd>
-						<dd><a href="javascript: void(0);">[机构公告]公众平台全新服务</a></dd>
-						<dd><a href="javascript: void(0);">[培训招生]2018.9月最新专业全面招生</a></dd>
+						{volist name="ctop[$Cs['id']]" id="ctopv" empty="$noTop"}
+						<dt><a href="{:url('index/contentlist/contentPage', ['listType'=>$ctopv['cid'], 'cid'=>$ctopv['aid']])}"><img src="{$ctopv['purl']}" alt=""><span>{$ctopv['title']}</span></a></dt>
+						{/volist}
+						{volist name="cas[$Cs['id']]" id="casv"}
+						<dd><a href="{:url('index/contentlist/contentPage', ['listType'=>$casv['cid'], 'cid'=>$casv['aid']])}">[{$casv['bcolumnname']}]{$casv['title']}</a></dd>
+						{/volist}
 					</dl>
-					<a href="javascript: void(0);" class="more">查看更多</a>
+					<a href="/contentlist.html?listType={$Cs['id']}" class="more">查看更多</a>
 				</div>
-				<div class="item">
-					<div class="itemTitle fs20 rgb888"><a href="javascript: void(0);">资讯聚焦</a></div>
-					<dl class="itemList">
-						<dt><a href="javascript: void(0);"><img src="__images__/new2.jpg" alt=""><span>国家首届XXX会议在某大学</span></a></dt>
-						<dd><a href="javascript: void(0);">[中心要闻]我是第一条新闻</a></dd>
-						<dd><a href="javascript: void(0);">[最新资讯]这里是第二条新闻</a></dd>
-						<dd><a href="javascript: void(0);">[视频看点]还有第三条新闻在这里</a></dd>
-					</dl>
-					<a href="javascript: void(0);" class="more">查看更多</a>
-				</div>
-				<div class="item">
-					<div class="itemTitle fs20 rgb888"><a href="javascript: void(0);">政策法规</a></div>
-					<dl class="itemList">
-						<dt><a href="javascript: void(0);"><img src="__images__/new3.jpg" alt=""><span>最新XXX政策出台</span></a></dt>
-						<dd><a href="javascript: void(0);">[国家政策]某某某政策出台</a></dd>
-						<dd><a href="javascript: void(0);">[部委法规]再也不能这样做了</a></dd>
-						<dd><a href="javascript: void(0);">[中心规章]不知道写啥了 哈哈哈</a></dd>
-					</dl>
-					<a href="javascript: void(0);" class="more">查看更多</a>
-				</div>
+				{/volist}
 			</div>
 		</div>
 	</div>

@@ -48,6 +48,37 @@ class Index extends RCKBase
 
         $this->assign('showboard', $this->showboardConfig);
 
+        // 新闻推送
+        // 推送栏目
+        $Columns = db("column")->where("pid is null")->select();
+        $this->assign("Columns", $Columns);
+
+        // 推送置顶
+        for ($i=0; $i < count($Columns); $i++) { 
+            $ctop[$Columns[$i]['id']] = db("contents a")
+                ->field("a.*,a.id as aid, b.tid as btid")
+                ->join("cnpse_contenttop b", "a.id = b.tid and b.cid = " . $Columns[$i]['id'])
+                ->select();
+        }
+
+        $this->assign("ctop", $ctop);
+        $noTop = '<dt><a href="javascript: void(0);"><img src="" alt=""><span>该专栏尚未设置置顶内容</span></a></dt>'; 
+        $this->assign("noTop", $noTop);
+
+        // 推送内容
+        for ($i=0; $i < count($Columns); $i++) { 
+            $cas[$Columns[$i]['id']] = db("contents a")
+                ->field("a.*,a.id as aid, b.columnname as bcolumnname")
+                ->join("cnpse_column b", "a.cid = b.id and b.pid = " . $Columns[$i]['id'])
+                ->order("createtime desc")
+                ->limit(3)
+                ->select();
+        }
+
+        $this->assign("cas", $cas);
+
+        // dump($ctop);die;
+
     	return $this->fetch("index");
     }
 

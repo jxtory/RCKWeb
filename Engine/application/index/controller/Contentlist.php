@@ -34,8 +34,6 @@ class Contentlist extends RCKBase
             $this->assign("leftColumns", $leftColumns);
 
             // 推送侧边内容
-            $cs = db("column")->where("pid is null")->count();
-
             for ($i=0; $i < count($leftColumns); $i++) { 
                 $cas[$leftColumns[$i]['id']] = db("contents a")
                     ->field("a.*,a.id as aid, b.columnname as bcolumnname")
@@ -73,8 +71,6 @@ class Contentlist extends RCKBase
                 $this->assign("leftColumns", $leftColumns);
 
                 // 推送侧边内容
-                $cs = db("column")->where("pid is null")->count();
-
                 for ($i=0; $i < count($leftColumns); $i++) { 
                     $cas[$leftColumns[$i]['id']] = db("contents a")
                         ->field("a.*,a.id as aid, b.columnname as bcolumnname")
