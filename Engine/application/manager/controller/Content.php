@@ -5,6 +5,7 @@ use \think\Controller;
 
 class Content extends ManagerBase
 {
+    // 内容编辑页
     public function index()
     {
     	// 添加内容页面
@@ -22,6 +23,7 @@ class Content extends ManagerBase
     	return $this->fetch("index");
     }
 
+    // 添加内容
     public function addContent()
     {
     	// 创建新内容
@@ -54,6 +56,7 @@ class Content extends ManagerBase
     	return;
     }
 
+    // 内容列表
     public function contentList()
     {
         if(request()->isGet()){
@@ -123,6 +126,7 @@ class Content extends ManagerBase
         return;
     }
 
+    // 查看栏目
     public function lookcolumn()
     {
         // 查看栏目
@@ -132,15 +136,37 @@ class Content extends ManagerBase
         return $this->fetch("lookcolumn");
     }
 
+    // 获取栏目名称
     public function getColumnName()
     {
         if(input("type") == "getColumnName"){
             $datas = input("post.");
             unset($datas['type']);
             $res = db("column")->where("id", $datas['cid'])->find();
+            $res2 = db("contenttop")->where("cid", $datas['cid'])->find();
+            $res3 = db("contents")->where("id", $res2['tid'])->find();
+            $data['cname'] = $res['columnname'];
+            $data['curtitle'] = $res3['title'];
+            $data['cururl'] = url("index/contentlist/contentPage", ['listType' => $res3['cid'], 'cid' => $res3['id']]);
 
-            return $res['columnname'];
+            return $data;
+        }
+        return "error";
+    }
 
+    // 设置内容置顶
+    public function setContentTop()
+    {
+        if(input("type") == "setContentTop"){
+            $datas = input("post.");
+            unset($datas['type']);
+            $res = db("contenttop")->insert([
+                    "cid"   =>  $datas['cid'],
+                    "tid"   =>  $datas['tid']
+
+                ], true);
+
+            if($res){return "ok";}
         }
         return "error";
     }

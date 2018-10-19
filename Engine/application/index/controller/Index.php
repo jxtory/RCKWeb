@@ -63,7 +63,8 @@ class Index extends RCKBase
                 'username'      =>      $datas['username'],
                 'password'      =>      md5($datas['password']),
                 'email'         =>      $datas['email'],
-                'mobile'        =>      $datas['mobile']
+                'mobile'        =>      $datas['mobile'],
+                'regtime'       =>      date("Y-m-d h:i:s", time())
             ];
 
             if(db('users')->where("username", $datas['username'])->find()){

@@ -162,7 +162,6 @@
       </tbody>
     </table>
   </div>
-  <div class="fuckColunms" data-cname style="display: none"></div>
   <div class="text-c">
     {$contents->render()}
     
@@ -194,23 +193,30 @@
     $("a:contains('置顶操作')").click(function(event) {
       /* Act on the event */
       var cidv = $(this).parent().data("cpid");
+      var conidv = $(this).parent().data("cid");
 
       $.post("getColumnName.html", {type: "getColumnName", cid: cidv}, function(data, status){
         if(status == "success"){
-          $(".fuckColunms").data("cname", data);
+          // $(".fuckColunms").data("cname", data);
           var showHtml = "";
-          showHtml += "<h4 style='text-align: center;'>目标栏目：-" + $(".fuckColunms").data("cname") + "-</h4>";
-          showHtml += "<p style='text-align: center; line-height: 3em;color: #900;'>设置或覆盖目标栏目的置顶内容?<br>注意：此操作不可逆！</p>";
+          showHtml += "<h4 style='text-align: center;'>目标栏目：-" + data.cname + "-</h4>";
+          showHtml += "<p style='text-align: center; line-height: 2em;color: #900;'>设置或覆盖目标栏目的置顶内容?<br>注意：此操作不可逆！</p>";
+          showHtml += '<p style="text-indent: 2em">当前置顶内容：<a href="' + data.cururl +'" target="_blank" style="color: #900;">' + data.curtitle +'</a></p>'
 
           layer.open({
             type: 1,
             title: "设置首页栏目置顶内容",
             skin: 'layui-layer-lan', //加上边框
-            area: ['420px', '240px'], //宽高
+            area: ['420px'], //宽高
             content: showHtml,
             btn: ['确认', '取消'],
             btn1: function(index){
               layer.close(index);
+              $.post("setContentTop.html", {type: "setContentTop", cid: cidv, tid: conidv}, function(data){
+                if(data == "ok"){
+                  layer.msg("设置成功！");
+                }
+              });
 
             },
             btn2: function(index){
@@ -220,8 +226,6 @@
         }
       });
 
-      // alert($(this).parent().data("cid"))
-      // layer.msg($(this).parent().data("cpid"));
     });
 
     // 内容搜索
