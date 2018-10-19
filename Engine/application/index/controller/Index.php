@@ -62,7 +62,7 @@ class Index extends RCKBase
         }
 
         $this->assign("ctop", $ctop);
-        $noTop = '<dt><a href="javascript: void(0);"><img src="" alt=""><span>该专栏尚未设置置顶内容</span></a></dt>'; 
+        $noTop = '<dt><a href="javascript: void(0);"><img src="" alt="未上传缩略快照"><span>该专栏尚未设置置顶内容</span></a></dt>'; 
         $this->assign("noTop", $noTop);
 
         // 推送内容
