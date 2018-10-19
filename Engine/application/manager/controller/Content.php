@@ -71,11 +71,10 @@ class Content extends ManagerBase
             // 推送栏目列表
             $this->assign("colList", $colList);
 
-
             // 内容列表页面
             if(isset($search) || mb_strlen($search) > 0 || !is_null($search)){
                 $datas = db("contents a")
-                    ->field("a.id, a.title, a.cid, a.createtime, b.columnname")
+                    ->field("a.id, a.title, a.cid, a.createtime, b.columnname, b.pid")
                     ->join("cnpse_column b", "cid = b.id")
                     ->where("a.cid", $colId)
                     ->where("title|content", "like", "%" . $search ."%")
@@ -83,7 +82,7 @@ class Content extends ManagerBase
                 
             } else {
                 $datas = db("contents a")
-                    ->field("a.id, a.title, a.cid, a.createtime, b.columnname")
+                    ->field("a.id, a.title, a.cid, a.createtime, b.columnname, b.pid")
                     ->join("cnpse_column b", "cid = b.id")
                     ->where("a.cid", $colId)
                     ->paginate(15);
@@ -99,7 +98,7 @@ class Content extends ManagerBase
                     $colId = "0";
                     // 内容列表页面
                     $datas = db("contents a")
-                        ->field("a.id, a.title, a.cid, a.createtime, b.columnname")
+                        ->field("a.id, a.title, a.cid, a.createtime, b.columnname, b.pid")
                         ->join("cnpse_column b", "cid = b.id")
                         ->where("title|content","like", "%" . $search ."%")
                         ->paginate(15);
@@ -109,14 +108,13 @@ class Content extends ManagerBase
                     $colId = "0";
                     // 内容列表页面
                     $datas = db("contents a")
-                        ->field("a.id, a.title, a.cid, a.createtime, b.columnname")
+                        ->field("a.id, a.title, a.cid, a.createtime, b.columnname, b.pid")
                         ->join("cnpse_column b", "cid = b.id")
                         ->paginate(15);
                     
                 }
 
             }
-
 
             $this->assign('contents', $datas);
 
@@ -132,6 +130,19 @@ class Content extends ManagerBase
         $this->assign("columns", $cols);
 
         return $this->fetch("lookcolumn");
+    }
+
+    public function getColumnName()
+    {
+        if(input("type") == "getColumnName"){
+            $datas = input("post.");
+            unset($datas['type']);
+            $res = db("column")->where("id", $datas['cid'])->find();
+
+            return $res['columnname'];
+
+        }
+        return "error";
     }
 
 }

@@ -124,8 +124,8 @@
     <table class="table table-border table-bordered table-bg table-hover table-sort">
       <thead>
         <tr class="text-c">
-          <th width="40">ID</th>
-          <th width="60">
+          <th width="10">ID</th>
+          <th width="30">
               <select class="select" size="1" id="column" name="column">
                 <option value="0">所有栏目</option>
                 {volist name="colList" id="ctl" key="k"}
@@ -137,9 +137,9 @@
               </select>
 
           </th>
-          <th width="100">内容标题</th>
-          <th width="100">发布日期</th>
-          <th width="220">操作</th>
+          <th width="300">内容标题</th>
+          <th width="40">发布日期</th>
+          <th width="80">操作</th>
         </tr>
       </thead>
       <tbody>
@@ -147,9 +147,9 @@
         <tr class="text-c va-m">
           <td>{$data['id']}</td>
           <td>{$data['columnname']}</td>
-          <td>{$data['title']}</td>
+          <td class="text-l">{$data['title']}</td>
           <td>{$data['createtime']}</td>
-          <td data-cid={$data['id']}>
+          <td data-cid={$data['id']} data-cpid={$data['pid']}>
             <a href="javascript: void(0);">置顶操作</a>
             |
             编辑
@@ -162,6 +162,7 @@
       </tbody>
     </table>
   </div>
+  <div class="fuckColunms" data-cname style="display: none"></div>
   <div class="text-c">
     {$contents->render()}
     
@@ -192,14 +193,35 @@
     // 置顶操作
     $("a:contains('置顶操作')").click(function(event) {
       /* Act on the event */
-      var setTopHtml ='123  ';
-      layer.open({
-        type: 1,
-        skin: 'layui-layer-lan', //加上边框
-        area: ['420px', '240px'], //宽高
-        content: 'html内容'
+      var cidv = $(this).parent().data("cpid");
+
+      $.post("getColumnName.html", {type: "getColumnName", cid: cidv}, function(data, status){
+        if(status == "success"){
+          $(".fuckColunms").data("cname", data);
+          var showHtml = "";
+          showHtml += "<h4 style='text-align: center;'>目标栏目：-" + $(".fuckColunms").data("cname") + "-</h4>";
+          showHtml += "<p style='text-align: center; line-height: 3em;color: #900;'>设置或覆盖目标栏目的置顶内容?<br>注意：此操作不可逆！</p>";
+
+          layer.open({
+            type: 1,
+            title: "设置首页栏目置顶内容",
+            skin: 'layui-layer-lan', //加上边框
+            area: ['420px', '240px'], //宽高
+            content: showHtml,
+            btn: ['确认', '取消'],
+            btn1: function(index){
+              layer.close(index);
+
+            },
+            btn2: function(index){
+              layer.close(index);
+            }
+          });
+        }
       });
+
       // alert($(this).parent().data("cid"))
+      // layer.msg($(this).parent().data("cpid"));
     });
 
     // 内容搜索
