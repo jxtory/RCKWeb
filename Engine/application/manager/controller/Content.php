@@ -35,8 +35,41 @@ class Content extends ManagerBase
     // 添加内容
     public function addContent()
     {
+        // 创建新内容
+        if(input("post.type") == "addContent"){
+            $datas = input();
+            // 卸载请求头
+            unset($datas['type']);
+
+
+            $columnname = $datas['column'];
+            $cid = db("column")->where("columnname", $columnname)->find()['id'];
+
+            $data = [
+                'title'         =>  $datas['conTitle'],
+                'cid'           =>  $cid,
+                'purl'          =>  $datas['conThumbnailUrl'],
+                'content'       =>  $datas['contentAll'],
+                'createtime'    =>  date("Y-m-d h:i:s", time())
+            ];
+
+            $res = db("contents")->insert($data, true);
+
+            if($res){
+                return "1";
+            } else {
+                return "2";
+            }
+        }
+
+        return;
+    }
+
+    // 编辑内容
+    public function editContent_handle()
+    {
     	// 创建新内容
-    	if(input("post.type") == "addContent"){
+    	if(input("post.type") == "editContent"){
     		$datas = input();
     		// 卸载请求头
     		unset($datas['type']);
@@ -44,6 +77,11 @@ class Content extends ManagerBase
 
     		$columnname = $datas['column'];
     		$cid = db("column")->where("columnname", $columnname)->find()['id'];
+            $nowPurl = db("contents")->where("id", $datas['conid'])->find()['purl'];
+
+            if($nowPurl != $datas['conThumbnailUrl'] && file_exists($nowPurl)){
+                unlink($nowPurl);
+            }
 
     		$data = [
     			'title'			=>	$datas['conTitle'],
@@ -53,7 +91,7 @@ class Content extends ManagerBase
     			'createtime'	=>	date("Y-m-d h:i:s", time())
     		];
 
-    		$res = db("contents")->insert($data, true);
+    		$res = db("contents")->where("id", $datas['conid'])->update($data);
 
     		if($res){
     			return "1";

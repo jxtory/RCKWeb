@@ -59,7 +59,7 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">缩略快照：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="hidden" id="conThumbnailUrl" name="conThumbnailUrl" value="">
+				<input type="hidden" id="conThumbnailUrl" name="conThumbnailUrl" value="{$content['purl']}">
 				<div id="uploader">
 				    <div id="fileList" class="uploader-list"></div>
 				    <div id="filePicker">覆盖新的缩略图</div>
@@ -233,7 +233,7 @@ $(function(){
 
 function contentSubmit(){
     // var url = "{:url('dm/personnels/box1')}";
-    var url = "editContent.html";
+    var url = "editContent_handle.html";
     var columnVal = $("#column").val();
     var conTitleVal = $("input[name='conTitle']").val();
     var conThumbnailUrlVal = $("input[name='conThumbnailUrl']").val();
@@ -247,7 +247,8 @@ function contentSubmit(){
     $.post(
         url,
         {
-            type: 'addContent',
+            type: 'editContent',
+            conid: "{$content['id']}",
             column: columnVal,
             conTitle: conTitleVal,
             conThumbnailUrl: conThumbnailUrlVal,
