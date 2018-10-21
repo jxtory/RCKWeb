@@ -152,7 +152,7 @@
           <td data-cid={$data['id']} data-cpid={$data['pid']}>
             <a href="javascript: void(0);">置顶操作</a>
             |
-            编辑
+            <a href="javascript: void(0);">编辑</a>
             |
             删除
 
@@ -225,6 +225,37 @@
           });
         }
       });
+
+    });
+
+    // 编辑操作
+    $("a:contains('编辑')").click(function(){
+      var cidv = $(this).parent().data("cpid");
+      var conidv = $(this).parent().data("cid");
+
+      layer.confirm('是否编辑该内容?', {
+        btn: ['是的','取消'] //按钮
+      }, function(index){
+        layer.close(index);
+
+        // window.open("editContent.html?cid=" + conidv);
+        $.post('{:url("manager/content/lookTitle")}', {type: "lookTitle", conid: conidv}, function(data, status){
+          if(status == "success"){
+            // $(this).attr({
+            //   "data-href": "manager/content/editContent.html?cid=" + conidv,
+            //   "data-title": "编辑：" + data
+            // });
+            // Hui_admin_tab($(this));
+            creatIframe("manager/content/editContent.html?cid=" + conidv, "编辑：" + data);
+            min_titleList();
+          }
+
+        });
+
+      }, function(){
+        layer.msg("Thanks!");
+      });
+
 
     });
 

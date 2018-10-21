@@ -5,6 +5,15 @@ use \think\Controller;
 
 class Content extends ManagerBase
 {
+    public function test()
+    {
+        $datas['conid'] = "1";
+        $res = db("contents")->where("id", $datas['conid'])
+            ->field("title")
+            ->find();
+            dump($res['title']);die;
+
+    }
     // 内容编辑页
     public function index()
     {
@@ -81,6 +90,7 @@ class Content extends ManagerBase
                     ->join("cnpse_column b", "cid = b.id")
                     ->where("a.cid", $colId)
                     ->where("title|content", "like", "%" . $search ."%")
+                    ->order("id desc")
                     ->paginate(15);
                 
             } else {
@@ -88,6 +98,7 @@ class Content extends ManagerBase
                     ->field("a.id, a.title, a.cid, a.createtime, b.columnname, b.pid")
                     ->join("cnpse_column b", "cid = b.id")
                     ->where("a.cid", $colId)
+                    ->order("id desc")
                     ->paginate(15);
 
             }
@@ -104,6 +115,7 @@ class Content extends ManagerBase
                         ->field("a.id, a.title, a.cid, a.createtime, b.columnname, b.pid")
                         ->join("cnpse_column b", "cid = b.id")
                         ->where("title|content","like", "%" . $search ."%")
+                        ->order("id desc")
                         ->paginate(15);
 
                 } else {
@@ -113,6 +125,7 @@ class Content extends ManagerBase
                     $datas = db("contents a")
                         ->field("a.id, a.title, a.cid, a.createtime, b.columnname, b.pid")
                         ->join("cnpse_column b", "cid = b.id")
+                        ->order("id desc")
                         ->paginate(15);
                     
                 }
@@ -122,6 +135,36 @@ class Content extends ManagerBase
             $this->assign('contents', $datas);
 
             return $this->fetch("contentList");
+        }
+        return;
+    }
+
+    // 编辑内容
+    public function editContent()
+    {
+        if(request()->isGet() && !is_null(input("get.cid"))){
+
+            // 获取内容ID
+            $contentId = input("cid");
+
+            // 获取内容并推送
+            $content = db("contents")->where("id", $contentId)->find();
+            // $content['content'] = json_encode($content['content']);
+            // dump($content['content']);die;
+            $this->assign("content", $content);
+
+            // 获取栏目列表
+            $colList = db("column")->field("id, columnname")->where("pid is null")->select();
+            
+            for ($i=0; $i < count($colList); $i++) { 
+                # code...
+                $colList[$i][] = db("column")->field("columnname")->where("pid", $colList[$i]['id'])->select();
+            }
+
+            // 推送栏目列表
+            $this->assign("colList", $colList);
+
+            return $this->fetch("editContent");
         }
         return;
     }
@@ -167,6 +210,22 @@ class Content extends ManagerBase
                 ], true);
 
             if($res){return "ok";}
+        }
+        return "error";
+    }
+
+    // 查看内容标题
+    public function lookTitle()
+    {
+        if(input("type") == "lookTitle"){
+            $datas = input("post.");
+            unset($datas['type']);
+
+            $res = db("contents")->where("id", $datas['conid'])
+                ->field("title")
+                ->find();
+                
+            return $res['title'];
         }
         return "error";
     }
