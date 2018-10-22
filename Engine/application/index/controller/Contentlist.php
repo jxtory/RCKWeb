@@ -85,22 +85,22 @@ class Contentlist extends RCKBase
                     [
                         'title'         =>  '概况',
                         'createtime'    =>  '最新更新',
-                        'cid'           =>  '机构介绍',
-                        'aid'           =>  '概况',
+                        'cid'           =>  '-1',
+                        'aid'           =>  'guide',
                         'bcolumnname'   =>  '机构介绍'
                     ],
                     [
                         'title'         =>  '专家委员',
                         'createtime'    =>  '最新更新',
-                        'cid'           =>  '机构介绍',
-                        'aid'           =>  '专家委员',
+                        'cid'           =>  '-1',
+                        'aid'           =>  'expert',
                         'bcolumnname'   =>  '机构介绍'
                     ],
                     [
                         'title'         =>  '专业项目',
                         'createtime'    =>  '最新更新',
-                        'cid'           =>  '机构介绍',
-                        'aid'           =>  '专业项目',
+                        'cid'           =>  '-1',
+                        'aid'           =>  'special',
                         'bcolumnname'   =>  '机构介绍'
                     ],
                 ];
