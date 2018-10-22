@@ -5,15 +5,6 @@ use \think\Controller;
 
 class Content extends ManagerBase
 {
-    public function test()
-    {
-        $datas['conid'] = "1";
-        $res = db("contents")->where("id", $datas['conid'])
-            ->field("title")
-            ->find();
-            dump($res['title']);die;
-
-    }
     // 内容编辑页
     public function index()
     {
@@ -207,6 +198,30 @@ class Content extends ManagerBase
         return;
     }
 
+    // 删除内容
+    public function deleteContent()
+    {
+        if(input("type") == "deleteContent"){
+            $datas = input();
+            unset($datas['type']);
+
+            $purl = db("contents")->where("id", $datas['conid'])->find()['purl'];
+            if(!is_null($purl) && file_exists($purl)){
+                unlink($purl);
+            }
+
+            $res = db("contents")->where("id", $datas['conid'])->delete();
+
+            if($res){
+                return "1";
+            } else {
+                return "2";
+            }
+        }
+
+        return "error";
+    }
+
     // 查看栏目
     public function lookcolumn()
     {
@@ -215,6 +230,21 @@ class Content extends ManagerBase
         $this->assign("columns", $cols);
 
         return $this->fetch("lookcolumn");
+    }
+
+    // 查看置顶
+    public function looktop()
+    {
+        // 查看栏目
+        $datas = db("contenttop")
+            ->field("b.*, c.*,b.id as bid, c.id as cid, c.cid as colid")
+            ->join("cnpse_column b", "b.id = cid")
+            ->join("cnpse_contents c", "c.id = tid")
+            ->select();
+
+        $this->assign("datas", $datas);
+        // dump($datas);die;
+        return $this->fetch("looktop");
     }
 
     // 获取栏目名称

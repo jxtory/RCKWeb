@@ -154,7 +154,7 @@
             |
             <a href="javascript: void(0);">编辑</a>
             |
-            删除
+            <a href="javascript: void(0);">删除</a>
 
           </td>
         </tr>
@@ -248,6 +248,30 @@
             // Hui_admin_tab($(this));
             creatIframe("manager/content/editContent.html?cid=" + conidv, "编辑：" + data);
             min_titleList();
+          }
+
+        });
+
+      }, function(){
+        layer.msg("Thanks!");
+      });
+    });
+
+    // 删除操作
+    $("a:contains('删除')").click(function(){
+      var cidv = $(this).parent().data("cpid");
+      var conidv = $(this).parent().data("cid");
+      var contr = $(this).parents('tr');
+
+      layer.confirm('真的要删除该内容?', {
+        btn: ['删除','放弃'] //按钮
+      }, function(index){
+        layer.close(index);
+
+        $.post('{:url("manager/content/deleteContent")}', {type: "deleteContent", conid: conidv}, function(data, status){
+          if(status == "success"){
+            layer.msg("删除成功！");
+            contr.fadeOut();
           }
 
         });

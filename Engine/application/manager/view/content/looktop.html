@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+{include file="common/meta" /}
+<title>专业人才库</title>
+<meta name="keywords" content="关键词">
+<meta name="description" content="描述">
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+	<span class="c-gray en">&gt;</span>
+	内容管理
+	<span class="c-gray en">&gt;</span>
+	查看置顶
+	<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
+</nav>
+
+<div class="page-container">
+	<div class="mt-20">
+		<table class="table table-border table-bordered table-bg table-hover table-sort">
+			<thead>
+				<tr class="text-c">
+					<th width="60">栏目名称</th>
+					<th width="100">置顶内容</th>
+					<th width="100">缩略快照</th>
+				</tr>
+			</thead>
+			<tbody>
+				{volist name="datas" id="datas"}
+				<tr class="text-c va-m">
+					<td>{$datas.columnname}</td>
+					<td><a href="{:url('index/contentlist/contentPage',['listType'=>$datas.colid, 'cid'=>$datas.id])}" target="_blank">{$datas.title}</a></td>
+					<td><img src="/{$datas.purl}" alt="快照加载失败或无设置" width="340" height="180"></td>
+
+				</tr>
+				{/volist}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+{include file="common/js" /}
+{include file="common/showLayer" /}
+{include file="common/footer" /}
+
+</body>
+</html>
