@@ -49,7 +49,16 @@ class Allbase extends Controller
 
                 ];
 
+    // 管理密码
     protected $managerConfigPathKey = 'config/manager/key';
+
+    // 子页模块
+    protected $subPageName = [
+        'guide'             =>      '概况',
+        'expert'            =>      '专家委员',
+        'special'           =>      '专业项目',
+        'joinus'            =>      '加入我们'
+    ];
 
     public function _initialize()
     {

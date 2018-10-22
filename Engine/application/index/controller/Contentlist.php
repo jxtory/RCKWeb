@@ -10,26 +10,54 @@ class Contentlist extends RCKBase
             // 获取请求类型
             $listType = input("listType");
             $contentId = input("cid");
-            // 获取栏目
-            $cols = db("column")->where("id", $listType)->find();
-            $this->assign("secTitle", $cols['columnname']);
+
+            if($listType != "-1"){
+                // 获取栏目
+                $cols = db("column")->where("id", $listType)->find();
+                $this->assign("secTitle", $cols['columnname']);
+
+                // 渲染标题
+                if($cols['pid'] == null){
+                    $title = $cols['columnname'];
+                    $this->assign("title", $title);
+                } else {
+                    $pCols = db("column")->where("id", $cols['pid'])->find();
+                    $title = $pCols['columnname'];
+                    $this->assign("title", $title);
+                }
+                
+                // 推送文章
+                $content = db("contents")->where("id", $contentId)->find();
+                $this->assign("page", $content);
+                $this->assign("contentTitle", $content['title']);
+            } else {
+                $this->assign("title", "机构介绍");
+                $this->assign("secTitle", "机构介绍");
+                $subpage = db("subpages")->where("title", $contentId)->find();
+                $cols = "机构介绍";
+                if(!is_null($subpage)){
+                    $subpage['title'] = $this->subPageName[$contentId];
+                    $subpage['createtime'] = date('y-m-d h:i:s',time());
+                    $this->assign("page", $subpage);
+                    $this->assign("contentTitle", $subpage['title']);
+                } else {
+                    $subpageNull = [
+                        'title'     => $this->subPageName[$contentId],
+                        'content'   =>  '<p>敬请期待</p>',
+                        'createtime'    =>  date('y-m-d h:i:s',time())
+                    ];
+                    $this->assign("page", $subpageNull);
+                    $this->assign("contentTitle", "中国专业人才库");
+                }
+
+            }
 
             // 空页面判断
             if($listType == null || $cols == null){
                 abort(404,'页面不存在');
             }
 
-            // 渲染标题
-            if($cols['pid'] == null){
-                $title = $cols['columnname'];
-                $this->assign("title", $title);
-            } else {
-                $pCols = db("column")->where("id", $cols['pid'])->find();
-                $title = $pCols['columnname'];
-                $this->assign("title", $title);
-            }
-
-            // 推送栏目
+            // 推送左侧栏目
             $leftColumns = db("column")->where("pid is null")->select();
             $this->assign("leftColumns", $leftColumns);
 
@@ -45,10 +73,6 @@ class Contentlist extends RCKBase
 
             $this->assign("cas", $cas);
 
-            // 推送文章
-            $content = db("contents")->where("id", $contentId)->find();
-            $this->assign("page", $content);
-            $this->assign("contentTitle", $content['title']);
 
             // 渲染页面
             return $this->fetch("contentPage");
@@ -84,21 +108,21 @@ class Contentlist extends RCKBase
                 $acs = [
                     [
                         'title'         =>  '概况',
-                        'createtime'    =>  '最新更新',
+                        'createtime'    =>  date('y-m-d h:i:s',time()),
                         'cid'           =>  '-1',
                         'aid'           =>  'guide',
                         'bcolumnname'   =>  '机构介绍'
                     ],
                     [
                         'title'         =>  '专家委员',
-                        'createtime'    =>  '最新更新',
+                        'createtime'    =>  date('y-m-d h:i:s',time()),
                         'cid'           =>  '-1',
                         'aid'           =>  'expert',
                         'bcolumnname'   =>  '机构介绍'
                     ],
                     [
                         'title'         =>  '专业项目',
-                        'createtime'    =>  '最新更新',
+                        'createtime'    =>  date('y-m-d h:i:s',time()),
                         'cid'           =>  '-1',
                         'aid'           =>  'special',
                         'bcolumnname'   =>  '机构介绍'

@@ -26,18 +26,12 @@ class Content extends ManagerBase
     // 子页
     public function subpage()
     {
-        $cname = [
-            'guide'     =>  '概况',
-            'expert'    =>  '专家委员',
-            'special'   =>  '专业项目',
-            'joinus'    =>  '加入我们'
-        ];
         if(request()->isGet()){
             $datas = input();
 
             // 渲染
             $this->assign("pageTitle", $datas['page']);
-            $this->assign("pageTitleName", $cname[$datas['page']]);
+            $this->assign("pageTitleName", $this->subPageName[$datas['page']]);
 
             // 查询内容
             $res = db("subpages")->where("title", $datas['page'])->find();
