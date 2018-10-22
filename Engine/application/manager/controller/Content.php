@@ -23,6 +23,59 @@ class Content extends ManagerBase
     	return $this->fetch("index");
     }
 
+    // 子页
+    public function subpage()
+    {
+        $cname = [
+            'guide'     =>  '概况',
+            'expert'    =>  '专家委员',
+            'special'   =>  '专业项目',
+            'joinus'    =>  '加入我们'
+        ];
+        if(request()->isGet()){
+            $datas = input();
+
+            // 渲染
+            $this->assign("pageTitle", $datas['page']);
+            $this->assign("pageTitleName", $cname[$datas['page']]);
+
+            // 查询内容
+            $res = db("subpages")->where("title", $datas['page'])->find();
+
+            if(!is_null($res['title'])){
+                $this->assign("pageContent", $res['content']);
+            } else {
+                $this->assign("pageContent", "");
+            }
+
+            return $this->fetch("subpage");
+
+        }
+
+        if(request()->isPost()){
+            if(input("post.type") == "addSubPage"){
+                $datas = input();
+                unset($datas['type']);
+
+                $data = [
+                    'title'     =>  $datas['conTitle'],
+                    'content'   =>  $datas['contentAll']
+                ];
+
+                $res = db("subpages")->insert($data, true);
+
+                if($res){
+                    return "1";
+                } else {
+                    return "2";
+                }
+
+            }
+        }
+
+        return exception('出错了');
+    }
+
     // 添加内容
     public function addContent()
     {
