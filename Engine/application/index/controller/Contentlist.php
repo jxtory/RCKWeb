@@ -20,10 +20,12 @@ class Contentlist extends RCKBase
                 if($cols['pid'] == null){
                     $title = $cols['columnname'];
                     $this->assign("title", $title);
+                    $this->assign("typeId", $cols['id']);
                 } else {
                     $pCols = db("column")->where("id", $cols['pid'])->find();
                     $title = $pCols['columnname'];
                     $this->assign("title", $title);
+                    $this->assign("typeId", $cols['pid']);
                 }
                 
                 // 推送文章
@@ -33,6 +35,7 @@ class Contentlist extends RCKBase
             } else {
                 $this->assign("title", "机构介绍");
                 $this->assign("secTitle", "机构介绍");
+                $this->assign("typeId", "0");
                 $subpage = db("subpages")->where("title", $contentId)->find();
                 $cols = "机构介绍";
                 if(!is_null($subpage)){
@@ -131,6 +134,7 @@ class Contentlist extends RCKBase
                 $this->assign("assocontent", $acs);
                 $this->assign("title", "机构介绍");
                 $this->assign("secTitle", "机构介绍");
+                $this->assign("typeId", "0");
                 return $this->fetch("contentlist");
             }
 
@@ -147,10 +151,12 @@ class Contentlist extends RCKBase
     		if($cols['pid'] == null){
                 $title = $cols['columnname'];
 	    		$this->assign("title", $title);
+                $this->assign("typeId", $cols['id']);
     		} else {
     			$pCols = db("column")->where("id", $cols['pid'])->find();
                 $title = $pCols['columnname'];
 	    		$this->assign("title", $title);
+                $this->assign("typeId", $cols['pid']);
     		}
 
             // 推送栏目
