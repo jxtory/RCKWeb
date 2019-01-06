@@ -3,27 +3,21 @@
 			<div class="footer-links">
 				<dl class="footer-article-item">
 					<dt>机构介绍</dt>
-					<dd><a href="javascript: void(0);">概况</a></dd>
-					<dd><a href="javascript: void(0);">专家委员</a></dd>
-					<dd><a href="javascript: void(0);">专业项目</a></dd>
+					<dd><a href="{:url('index/contentlist/contentPage', ['listType'=>-1, 'cid'=>'guide'])}">概况</a></dd>
+					<dd><a href="{:url('index/contentlist/contentPage', ['listType'=>-1, 'cid'=>'expert'])}">专家委员</a></dd>
+					<dd><a href="{:url('index/contentlist/contentPage', ['listType'=>-1, 'cid'=>'special'])}">专业项目</a></dd>
 				</dl>
+				{volist name="topShowCol" id="topShowCols"}
 				<dl class="footer-article-item">
-					<dt>通知公告</dt>
-					<dd><a href="javascript: void(0);">机构公告</a></dd>
-					<dd><a href="javascript: void(0);">培训招生</a></dd>
+					<dt>{$topShowCols['columnname']}</dt>
+					{volist name="topShowColAll" id="topShowColsA"}
+						{if condition="$topShowColsA['pid'] == $topShowCols['id']"}
+						<dd><a href="{:url('index/contentlist/contentlist', ['listType'=>$topShowColsA['id']])}">{$topShowColsA['columnname']}</a></dd>
+						{/if}
+					{/volist}
 				</dl>
-				<dl class="footer-article-item">
-					<dt>资讯聚焦</dt>
-					<dd><a href="javascript: void(0);">中心要闻</a></dd>
-					<dd><a href="javascript: void(0);">最新资讯</a></dd>
-					<dd><a href="javascript: void(0);">视频中心</a></dd>
-				</dl>
-				<dl class="footer-article-item">
-					<dt>政策法规</dt>
-					<dd><a href="javascript: void(0);">国家政策</a></dd>
-					<dd><a href="javascript: void(0);">部委法规</a></dd>
-					<dd><a href="javascript: void(0);">中心规章</a></dd>
-				</dl>
+				{/volist}
+
 				<dl class="footer-contact-item">
 					<h3>联系我们</h3>
 					<div class="footer-ewm">

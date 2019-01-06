@@ -13,33 +13,38 @@
 				{if condition="$Request.session.username == null" }
 				<div class="fan0508-hdnav">
 					<ul>
-						<li class="on">帐号登陆</li>
+						<li class="on">视频教学</li>
 						<li class="last-li">证书查询</li>
 					</ul>
 				</div>
 				<div class="fan0508-bdnav">
 					<div class="regist-ul" id="reg">
 						<form action="javascript: void(0);" method="post" name="" target="_self">
-							<ul>
+<!-- 							<ul>
 								<li>
 									<input class="telinput" type="" placeholder="">
 								</li>
 								<li>
 									<input class="codenput" type="password" placeholder=""></li>
-							</ul>
+							</ul> -->
 							<p class="clear"></p>
-							<input type="submit" class="openAccount-down login" value="登陆" style="margin-right: 15px;">
-							<a href="javascript: void(0);" class="openAccount-down" id="Right">注册</a>
+							<!-- <input type="submit" class="openAccount-down login" value="登陆" style="margin-right: 15px;"> -->
+							<!-- <a href="javascript: void(0);" class="openAccount-down" id="Right">注册</a> -->
+							<a href="http://www.cnpse.com/bbs/" class="openAccount-down" style=" margin: 50px 0 0 50px; width:160px;" target="_blank">论坛入口</a>
 						</form>
 					</div>
 					<div class="regist-ul" id="SYreg" style="display:none">
-						<form action="javascript: void(0);" method="post" name="" target="_self">
+						<form action="http://www.zyrck.org/index.php" method="post" name="certificate" target="_blank">
 							<ul>
 								<li>
-									<input class="search" type="" placeholder="">
+									<input class="search" type="text" name="sel_number" placeholder="">
 								</li>
 							</ul>
-							<p class="clear fs14 rgbaaa" style="margin-bottom: 15px;">请输入XX位证书编号</p>
+							<input type="hidden" name="m" value="search"/>
+							<input type="hidden" name="c" value="index"/>
+							<input type="hidden" name="a" value="sel_all"/>
+							<input type="hidden" name="mobileFlag" value="yes" />
+							<p class="clear fs14 rgbaaa" style="margin-bottom: 15px;">请输入证书编号</p>
 							<input type="submit" class="openAccount-down" value="查询">
 						</form>
 					</div>
@@ -152,8 +157,8 @@
 			<p class="fs14 indent rgbaaa" >{$notice->content}</p>
 			<div class="buttonDiv">
 				<ul>
-					<li class="buttonL transition"><a class="fs16 transition" href="javascript: void(0);">了解更多</a></li>
-					<li class="buttonR transition"><a class="fs16" href="javascript: void(0);">加入我们</a></li>
+					<li class="buttonL transition"><a class="fs16 transition" href="{:url('index/contentlist/contentPage', ['listType'=>-1, 'cid'=>'guide'])}">了解更多</a></li>
+					<li class="buttonR transition"><a class="fs16" href="{:url('index/contentlist/contentPage', ['listType'=>-1, 'cid'=>'joinus'])}">加入我们</a></li>
 				</ul>
 			</div>
 			<hr>
@@ -184,28 +189,30 @@
 	<!--中心资讯开始-->
 	<main class="infoMain infoBg">
 		<div class="info">
-			<div class="infoTitle center fs24">中心资讯</div>
+			<div class="infoTitle center fs24">概 况</div>
 			<div class="infoWrapper">
-                    <a href="javascript: void(0);" class="infoCard">
+                    <a href="{:url('index/contentlist/contentPage', ['listType'=>-1, 'cid'=>'expert'])}" class="infoCard">
                         <div class="infoImage">
                             <div class="infoScale infoImg1"></div>
-                            <div class="infoImgTitle">科目分析</div>
+                            <div class="infoImgTitle">专家委员</div>
                         </div>
-                        <div class="infoText indent">啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</div>
+                        <div class="infoText indent">
+                        	管理类、生命、自然和社会科学、类医药、保健、养生及指导类等...点击查看详情
+					    </div>
                     </a>
-                    <a href="javascript: void(0);" class="infoCard">
+                    <a href="{:url('index/contentlist/contentPage', ['listType'=>-1, 'cid'=>'special'])}" class="infoCard">
                         <div class="infoImage">
                             <div class="infoScale infoImg2"></div>
-                            <div class="infoImgTitle">学术指导</div>
+                            <div class="infoImgTitle">专业项目</div>
                         </div>
-                        <div class="infoText indent">半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半半</div>
+                        <div class="infoText indent">管理类、商业运营类、国际经济贸易类、营销类、金融理财、财会类、办公行政类、计算机与数字应用、信息通讯类、土木工程、环境工程类、房地产与物业类、专业技术人员类、仪表设备、机械、加工制造类、物流运输、仓储及相、类、维护、维修类、教育培训类、生命科学、自然科学和社会科学类等...点击查看详情</div>
                     </a>
-                    <a href="javascript: void(0);" class="infoCard">
+                    <a href="{:url('index/contentlist/contentlist', ['listType'=>'5'])}" class="infoCard">
                         <div class="infoImage">
                             <div class="infoScale infoImg3"></div>
-                            <div class="infoImgTitle">就业点评</div>
+                            <div class="infoImgTitle">培训招生</div>
                         </div>
-                        <div class="infoText indent">踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩踩</div>
+                        <div class="infoText indent">建设中...点击查看详情</div>
                     </a>
                 </div>
 		</div>

@@ -57,7 +57,14 @@
 </head>
 <body>
 {include file="common/top" /}
-<div class="pageImg"></div>
+<div class="pageImg">
+  {switch name="typeId" }
+    {case value="0"}<img src="__images__\0001.jpg" alt="图像显示失败">{/case}
+    {case value="1"}<img src="__images__\0002.jpg" alt="图像显示失败">{/case}
+    {case value="2"}<img src="__images__\0003.jpg" alt="图像显示失败">{/case}
+    {case value="3"}<img src="__images__\0004.jpg" alt="图像显示失败">{/case}
+  {/switch}
+</div>
 <div class="posPage">
   <div class="page"><span>首页</span><span>&#62;</span><span>{$title}</span>{if condition="$secTitle != $title"}<span>&#62;</span><span>{$secTitle}</span>{/if}</div>
 </div>

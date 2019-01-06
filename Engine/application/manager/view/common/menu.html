@@ -4,8 +4,6 @@
 			<dt><i class="Hui-iconfont">&#xe616;</i> 管理中心<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="https://www.baidu.com/s?word=专业人才库" data-title="百度一下" href="javascript:void(0)">问问度娘</a></li>
-					<li><a data-href="{:url('index/index/index')}" data-title="浏览前端" href="javascript:void(0)">浏览前端</a></li>
 					<li><a data-href="{:url('manager/index/banner')}" data-title="轮播图" href="javascript:void(0)">轮播图</a></li>
 					<li><a data-href="{:url('manager/index/notice')}" data-title="通知栏" href="javascript:void(0)">通知栏</a></li>
 					<li><a data-href="{:url('manager/index/showboard')}" data-title="展示板" href="javascript:void(0)">展示板</a></li>
@@ -20,7 +18,7 @@
 					<li><a data-href="{:url('manager/content/index')}" data-title="添加内容" href="javascript:void(0)">添加内容</a></li>
 					<li><a data-href="{:url('manager/content/contentlist')}" data-title="内容列表" href="javascript:void(0)">内容列表</a></li>
 					<li><a data-href="{:url('manager/content/lookcolumn')}" data-title="查看栏目" href="javascript:void(0)">查看栏目</a></li>
-					<li><a data-href="{:url('manager/content/contentlist')}" data-title="首页栏目" href="javascript:void(0)">首页栏目</a></li>
+					<li><a data-href="{:url('manager/content/looktop')}" data-title="查看置顶" href="javascript:void(0)">查看置顶</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -29,9 +27,9 @@
 			<dt><i class="Hui-iconfont">&#xe616;</i> 机构介绍<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="{:url('manager/content/index')}" data-title="概 况" href="javascript:void(0)">概 况</a></li>
-					<li><a data-href="{:url('manager/content/contentlist')}" data-title="专家委员" href="javascript:void(0)">专家委员</a></li>
-					<li><a data-href="{:url('manager/content/lookcolumn')}" data-title="专业项目" href="javascript:void(0)">专业项目</a></li>
+					<li><a data-href="{:url('manager/content/subpage', ['page'=>'guide'])}" data-title="编辑：概 况" href="javascript:void(0)">概 况</a></li>
+					<li><a data-href="{:url('manager/content/subpage', ['page'=>'expert'])}" data-title="编辑：专家委员" href="javascript:void(0)">专家委员</a></li>
+					<li><a data-href="{:url('manager/content/subpage', ['page'=>'special'])}" data-title="编辑：专业项目" href="javascript:void(0)">专业项目</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -40,15 +38,7 @@
 			<dt><i class="Hui-iconfont">&#xe616;</i> 信息管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-				</ul>
-			</dd>
-		</dl>
-
-		<dl id="menu-other">
-			<dt><i class="Hui-iconfont">&#xe616;</i> 其他菜单<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd>
-				<ul>
-					<li><a data-href="https://www.baidu.com" data-title="百度一下" href="javascript:void(0)">百度一下</a></li>
+					<li><a data-href="{:url('manager/content/subpage', ['page'=>'joinus'])}" data-title="编辑：加入我们" href="javascript:void(0)">加入我们</a></li>
 				</ul>
 			</dd>
 		</dl>
