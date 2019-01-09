@@ -36,23 +36,31 @@ class Contentlist extends RCKBase
                 $this->assign("title", "机构介绍");
                 $this->assign("secTitle", "机构介绍");
                 $this->assign("typeId", "0");
-                $subpage = db("subpages")->where("title", $contentId)->find();
-                $cols = "机构介绍";
-                if(!is_null($subpage)){
-                    $subpage['title'] = $this->subPageName[$contentId];
-                    $subpage['createtime'] = date('y-m-d h:i:s',time());
-                    $this->assign("page", $subpage);
-                    $this->assign("contentTitle", $subpage['title']);
+                if(is_numeric($contentId)){
+                    // 推送文章
+                    $content = db("contents")->where("id", $contentId)->find();
+                    $this->assign("page", $content);
+                    $this->assign("contentTitle", $content['title']);
+                    $cols = "机构介绍";
                 } else {
-                    $subpageNull = [
-                        'title'     => $this->subPageName[$contentId],
-                        'content'   =>  '<p>敬请期待</p>',
-                        'createtime'    =>  date('y-m-d h:i:s',time())
-                    ];
-                    $this->assign("page", $subpageNull);
-                    $this->assign("contentTitle", "中国专业人才库");
-                }
+                    $subpage = db("subpages")->where("title", $contentId)->find();
+                    $cols = "机构介绍";
+                    if(!is_null($subpage)){
+                        $subpage['title'] = $this->subPageName[$contentId];
+                        $subpage['createtime'] = date('y-m-d h:i:s',time());
+                        $this->assign("page", $subpage);
+                        $this->assign("contentTitle", $subpage['title']);
+                    } else {
+                        $subpageNull = [
+                            'title'     => $this->subPageName[$contentId],
+                            'content'   =>  '<p>敬请期待</p>',
+                            'createtime'    =>  date('y-m-d h:i:s',time())
+                        ];
+                        $this->assign("page", $subpageNull);
+                        $this->assign("contentTitle", "中国专业人才库");
+                    }
 
+                }
             }
 
             // 空页面判断
@@ -111,27 +119,35 @@ class Contentlist extends RCKBase
                 $acs = [
                     [
                         'title'         =>  '概况',
-                        'createtime'    =>  date('y-m-d h:i:s',time()),
+                        'createtime'    =>  date('Y-m-d h:i:s',time()),
                         'cid'           =>  '-1',
                         'aid'           =>  'guide',
                         'bcolumnname'   =>  '机构介绍'
                     ],
                     [
                         'title'         =>  '专家委员',
-                        'createtime'    =>  date('y-m-d h:i:s',time()),
+                        'createtime'    =>  date('Y-m-d h:i:s',time()),
                         'cid'           =>  '-1',
                         'aid'           =>  'expert',
                         'bcolumnname'   =>  '机构介绍'
                     ],
                     [
                         'title'         =>  '专业项目',
-                        'createtime'    =>  date('y-m-d h:i:s',time()),
+                        'createtime'    =>  date('Y-m-d h:i:s',time()),
                         'cid'           =>  '-1',
                         'aid'           =>  'special',
                         'bcolumnname'   =>  '机构介绍'
                     ],
                 ];
+
+                $intros = db("contents")
+                    ->where("cid", "-1")
+                    ->order("createtime desc")
+                    // ->select();
+                    ->paginate(15);
+
                 $this->assign("assocontent", $acs);
+                $this->assign("intros", $intros);
                 $this->assign("title", "机构介绍");
                 $this->assign("secTitle", "机构介绍");
                 $this->assign("typeId", "0");

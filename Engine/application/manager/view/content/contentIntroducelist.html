@@ -1,0 +1,241 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+{include file="common/meta" /}
+<title>专业人才库</title>
+<meta name="keywords" content="关键词">
+<meta name="description" content="描述">
+<style>
+.pagination {
+  display: inline-block;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+
+.pagination > li {
+  display: inline;
+}
+.pagination > li > a,
+.pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #337ab7;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+  margin-left: 0;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  z-index: 2;
+  color: #23527c;
+  background-color: #eee;
+  border-color: #ddd;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  z-index: 3;
+  color: #fff;
+  cursor: default;
+  background-color: #337ab7;
+  border-color: #337ab7;
+}
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  color: #777;
+  cursor: not-allowed;
+  background-color: #fff;
+  border-color: #ddd;
+}
+.pagination-lg > li > a,
+.pagination-lg > li > span {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+}
+.pagination-lg > li:first-child > a,
+.pagination-lg > li:first-child > span {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.pagination-lg > li:last-child > a,
+.pagination-lg > li:last-child > span {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.pagination-sm > li > a,
+.pagination-sm > li > span {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.pagination-sm > li:first-child > a,
+.pagination-sm > li:first-child > span {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.pagination-sm > li:last-child > a,
+.pagination-sm > li:last-child > span {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+} 
+</style>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+  <span class="c-gray en">&gt;</span>
+  内容管理
+  <span class="c-gray en">&gt;</span>
+  内容列表
+  <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
+</nav>
+<div class="page-container">
+  <div class="text-c">
+    <input type="text" name="searchBox" id="searchBox" placeholder="输入关键词，找到相关标题或内容" style="width:250px" class="input-text">
+    <button name="findContent" id="findContent" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 查找</button>
+    
+  </div>
+
+  <div class="mt-20">
+    <table class="table table-border table-bordered table-bg table-hover table-sort">
+      <thead>
+        <tr class="text-c">
+          <th width="10">ID</th>
+          <th width="30">机构介绍</th>
+          <th width="300">内容标题</th>
+          <th width="40">发布日期</th>
+          <th width="80">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        {volist name="contents" id="data"}
+        <tr class="text-c va-m">
+          <td>{$data['id']}</td>
+          <td>机构介绍</td>
+          <td class="text-l">{$data['title']}</td>
+          <td>{$data['createtime']}</td>
+          <td data-cid={$data['id']}>
+            <a href="javascript: void(0);">编辑</a>
+            |
+            <a href="javascript: void(0);">删除</a>
+
+          </td>
+        </tr>
+        {/volist}
+      </tbody>
+    </table>
+  </div>
+  <div class="text-c">
+    {$contents->render()}
+    
+  </div>
+</div>
+
+
+{include file="common/js" /}
+{include file="common/showLayer" /}
+{include file="common/footer" /}
+
+<script>
+  function ToSearch()
+  {
+    window.location.href="contentIntroducelist.html?search=" + $("#searchBox").val();
+
+  }
+  $(function(){
+    // 编辑操作
+    $("a:contains('编辑')").click(function(){
+      var conidv = $(this).parent().data("cid");
+
+      layer.confirm('是否编辑该内容?', {
+        btn: ['是的','取消'] //按钮
+      }, function(index){
+        layer.close(index);
+
+        // window.open("editContent.html?cid=" + conidv);
+        $.post('{:url("manager/content/lookTitle")}', {type: "lookTitle", conid: conidv}, function(data, status){
+          if(status == "success"){
+            // $(this).attr({
+            //   "data-href": "manager/content/editContent.html?cid=" + conidv,
+            //   "data-title": "编辑：" + data
+            // });
+            // Hui_admin_tab($(this));
+            creatIframe("manager/content/editIntroduceContent.html?cid=" + conidv, "编辑：" + data);
+            min_titleList();
+          }
+
+        });
+
+      }, function(){
+        layer.msg("Thanks!");
+      });
+    });
+
+    // 删除操作
+    $("a:contains('删除')").click(function(){
+      var conidv = $(this).parent().data("cid");
+      var contr = $(this).parents('tr');
+
+      layer.confirm('真的要删除该内容?', {
+        btn: ['删除','放弃'] //按钮
+      }, function(index){
+        layer.close(index);
+
+        $.post('{:url("manager/content/deleteContent")}', {type: "deleteIntroduceContent", conid: conidv}, function(data, status){
+          if(status == "success"){
+            layer.msg("删除成功！");
+            contr.fadeOut();
+          }
+
+        });
+
+      }, function(){
+        layer.msg("Thanks!");
+      });
+
+
+    });
+
+    // 内容搜索
+    $("#searchBox").keydown(function(event) {
+      /* Act on the event */
+      if(event.keyCode == "13"){
+        ToSearch();
+      }
+    });
+
+    $("#findContent").click(function(event) {
+      /* Act on the event */
+      ToSearch();
+    });
+
+  });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+{include file="common/meta" /}
+<title>编辑——{$content['title']}</title>
+<!-- 引入 百度编辑器样式 -->
+<link href="_UEditor_themes/default/css/ueditor.css" type="text/css" rel="stylesheet">
+<!-- 结束 百度编辑器样式 -->
+<link href="_framework_/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+	<span class="c-gray en">&gt;</span>
+	内容管理
+	<span class="c-gray en">&gt;</span>
+	内容编辑
+	<span class="c-gray en">&gt;</span>
+	{$content['title']}
+	<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
+</nav>
+
+<div class="page-container">
+	<form class="form form-horizontal" id="form-article-add">
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">所属栏目：</label>
+			<div class="formControls col-xs-8 col-sm-9">机构介绍</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">
+				<span class="c-red">*</span>
+				内容标题：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" id="website-title" placeholder="请填写标题" id="conTitle" name="conTitle" value="{$content['title']}" class="input-text">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">编辑内容：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<!--style给定宽度可以影响编辑器的最终宽度-->
+				<script type="text/plain" id="myEditor" style="width:800px;height:500px;">
+					{$content['content']}
+				</script>
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"></label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input class="btn btn-primary radius" id="conSubmit" type="button" value="提交编辑">
+				
+			</div>
+
+		</div>
+	</form>
+</div>
+<div id="ConBox" style="display: none;"></div>
+
+{include file="common/js" /}
+<script type="text/javascript" src="_framework_/lib/webuploader/0.1.5/webuploader.min.js"></script> 
+<script type="text/javascript" charset="utf-8" src="_UEditor_ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="_UEditor_ueditor.all.js"></script>
+<script type="text/javascript" src="_UEditor_lang/zh-cn/zh-cn.js"></script>	
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+    var ua = UE.getEditor('myEditor');
+</script>
+
+<script>
+$(function(){
+	$("#conSubmit").click(function(event) {
+		/* Act on the event */
+		contentSubmit();
+	});
+});
+
+function contentSubmit(){
+    // var url = "{:url('dm/personnels/box1')}";
+    var url = "editContent_handle.html";
+    var conTitleVal = $("input[name='conTitle']").val();
+    var contentAll = UE.getEditor('myEditor').getContent();
+
+    if(typeof conTitleVal == "undefined" || conTitleVal == null || conTitleVal == ""){
+    	layer.msg("内容标题不能为空！");
+    	return;
+    }
+
+    $.post(
+        url,
+        {
+            type: 'editIntroduceContent',
+            conid: "{$content['id']}",
+            conTitle: conTitleVal,
+            contentAll: contentAll
+        }, function(data, textStatus, xhr) {
+        /*optional stuff to do after success */
+        if(data == "1"){
+        	layer.msg("提交成功！3秒后刷新！")
+        	$("#conSubmit").fadeOut();
+            setTimeout(function(){
+                window.location.reload();
+            },3000); 
+        } else if (data == "2"){
+        	layer.msg("异常错误！");
+        } else {
+        	layer.msg("提交失败！");
+        }
+
+    });
+}
+	
+</script>
+
+{include file="common/footer" /}
+
+
+</body>
+</html>

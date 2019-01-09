@@ -89,6 +89,12 @@
       {volist name="assocontent" id="acs"}
       <li><a href="{:url('index/contentlist/contentPage', ['listType'=>$acs['cid'], 'cid'=>$acs['aid']])}">[{$acs['bcolumnname']}]{$acs['title']}</a><span>{$acs['createtime']}</span></li>
       {/volist}
+
+      {if condition="$secTitle eq '机构介绍'"}
+        {volist name="intros" id="intros"}
+        <li><a href="{:url('index/contentlist/contentPage', ['listType'=>-1, 'cid'=>$intros['id']])}">[机构介绍]{$intros['title']}</a><span>{$intros['createtime']}</span></li>
+        {/volist}
+      {/if}
     </ul>
   </div>  
 </div>

@@ -23,6 +23,15 @@ class Content extends ManagerBase
     	return $this->fetch("index");
     }
 
+    // 机构内容编辑页
+    public function introduce()
+    {
+        // 机构内容编辑页
+
+        return $this->fetch("introduce");
+    }
+
+
     // 子页
     public function subpage()
     {
@@ -100,31 +109,76 @@ class Content extends ManagerBase
             }
         }
 
+        // 创建机构介绍新内容
+        if(input("post.type") == "addIntroduceContent"){
+            $datas = input();
+            // 卸载请求头
+            unset($datas['type']);
+
+            $data = [
+                'title'         =>  $datas['conTitle'],
+                'cid'           =>  -1,
+                'purl'          =>  "",
+                'content'       =>  $datas['contentAll'],
+                'createtime'    =>  date("Y-m-d h:i:s", time())
+            ];
+
+            $res = db("contents")->insert($data, true);
+
+            if($res){
+                return "1";
+            } else {
+                return "2";
+            }
+        }
+
         return;
     }
 
     // 编辑内容
     public function editContent_handle()
     {
-    	// 创建新内容
-    	if(input("post.type") == "editContent"){
-    		$datas = input();
-    		// 卸载请求头
-    		unset($datas['type']);
+        // 创建新内容
+        if(input("post.type") == "editContent"){
+            $datas = input();
+            // 卸载请求头
+            unset($datas['type']);
 
 
-    		$columnname = $datas['column'];
-    		$cid = db("column")->where("columnname", $columnname)->find()['id'];
+            $columnname = $datas['column'];
+            $cid = db("column")->where("columnname", $columnname)->find()['id'];
             $nowPurl = db("contents")->where("id", $datas['conid'])->find()['purl'];
 
             if($nowPurl != $datas['conThumbnailUrl'] && file_exists($nowPurl)){
                 unlink($nowPurl);
             }
 
+            $data = [
+                'title'         =>  $datas['conTitle'],
+                'cid'           =>  $cid,
+                'purl'          =>  $datas['conThumbnailUrl'],
+                'content'       =>  $datas['contentAll'],
+                'createtime'    =>  date("Y-m-d h:i:s", time())
+            ];
+
+            $res = db("contents")->where("id", $datas['conid'])->update($data);
+
+            if($res){
+                return "1";
+            } else {
+                return "2";
+            }
+        }
+    	// 机构介绍新内容
+    	if(input("post.type") == "editIntroduceContent"){
+    		$datas = input();
+    		// 卸载请求头
+    		unset($datas['type']);
+
     		$data = [
     			'title'			=>	$datas['conTitle'],
-    			'cid'			=>	$cid,
-    			'purl'			=>	$datas['conThumbnailUrl'],
+    			'cid'			=>	-1,
+    			'purl'			=>	"",
     			'content'		=>	$datas['contentAll'],
     			'createtime'	=>	date("Y-m-d h:i:s", time())
     		];
@@ -215,6 +269,37 @@ class Content extends ManagerBase
         return;
     }
 
+    // 内容列表
+    public function contentIntroducelist()
+    {
+        if(request()->isGet()){
+            $colId = -1;
+            $search = input("search");
+
+            // 内容列表页面
+            if(isset($search) || mb_strlen($search) > 0 || !is_null($search)){
+                $datas = db("contents")
+                  ->where("cid", $colId)
+                    ->where("title|content", "like", "%" . $search ."%")
+                    ->order("id desc")
+                    ->paginate(15);
+                
+            } else {
+                $datas = db("contents")
+                    ->where("cid", $colId)
+                    ->order("id desc")
+                    ->paginate(15);
+
+            }
+
+            $this->assign('contents', $datas);
+
+            return $this->fetch("contentIntroducelist");
+        }
+        return;
+    }
+
+
     // 编辑内容
     public function editContent()
     {
@@ -245,10 +330,47 @@ class Content extends ManagerBase
         return;
     }
 
+    // 编辑机构介绍内容
+    public function editIntroduceContent()
+    {
+        if(request()->isGet() && !is_null(input("get.cid"))){
+
+            // 获取内容ID
+            $contentId = input("cid");
+
+            // 获取内容并推送
+            $content = db("contents")->where("id", $contentId)->find();
+            // $content['content'] = json_encode($content['content']);
+            // dump($content['content']);die;
+            $this->assign("content", $content);
+
+            return $this->fetch("editIntroduceContent");
+        }
+        return;
+    }
+
     // 删除内容
     public function deleteContent()
     {
         if(input("type") == "deleteContent"){
+            $datas = input();
+            unset($datas['type']);
+
+            $purl = db("contents")->where("id", $datas['conid'])->find()['purl'];
+            if(!is_null($purl) && file_exists($purl)){
+                unlink($purl);
+            }
+
+            $res = db("contents")->where("id", $datas['conid'])->delete();
+
+            if($res){
+                return "1";
+            } else {
+                return "2";
+            }
+        }
+
+        if(input("type") == "deleteIntroduceContent"){
             $datas = input();
             unset($datas['type']);
 
